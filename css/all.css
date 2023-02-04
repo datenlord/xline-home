@@ -1,0 +1,203 @@
+@font-face {
+  font-family: "Inter";
+  src: url(../font/Inter-VariableFont_slnt\,wght.ttf) format("truetype");
+}
+
+body{
+    margin:0;
+}
+
+p {
+    margin: 0px;
+}
+
+.main{
+    min-width: 1440px;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: visible;
+}
+
+/* header --start*/
+
+.main .header_box{
+    min-width: 1180px;
+    height: 86px;
+    background: rgba(10, 12, 40, 0.4);
+    display: block;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0px 101px 0px 105px;
+}
+
+.main .header_left {
+    cursor: pointer;
+    float: left;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 68px;
+}
+
+.main .header_middle{
+    float: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.main .header_middle p {
+    float: left;
+    font-family: 'Inner';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 86px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+.main .header_middle .dropdown:hover {
+    border-color: #767EE5;
+    border-style: solid;
+    border-width: 0px 0px 4px 0px;
+}
+
+.main .header_right {
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+}
+
+.main .header_selected {
+    color: #767EE5;
+}
+
+.main .header_middle .dropdown {
+    padding-right:20px;
+    padding-left: 20px;
+    float: left;
+    overflow: hidden;
+    height: 100%;
+    border-color: rgba(10, 12, 40, 0.4);
+    border-style: solid;
+    border-width: 0px 0px 4px 0px;
+}
+
+/* Dropdown content (hidden by default)*/
+.dropdown_content {
+    width: 160px;
+    margin-top: 90px;
+    margin-left: -55px;
+    padding: 26px 20px 5px 15px;
+    transition: all 0s ease 0.3s;
+    visibility: hidden;
+    position: absolute;
+    background-color: #282A35;
+    box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.dropdown_content a {
+    color: #E0E0E0;
+    float: none;
+    padding: 0px 0px 15px 0px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.dropdown_content a:hover {
+    color: #767EE5;
+}
+
+.dropdown:hover .dropdown_content {
+    transition-delay: 0s;
+    visibility: visible;
+}
+
+/* Footer */
+
+#footer {
+    height: 572px;
+    background-image: url("../images/footer_background.png");
+}
+
+#footer_link {
+    display: flex;
+    margin-top: 76px;
+    margin-left: 130px;
+}
+
+#footer_link div {
+    display: flex;
+    width: 230px;
+    min-width: 230px;
+    flex-direction: column;
+    margin-right: 86px;
+}
+
+#footer_link p {
+    color: white;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 70px;
+    border-width: 0px 0px 2px 0px;
+    border-color: white;
+    border-style: solid;
+}
+
+#footer_link a {
+    color: white;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    margin-top: 20px;
+}
+
+#footer_logo {
+    display: block;
+    margin-top: 64px;
+}
+
+#footer_xline {
+    float: left;
+    margin-left: 160px;
+}
+
+#footer_github {
+    float: right;
+    margin-right: 50px;
+}
+
+#footer_gitter {
+    float: right;
+    margin-right: 73px;
+}
+
+div {
+    font-family: 'Inter';
+    font-style: normal;
+    margin: 0px;
+}
+
+p {
+    font-family: 'Inter';
+    font-style: normal;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}

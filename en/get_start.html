@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DatenLord | Homepage</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="styleSheet"  href="../css/all.css?v=20221120" />
+    <link type="text/css" rel="styleSheet"  href="../css/docs.css?v=20221120" />
+</head>
+<body>
+<div class="main">
+    <div id="header_outer">
+        <div class="header_box">
+            <div class="header_left">
+                <img src="../images/navi_logo.png"  onclick="window.location.href='home.html'">
+            </div>
+            <div class="header_middle">
+                <div class="dropdown">
+                    <p>Docs</p>
+                    <div class="dropdown_content">
+                        <a href="./whats_new.html">What's New</a>
+                        <a href="./get_start.html">Get Started</a>
+                        <a href="#">Deploy</a>
+                        <a href="#">Develop</a>
+                        <a href="#">Reference</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <p onclick="window.location.href='./consensus.html'">deep dive</p>
+                </div>
+                <div class="dropdown">
+                    <p>community</p>
+                    <div class="dropdown_content">
+                        <a href="./contribute.html">Contribute</a>
+                        <a href="https://gitter.im/datenlord/Xline">Chat</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <p>blog</p>
+                </div>
+            </div>
+            <div class="header_right">
+                <img src="../images/navi_github.png"  onclick="window.location.href='https://github.com/datenlord/xline'">
+            </div>
+        </div>
+
+        <div>
+        <p id="summary_intro">Get Started</p>
+        </div>
+        <div>
+            <img id="summary_underline" src="../images/docs_underline.png">
+        </div>
+    </div>
+    <div class="content">
+        <div id="bar">
+            <div id="bar_title">Docs</div>
+            <div class="normal_bar" onclick="
+                if (document.getElementById('whats_new_down').style.display == 'inline') {
+                    document.getElementById('whats_new_down').style.display = 'none';
+                    document.getElementById('whats_new_right').style.display = 'inline';
+                    var child = document.getElementsByClassName('whats_new_child');
+                    for (var i = 0; i < child.length; i++) {
+                        child[i].style.display = 'none';
+                    }
+                } else {
+                    document.getElementById('whats_new_down').style.display = 'inline';
+                    document.getElementById('whats_new_right').style.display = 'none';
+                    var child = document.getElementsByClassName('whats_new_child');
+                    for (var i = 0; i < child.length; i++) {
+                        child[i].style.display = 'flex';
+                    }
+
+                }
+            ">
+                <div>
+                    <img src="../images/docs_arrow_down.png" id="whats_new_down">
+                </div>
+                <div>
+                    <img src="../images/docs_arrow_right.png" id="whats_new_right">
+                </div>
+                <p >What's New</p>
+            </div>
+            <div class="normal_bar bar_child whats_new_child">
+                <div>
+                    <img src="../images/docs_bar_bullet.png">
+                </div>
+                <a href="./whats_new.html#v010">V0.1.0</a>
+            </div>
+            <div class="normal_bar bar_child whats_new_child">
+                <div>
+                    <img src="../images/docs_bar_bullet.png">
+                </div>
+                <a href="./whats_new.html#v020">V0.2.0</a>
+            </div>
+
+            <div class="normal_bar" onclick="
+                if (document.getElementById('start_down').style.display == 'inline') {
+                    document.getElementById('start_down').style.display = 'none';
+                    document.getElementById('start_right').style.display = 'inline';
+                    var child = document.getElementsByClassName('start_child');
+                    for (var i = 0; i < child.length; i++) {
+                        child[i].style.display = 'none';
+                    }
+                } else {
+                    document.getElementById('start_down').style.display = 'inline';
+                    document.getElementById('start_right').style.display = 'none';
+                    var child = document.getElementsByClassName('start_child');
+                    for (var i = 0; i < child.length; i++) {
+                        child[i].style.display = 'flex';
+                    }
+
+                }
+            ">
+                <div>
+                    <img src="../images/docs_arrow_down.png" id="start_down">
+                </div>
+                <div>
+                    <img src="../images/docs_arrow_right.png" id="start_right">
+                </div>
+                <p class="bar_selected">Get Started</p>
+            </div>
+            <div class="normal_bar bar_child start_child">
+                <div>
+                    <img src="../images/docs_bar_bullet.png">
+                </div>
+                <a href="./get_start.html#arch">Architecture</a>
+            </div>
+            <div class="normal_bar bar_child start_child">
+                <div>
+                    <img src="../images/docs_bar_bullet.png">
+                </div>
+                <a href="./get_start.html#xline">Xline in 5 minutes</a>
+            </div>
+
+            <div class="normal_bar">
+                <div>
+                    <img src="../images/docs_arrow_right.png"">
+                </div>
+                <p>Deploy</p>
+            </div>
+
+            <div class="normal_bar">
+                <div>
+                    <img src="../images/docs_arrow_right.png"">
+                </div>
+                <p>Develop</p>
+            </div>
+
+            <div class="normal_bar">
+                <div>
+                    <img src="../images/docs_arrow_right.png"">
+                </div>
+                <p>Reference</p>
+            </div>
+        </div>
+
+        <div id="article">
+            <p class="normal">
+                Xline is a high-performance distributed key-value storage engine for multi-cluster. It can provide unified data management for multi-cluster scenarios, making mutual access, discovery, and modification simple and convenient. It also provides KV interface, Multi-Version Concurrency Control and is compatible with etcd and K8S.
+            </p>
+            <p class="normal">
+                Xline is the first geo-distributed consistency management service based on CURP(a WAN consensus protocol, read the paper for more details). It addresses the challenges of convergence and consistency across clouds.
+            </p>
+            <div class="title_bar"></div>
+            <p id="arch" class="article_title">Architecture</p>
+            <p class="bold">An Xline instance consists of the following layers:</p>
+            <ul>
+                <img id="arch_graph" src="../images/docs_arch.png">
+                <li>
+                    Client Layer: Provides a simple and easy-to-use API for clients to use, which can greatly reduce the complexity of using Xline for business. Xline clients in different languages will be implemented in the later release, and currently etcdctl can be used to initiate requests because Xline APIs are compatible with etcd.
+                </li>
+                <li>
+                    Access Layer: The access layer mainly includes the communication protocol between client to server or server to server. Xline API is based on gRPC protocol.
+                </li>
+                <li>
+                    CURP Protocol Layer: The CURP protocol layer implements the core algorithm features, such as leader election, log replication, fast-path and slow-path, which are used to ensure data consistency among Xline multi-node and improve service availability. CURP protocol is the cornerstone and highlight of Xline.
+                </li>
+                <li>
+                    Functional Logic Layer: This layer implements Xline business logic, including the typical KV Server, Auth Server, Lease Server and Watch Server, etc. Client sends requests to Xline Server through the access layer, and Xline Server dispatches the requests to specific servers for execution.
+                </li>
+                <li>
+                    Storage Layer: This layer contains two components, Index and DB, where Index is based on BTreeMap while DB is mainly responsible for persistent storage of data. At present, Xline is still in the early stage of development, so DB is mainly implemented based on memory. We will introduce persistent storage in the next release.
+                </li>
+            </ul>
+            <p class="normal">For more information about the Architecture of Xline, read Xline Architecture Details.</p>
+
+            <div class="title_bar"></div>
+            <p id="xline" class="article_title">Xline In 5 Minutes</p>
+            <ol>
+                <li>Download binary from <a href="https://github.com/datenlord/Xline/releases">release</a> page.</li>
+                <li>Use the following command to start cluster:</li>
+
+                <p class="code">
+                    ./xline --name node1 --cluster-peers 127.0.0.1:2380 127.0.0.1:2381 --self-ip-port 127.0.0.1:2379 --leader-ip-port 127.0.0.1:2379 ./xline --name node2 --cluster-peers 127.0.0.1:2379 127.0.0.1:2381 --self-ip-port 127.0.0.1:2380 --leader-ip-port 127.0.0.1:2379 ./xline --name node3 --cluster-peers 127.0.0.1:2379 127.0.0.1:2380 --self-ip-port 127.0.0.1:2381 --leader-ip-port 127.0.0.1:2379
+                </p>
+
+                <li>
+                    Download or build etcdctl from <a href="https://github.com/etcd-io/etcd">etcd </a>project.
+                </li>
+                <li>
+                    Use etcdctl to operate the cluster:
+                </li>
+                <p class="code">
+                    etcdctl --endpoints=http://127.0.0.1:2379 put foo bar etcdctl --endpoints=http://127.0.0.1:2379 get foo
+                </p>
+            </ol>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer_link">
+            <div id="footer_docs">
+                <p>Docs</p>
+                <a href="./whats_new.html">What's New</a>
+                <a href="./get_start.html">Get Started</a>
+                <a>Deploy</a>
+                <a>Develop</a>
+                <a>Reference</a>
+            </div>
+            <div id="footer_deep_dive">
+                <p>Deep Dive</p>
+                <a href="./consensus.html">Consensus Algorithm</a>
+                <a>Kv Engine</a>
+                <a>Rpc</a>
+                <a>Testing</a>
+            </div>
+            <div id="footer_community">
+                <p>Community</p>
+                <a href="./contribute.html">Contribute</a>
+                <a href="https://gitter.im/datenlord/Xline">Chat</a>
+            </div>
+            <div id="footer_blog">
+                <p>Blog</p>
+                <a>Release</a>
+                <a>Roadmap</a>
+            </div>
+        </div>
+        <div id="footer_logo">
+            <img id="footer_xline" src="../images/footer_logo.png">
+            <img id="footer_gitter" src="../images/footer_gitter_logo.png" onclick="window.location.href='https://gitter.im/datenlord/Xline'">
+            <img id="footer_github" src="../images/footer_github_logo.png" onclick="window.location.href='https://github.com/datenlord/xline'">
+        </div>
+    </div>
+</div>
+</body>
+</html>

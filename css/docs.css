@@ -1,0 +1,158 @@
+#header_outer {
+    display: flex;
+    flex-direction: column;
+    background-color: #0A0C28;
+}
+
+#summary_intro {
+    display: block;
+    position: relative;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 112%;
+    color: #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 165px;
+    width: 450px;
+    z-index: 2;
+}
+
+#summary_underline {
+    position: relative;
+    margin-top: -25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    margin-bottom: 160px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 450px;
+}
+
+#bar {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    margin-left: 104px;
+    margin-top: 195px;
+    width: 300px;
+}
+
+#bar img {
+    margin-right: 13px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#bar_title {
+    margin-bottom: 55px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    font-variant: small-caps;
+}
+
+.normal_bar {
+    margin-bottom: 19px;
+    display:flex;
+}
+
+.bar_selected {
+    font-weight: 600;
+}
+
+#whats_new_down {
+    display: none;
+}
+
+#start_down {
+    display: none;
+}
+
+.bar_child {
+    display:none;
+}
+
+.bar_child img {
+    width: 13px;
+    height: 13px;
+}
+
+.title_bar {
+    width: 59.91px;
+    height: 12px;
+
+    background: linear-gradient(90deg, #767EE5 0%, #9966CC 106.43%);
+    margin-top: 88px;
+}
+
+.article_title {
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 134.02%;
+    text-transform: capitalize;
+    color: #0A0C28;
+    margin-bottom: 37px;
+    margin-top: 5px;
+}
+
+#article li {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: #454545;
+    padding-bottom: 5px;
+}
+
+#article {
+    width: 800px;
+}
+
+p.code {
+    padding: 38px 20px 42px 38px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 158.02%;
+    color: #282828;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+
+    background-color: #F2F2F2;
+    border-radius: 8px;
+}
+
+p.bold {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 22px;
+    color: #000000;
+}
+
+ol {
+    margin-top: 50px;
+}
+
+ul {
+    margin-top: 50px;
+}
+
+p.normal {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: #454545;
+
+    margin-top: 70px;
+}
+
+#arch_graph {
+    float: right;
+    margin-left: 20px;
+}
