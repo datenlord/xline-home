@@ -1,50 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>DatenLord | Homepage</title>
+    <title>Xline</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="styleSheet"  href="../css/all.css?v=20221120" />
     <link type="text/css" rel="styleSheet"  href="../css/home.css?v=20221120" />
+    <script src="../script/include_html.js"></script>
 </head>
 <body>
 <div class="main">
     <div id="header_outer">
-        <div class="header_box">
-            <div class="header_left">
-                <img src="../images/navi_logo.png"  onclick="window.location.href='home.html'">
-            </div>
-            <div class="header_middle">
-                <div class="dropdown">
-                    <p>Docs</p>
-                    <div class="dropdown_content">
-                        <a href="./whats_new.html">What's New</a>
-                        <a href="./get_start.html">Get Started</a>
-                        <a href="#">Deploy</a>
-                        <a href="#">Develop</a>
-                        <a href="#">Reference</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <p onclick="window.location.href='./consensus.html'">deep dive</p>
-                </div>
-                <div class="dropdown">
-                    <p>community</p>
-                    <div class="dropdown_content">
-                        <a href="./contribute.html">Contribute</a>
-                        <a href="https://gitter.im/datenlord/Xline">Chat</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <p>blog</p>
-                </div>
-            </div>
-            <div class="header_right">
-                <img src="../images/navi_github.png"  onclick="window.location.href='https://github.com/datenlord/xline'">
-            </div>
-        </div>
-
+        <div class="header_box" w3-include-html="./component/header.html"></div>
         <div>
         <img id="big_logo" src="../images/home_big_logo.png">
         </div>
@@ -113,40 +81,10 @@
             <p>We adopt a new consensus protocol named CURP to resolve the above issue. Please refer to the paper for a detailed description. The main benefit of the protocol is reducing 1 RTT when contention is not too high. As far as we know, Xline is the first product to use CURP.</p>
         </div>
     </div>
-    <div id="footer">
-        <div id="footer_link">
-            <div id="footer_docs">
-                <p>Docs</p>
-                <a href="./whats_new.html">What's New</a>
-                <a href="./get_start.html">Get Started</a>
-                <a>Deploy</a>
-                <a>Develop</a>
-                <a>Reference</a>
-            </div>
-            <div id="footer_deep_dive">
-                <p>Deep Dive</p>
-                <a href="./consensus.html">Consensus Algorithm</a>
-                <a>Kv Engine</a>
-                <a>Rpc</a>
-                <a>Testing</a>
-            </div>
-            <div id="footer_community">
-                <p>Community</p>
-                <a href="./contribute.html">Contribute</a>
-                <a href="https://gitter.im/datenlord/Xline">Chat</a>
-            </div>
-            <div id="footer_blog">
-                <p>Blog</p>
-                <a>Release</a>
-                <a>Roadmap</a>
-            </div>
-        </div>
-        <div id="footer_logo">
-            <img id="footer_xline" src="../images/footer_logo.png">
-            <img id="footer_gitter" src="../images/footer_gitter_logo.png" onclick="window.location.href='https://gitter.im/datenlord/Xline'">
-            <img id="footer_github" src="../images/footer_github_logo.png" onclick="window.location.href='https://github.com/datenlord/xline'">
-        </div>
-    </div>
+    <div id="footer" w3-include-html="./component/footer.html"></div>
 </div>
+<script>
+includeHTML();
+</script>
 </body>
 </html>

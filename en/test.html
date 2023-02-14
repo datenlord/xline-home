@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Xline</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="styleSheet"  href="../css/all.css?v=20221120" />
+    <link type="text/css" rel="styleSheet"  href="../css/docs.css?v=20221120" />
+    <script src="../script/include_html.js"></script>
+</head>
+<body>
+<div class="main">
+    <div id="header_outer">
+        <div class="header_box" w3-include-html="./component/header.html"></div>
+        <div>
+        <p id="summary_intro">Test</p>
+        </div>
+        <div>
+            <img id="summary_underline" src="../images/docs_underline.png">
+        </div>
+    </div>
+    <div class="content">
+        <div id="bar" w3-include-html="./component/dive_sidebar.html"></div>
+        <div id="article">
+            <p class="normal">Few can argue against the need for quality control when developing software. Any known or unknown software defects can be very costly for the users of the software. Testing can help developers identify these software defects in advance. The sooner development teams receive feedback from testing, the sooner they can address issues such as:</p>
+            <ul>
+                <li>Architectural flaws</li>
+                <li>Poor design decisions</li>
+                <li>Invalid or incorrect functionality</li>
+                <li>Security vulnerabilites</li>
+                <li>Scalability issues</li>
+            </ul>
+            <p class="normal">Xline, as a distributed key-value store engine, is designed to run in the presence of many failure scenarios and degraded states, which greatly increases the testing surface. These states also must be tested in addition to the normal testing done on a project.</p>
+            <p class="normal">In futher sections we’ll investigate how to test distributed systems under the influence of these almost infinite variables. For now, let's examine the basics that every project requires. These simple tests will lay the foundation for many later tests that can be run millions of times throughout the life of a project.</p>
+            <p class="normal">Often, these tests are written before or alongside the code which they test, and they’re used to guide the development process.</p>
+
+            <div class="title_bar"></div>
+            <p id="ut" class="article_title">Unit Testing</p>
+            <p class="normal">Unit testing is a software development process in which the smallest testable parts of an application, called units, are individually and independently scrutinized for proper operation. This testing methodology is done during the development process by the software developers and sometimes QA staff.</p>
+            <p class="normal">Xline includes many unit tests that run by cargo test.  These tests typically involve simple functionality and are tested using assertions.  Many languages, like Rust, offer built-in unit testing functionality:</p>
+            <pre class="code">
+#[test]
+fn test_parse_members() {
+    let s1 = "";
+    assert!(parse_members(s1).is_err());
+    let s2 = "a=1";
+    let m2 = HashMap::from_iter(vec![("a".to_owned(), "1".to_owned())]);
+    assert_eq!(parse_members(s2).unwrap(), m2);
+
+    let s3 = "a=1,b=2,c=3";
+    let m3 = HashMap::from_iter(vec![
+        ("a".to_owned(), "1".to_owned()),
+        ("b".to_owned(), "2".to_owned()),
+        ("c".to_owned(), "3".to_owned()),
+    ]);
+    assert_eq!(parse_members(s3).unwrap(), m3);
+    let s4 = "abcde";
+    assert!(parse_members(s4).is_err());
+}
+            </pre>
+            <p class="normal">The main objective of unit testing is to isolate written code to test and determine if it works as intended.</p>
+
+            <div class="title_bar"></div>
+            <p id="mt" class="article_title">Mock Testing</p>
+            <p class="normal">Doing testing is essentially a way to test system or component in a controlled environment. The biggest problem with having a lot of reliance on third-party code is that the third-party code is not controllable. So we need to isolate the tested code and replace the uncontrollable component with a controllable one. That's a so-called mock test.</p>
+            <p class="normal">mockall is a powerful mock object library for Rust. It provides tools to create mock versions of almost any trait or struct. They can be used in unit tests as a stand-in for the real object. We use mockall to do some mock tests in Xline:</p>
+                <pre class="code">
+#[traced_test]
+#[tokio::test]
+async fn logs_will_be_resent() {
+    let state = new_test_state();
+
+    let mut mock_connect = MockConnectInterface::default();
+    mock_connect
+        .expect_append_entries()
+        .times(4)
+        .returning(|_, _| Err(ProposeError::RpcStatus("timeout".to_owned())));
+    mock_connect
+        .expect_id()
+        .return_const(FOLLOWER_ID1.to_owned());
+
+    let handle = tokio::spawn(async move {
+        let req = AppendEntriesRequest::new(
+            1,
+            LEADER_ID.to_owned(),
+            0,
+            0,
+            vec![LogEntry::new(1, &[Arc::new(TestCommand::default())])],
+            0,
+        )
+        .unwrap();
+        send_log_until_succeed(1, req, Arc::new(mock_connect), state).await;
+    });
+    sleep_secs(3).await;
+    assert!(!handle.is_finished());
+    handle.abort();
+}
+                </pre>
+            <p class="normal">Read the <a href="https://docs.rs/mockall/0.11.3/mockall/">mock document</a> for more information.</p>
+
+            <div class="title_bar"></div>
+            <p id="it" class="article_title">Integration Testing</p>
+            <p class="normal">Integration tests are often used to ensure that software components or functions operate together properly.</p>
+            <p class="normal">In Rust, integration tests are entirely external to your library and use your code in the same way any other external code would, using only the public interface and potentially exercising multiple modules per test. It can also exist as documentation. That means it's possible to document your project and benefit from a full test suite simultaneously.</p>
+                <pre class="code">
+/// Create a new Xline Server instance with the given config
+///
+/// ```rust
+/// let config = if let Ok(path) = env::var("XLINE_SERVER_CONFIG") {
+///         fs::read_to_string(&path).await?
+///     } else {
+///         include_str!("/etc/xline/xline_server.conf").to_owned()
+///     };
+/// let xline_server = XlineServer::new(config)?;
+/// ```
+struct XlineServer { /*...*/ }
+                </pre>
+            <p class="normal">The <a href="https://doc.rust-lang.org/book/ch11-01-writing-tests.html">Rust Book</a> has a great chapter on how to write tests in Rust, and which testing strategies are appropriate for which problems.</p>
+
+            <div class="title_bar"></div>
+            <p id="vt" class="article_title">Validation Testing</p>
+            <p class="normal">Since one of the design goals of Xline is to be fully compatible with the etcd API, the validation test is mainly used to test the compatibility of the Xline interface with the etcd client.  We used etcdctl to test the compatibility.</p>
+            <p class="normal">Read the "<a href="https://github.com/datenlord/Xline/blob/master/QUICK_START.md#start-xline-servers">Start Xline Servers</a>" and "<a href="https://github.com/datenlord/Xline/blob/master/QUICK_START.md#send-etcd-requests">Send Etcd requests</a>" for more information.</p>
+            <p class="normal">Read the etcdctl doc for more detail about how to use etcdctl</p>
+            <p class="normal">Click <a href="https://datenlord.feishu.cn/sheets/shtcnTuzElmgDO6NMOlobsCG2Jd">here</a> to view the test report.</p>
+
+        </div>
+    </div>
+    <div id="footer" w3-include-html="./component/footer.html"></div>
+</div>
+<script>
+includeHTML();
+</script>
+</body>
+</html>

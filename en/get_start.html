@@ -1,50 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>DatenLord | Homepage</title>
+    <title>Xline</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="styleSheet"  href="../css/all.css?v=20221120" />
     <link type="text/css" rel="styleSheet"  href="../css/docs.css?v=20221120" />
+    <script src="../script/include_html.js"></script>
 </head>
 <body>
 <div class="main">
     <div id="header_outer">
-        <div class="header_box">
-            <div class="header_left">
-                <img src="../images/navi_logo.png"  onclick="window.location.href='home.html'">
-            </div>
-            <div class="header_middle">
-                <div class="dropdown">
-                    <p>Docs</p>
-                    <div class="dropdown_content">
-                        <a href="./whats_new.html">What's New</a>
-                        <a href="./get_start.html">Get Started</a>
-                        <a href="#">Deploy</a>
-                        <a href="#">Develop</a>
-                        <a href="#">Reference</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <p onclick="window.location.href='./consensus.html'">deep dive</p>
-                </div>
-                <div class="dropdown">
-                    <p>community</p>
-                    <div class="dropdown_content">
-                        <a href="./contribute.html">Contribute</a>
-                        <a href="https://gitter.im/datenlord/Xline">Chat</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <p>blog</p>
-                </div>
-            </div>
-            <div class="header_right">
-                <img src="../images/navi_github.png"  onclick="window.location.href='https://github.com/datenlord/xline'">
-            </div>
-        </div>
-
+        <div class="header_box" w3-include-html="./component/header.html"></div>
         <div>
         <p id="summary_intro">Get Started</p>
         </div>
@@ -53,114 +21,14 @@
         </div>
     </div>
     <div class="content">
-        <div id="bar">
-            <div id="bar_title">Docs</div>
-            <div class="normal_bar" onclick="
-                if (document.getElementById('whats_new_down').style.display == 'inline') {
-                    document.getElementById('whats_new_down').style.display = 'none';
-                    document.getElementById('whats_new_right').style.display = 'inline';
-                    var child = document.getElementsByClassName('whats_new_child');
-                    for (var i = 0; i < child.length; i++) {
-                        child[i].style.display = 'none';
-                    }
-                } else {
-                    document.getElementById('whats_new_down').style.display = 'inline';
-                    document.getElementById('whats_new_right').style.display = 'none';
-                    var child = document.getElementsByClassName('whats_new_child');
-                    for (var i = 0; i < child.length; i++) {
-                        child[i].style.display = 'flex';
-                    }
-
-                }
-            ">
-                <div>
-                    <img src="../images/docs_arrow_down.png" id="whats_new_down">
-                </div>
-                <div>
-                    <img src="../images/docs_arrow_right.png" id="whats_new_right">
-                </div>
-                <p >What's New</p>
-            </div>
-            <div class="normal_bar bar_child whats_new_child">
-                <div>
-                    <img src="../images/docs_bar_bullet.png">
-                </div>
-                <a href="./whats_new.html#v010">V0.1.0</a>
-            </div>
-            <div class="normal_bar bar_child whats_new_child">
-                <div>
-                    <img src="../images/docs_bar_bullet.png">
-                </div>
-                <a href="./whats_new.html#v020">V0.2.0</a>
-            </div>
-
-            <div class="normal_bar" onclick="
-                if (document.getElementById('start_down').style.display == 'inline') {
-                    document.getElementById('start_down').style.display = 'none';
-                    document.getElementById('start_right').style.display = 'inline';
-                    var child = document.getElementsByClassName('start_child');
-                    for (var i = 0; i < child.length; i++) {
-                        child[i].style.display = 'none';
-                    }
-                } else {
-                    document.getElementById('start_down').style.display = 'inline';
-                    document.getElementById('start_right').style.display = 'none';
-                    var child = document.getElementsByClassName('start_child');
-                    for (var i = 0; i < child.length; i++) {
-                        child[i].style.display = 'flex';
-                    }
-
-                }
-            ">
-                <div>
-                    <img src="../images/docs_arrow_down.png" id="start_down">
-                </div>
-                <div>
-                    <img src="../images/docs_arrow_right.png" id="start_right">
-                </div>
-                <p class="bar_selected">Get Started</p>
-            </div>
-            <div class="normal_bar bar_child start_child">
-                <div>
-                    <img src="../images/docs_bar_bullet.png">
-                </div>
-                <a href="./get_start.html#arch">Architecture</a>
-            </div>
-            <div class="normal_bar bar_child start_child">
-                <div>
-                    <img src="../images/docs_bar_bullet.png">
-                </div>
-                <a href="./get_start.html#xline">Xline in 5 minutes</a>
-            </div>
-
-            <div class="normal_bar">
-                <div>
-                    <img src="../images/docs_arrow_right.png"">
-                </div>
-                <p>Deploy</p>
-            </div>
-
-            <div class="normal_bar">
-                <div>
-                    <img src="../images/docs_arrow_right.png"">
-                </div>
-                <p>Develop</p>
-            </div>
-
-            <div class="normal_bar">
-                <div>
-                    <img src="../images/docs_arrow_right.png"">
-                </div>
-                <p>Reference</p>
-            </div>
-        </div>
+        <div id="bar" w3-include-html="./component/doc_sidebar.html"></div>
 
         <div id="article">
             <p class="normal">
                 Xline is a high-performance distributed key-value storage engine for multi-cluster. It can provide unified data management for multi-cluster scenarios, making mutual access, discovery, and modification simple and convenient. It also provides KV interface, Multi-Version Concurrency Control and is compatible with etcd and K8S.
             </p>
             <p class="normal">
-                Xline is the first geo-distributed consistency management service based on CURP(a WAN consensus protocol, read the paper for more details). It addresses the challenges of convergence and consistency across clouds.
+                Xline is the first geo-distributed consistency management service based on CURP(a WAN consensus protocol, read the <a href="https://www.usenix.org/system/files/nsdi19-park.pdf">paper</a> for more details). It addresses the challenges of convergence and consistency across clouds.
             </p>
             <div class="title_bar"></div>
             <p id="arch" class="article_title">Architecture</p>
@@ -192,7 +60,9 @@
                 <li>Use the following command to start cluster:</li>
 
                 <p class="code">
-                    ./xline --name node1 --cluster-peers 127.0.0.1:2380 127.0.0.1:2381 --self-ip-port 127.0.0.1:2379 --leader-ip-port 127.0.0.1:2379 ./xline --name node2 --cluster-peers 127.0.0.1:2379 127.0.0.1:2381 --self-ip-port 127.0.0.1:2380 --leader-ip-port 127.0.0.1:2379 ./xline --name node3 --cluster-peers 127.0.0.1:2379 127.0.0.1:2380 --self-ip-port 127.0.0.1:2381 --leader-ip-port 127.0.0.1:2379
+                    $ ./xline --name node1 --cluster-peers 127.0.0.1:2380 127.0.0.1:2381 --self-ip-port 127.0.0.1:2379 --leader-ip-port 127.0.0.1:2379<br>
+                    $ ./xline --name node2 --cluster-peers 127.0.0.1:2379 127.0.0.1:2381 --self-ip-port 127.0.0.1:2380 --leader-ip-port 127.0.0.1:2379<br>
+                    $ ./xline --name node3 --cluster-peers 127.0.0.1:2379 127.0.0.1:2380 --self-ip-port 127.0.0.1:2381 --leader-ip-port 127.0.0.1:2379<br>
                 </p>
 
                 <li>
@@ -202,45 +72,16 @@
                     Use etcdctl to operate the cluster:
                 </li>
                 <p class="code">
-                    etcdctl --endpoints=http://127.0.0.1:2379 put foo bar etcdctl --endpoints=http://127.0.0.1:2379 get foo
+                    $ etcdctl --endpoints=http://127.0.0.1:2379 put foo bar<br> 
+                    $ etcdctl --endpoints=http://127.0.0.1:2379 get foo<br>
                 </p>
             </ol>
         </div>
     </div>
-    <div id="footer">
-        <div id="footer_link">
-            <div id="footer_docs">
-                <p>Docs</p>
-                <a href="./whats_new.html">What's New</a>
-                <a href="./get_start.html">Get Started</a>
-                <a>Deploy</a>
-                <a>Develop</a>
-                <a>Reference</a>
-            </div>
-            <div id="footer_deep_dive">
-                <p>Deep Dive</p>
-                <a href="./consensus.html">Consensus Algorithm</a>
-                <a>Kv Engine</a>
-                <a>Rpc</a>
-                <a>Testing</a>
-            </div>
-            <div id="footer_community">
-                <p>Community</p>
-                <a href="./contribute.html">Contribute</a>
-                <a href="https://gitter.im/datenlord/Xline">Chat</a>
-            </div>
-            <div id="footer_blog">
-                <p>Blog</p>
-                <a>Release</a>
-                <a>Roadmap</a>
-            </div>
-        </div>
-        <div id="footer_logo">
-            <img id="footer_xline" src="../images/footer_logo.png">
-            <img id="footer_gitter" src="../images/footer_gitter_logo.png" onclick="window.location.href='https://gitter.im/datenlord/Xline'">
-            <img id="footer_github" src="../images/footer_github_logo.png" onclick="window.location.href='https://github.com/datenlord/xline'">
-        </div>
-    </div>
+    <div id="footer" w3-include-html="./component/footer.html"></div>
 </div>
+<script>
+includeHTML();
+</script>
 </body>
 </html>

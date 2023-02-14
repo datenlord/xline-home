@@ -201,3 +201,7 @@ p {
 a {
     text-decoration: none;
 }
+
+.logo {
+    cursor: pointer;
+}

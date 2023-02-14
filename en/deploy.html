@@ -13,9 +13,8 @@
 <div class="main">
     <div id="header_outer">
         <div class="header_box" w3-include-html="./component/header.html"></div>
-
         <div>
-        <p id="summary_intro">What's New</p>
+        <p id="summary_intro">Deploy</p>
         </div>
         <div>
             <img id="summary_underline" src="../images/docs_underline.png">
@@ -25,20 +24,18 @@
         <div id="bar" w3-include-html="./component/doc_sidebar.html"></div>
         <div id="article">
             <div class="title_bar"></div>
-            <p id="v010" class="article_title">V0.1.0</p>
-            <ol>
-                <li>Support major etcd APIs, including KV, Watch, and Auth services. (the rest of etcd APIs, like the Lease API and the Lock API, will be covered in the next version)</li>
-                <li>Basic implementation of the CURP protocol</li>
-                <li>Basic Xline client</li>
-                <li>Benchmark tool</li>
-            </ol>
+            <p id="install" class="article_title">Install</p>
+            <p class="normal">Read the <a href="https://github.com/datenlord/Xline/blob/master/QUICK_START.md">quick start</a> for more information about how to start an xline cluster.</p>
 
             <div class="title_bar"></div>
-            <p id="v020" class="article_title">V0.2.0</p>
-            <ol>
-                <li>Compatible with the rest of etcd APIs, including Lease service and Lock service, and pass validation tests of etcd compatible APIs.</li>
-                <li>Implement crash recovery for CURP protocol</li>
-            </ol>
+            <p id="perf_compare" class="article_title">Performance Comparison</p>
+            <p class="normal">We compare Xline with ETCD in a simulated multi-cluster environment. The details of the deployment are shown below.</p>
+
+            <p class="normal"><img src="../images/deploy_1.png"></p>
+
+            <p class="normal">We compare the performance with two different workloads. One is 1 key case, the other is 100k key space case. Here is the test result.</p>
+            <p class="normal"><img src="../images/deploy_2.png"></p>
+            <p class="normal"><img src="../images/deploy_3.png"></p>
         </div>
     </div>
     <div id="footer" w3-include-html="./component/footer.html"></div>

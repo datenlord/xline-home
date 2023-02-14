@@ -1,0 +1,135 @@
+<div id="bar_title">Deep Dive</div>
+<div class="normal_bar" onclick="
+    if (document.getElementById('consensus_down').style.display == 'inline') {
+        document.getElementById('consensus_down').style.display = 'none';
+        document.getElementById('consensus_right').style.display = 'inline';
+        var child = document.getElementsByClassName('consensus_child');
+        for (var i = 0; i < child.length; i++) {
+            child[i].style.display = 'none';
+        }
+    } else {
+        document.getElementById('consensus_down').style.display = 'inline';
+        document.getElementById('consensus_right').style.display = 'none';
+        var child = document.getElementsByClassName('consensus_child');
+        for (var i = 0; i < child.length; i++) {
+            child[i].style.display = 'flex';
+        }
+    }
+">
+    <div>
+        <img src="../images/docs_arrow_down.png" id="consensus_down">
+    </div>
+    <div>
+        <img src="../images/docs_arrow_right.png" id="consensus_right">
+    </div>
+    <p>Consensus</p>
+</div>
+<div class="normal_bar bar_child consensus_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./consensus.html#concept">Basic Concept</a>
+</div>
+<div class="normal_bar bar_child consensus_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./consensus.html#protocol">Consensus Protocol</a>
+</div>
+
+<div class="normal_bar" onclick="
+    if (document.getElementById('kv_engine_down').style.display == 'inline') {
+        document.getElementById('kv_engine_down').style.display = 'none';
+        document.getElementById('kv_engine_right').style.display = 'inline';
+        var child = document.getElementsByClassName('kv_engine_child');
+        for (var i = 0; i < child.length; i++) {
+            child[i].style.display = 'none';
+        }
+    } else {
+        document.getElementById('kv_engine_down').style.display = 'inline';
+        document.getElementById('kv_engine_right').style.display = 'none';
+        var child = document.getElementsByClassName('kv_engine_child');
+        for (var i = 0; i < child.length; i++) {
+            child[i].style.display = 'flex';
+        }
+
+    }
+">
+    <div>
+        <img src="../images/docs_arrow_down.png" id="kv_engine_down">
+    </div>
+    <div>
+        <img src="../images/docs_arrow_right.png" id="kv_engine_right">
+    </div>
+    <p >Key-value Engine</p>
+</div>
+<div class="normal_bar bar_child kv_engine_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./kv_engine.html#metrics">Metrics</a>
+</div>
+<div class="normal_bar bar_child kv_engine_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./kv_engine.html#trees">LSM Tree and B-Tree</a>
+</div>
+
+<div class="normal_bar" onclick="window.location.href='./rpc.html'">
+    <div>
+        <img src="../images/docs_arrow_right.png" id="deploy_right">
+    </div>
+    <p>Remote Procedure Calls (RPC)</p>
+</div>
+
+<div class="normal_bar" onclick="
+    if (document.getElementById('testing_down').style.display == 'inline') {
+        document.getElementById('testing_down').style.display = 'none';
+        document.getElementById('testing_right').style.display = 'inline';
+        var child = document.getElementsByClassName('testing_child');
+        for (var i = 0; i < child.length; i++) {
+            child[i].style.display = 'none';
+        }
+    } else {
+        document.getElementById('testing_down').style.display = 'inline';
+        document.getElementById('testing_right').style.display = 'none';
+        var child = document.getElementsByClassName('testing_child');
+        for (var i = 0; i < child.length; i++) {
+            child[i].style.display = 'flex';
+        }
+
+    }
+">
+    <div>
+        <img src="../images/docs_arrow_down.png" id="testing_down">
+    </div>
+    <div>
+        <img src="../images/docs_arrow_right.png" id="testing_right">
+    </div>
+    <p>Testing</p>
+</div>
+<div class="normal_bar bar_child testing_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./test.html#ut">Unit Testing</a>
+</div>
+<div class="normal_bar bar_child testing_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./test.html#mt">Mock Testing</a>
+</div>
+<div class="normal_bar bar_child testing_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./test.html#it">Integration Testing</a>
+</div>
+<div class="normal_bar bar_child testing_child">
+    <div>
+        <img src="../images/docs_bar_bullet.png">
+    </div>
+    <a href="./test.html#vt">Validation Testing</a>
+</div>

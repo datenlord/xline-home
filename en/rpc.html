@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Xline</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="styleSheet"  href="../css/all.css?v=20221120" />
+    <link type="text/css" rel="styleSheet"  href="../css/docs.css?v=20221120" />
+    <script src="../script/include_html.js"></script>
+</head>
+<body>
+<div class="main">
+    <div id="header_outer">
+        <div class="header_box" w3-include-html="./component/header.html"></div>
+        <div>
+            <p id="summary_intro">Remote Procedure Calls (RPC)</p>
+        </div>
+        <div>
+            <img id="summary_underline" src="../images/docs_underline.png">
+        </div>
+    </div>
+    <div class="content">
+        <div id="bar" w3-include-html="./component/dive_sidebar.html"></div>
+        <div id="article">
+            <p class="normal">In <a href="https://en.wikipedia.org/wiki/Distributed_computing">distributed computing</a>, a <b>remote procedure call (RPC)</b> is when a computer program causes a procedure (subroutine) to execute in a different address space (commonly on another computer on a shared network), which is coded as if it were a normal (local) procedure call, without the programmer explicitly coding the details for the remote interaction. That is, the programmer writes essentially the same code whether the subroutine is local to the executing program, or remote. This is a form of client–server interaction (caller is client, executor is server), typically implemented via a request–response message-passing system. In the object-oriented programming paradigm, RPCs are represented by remote method invocation (RMI). The RPC model implies a level of location transparency, namely that calling procedures are largely the same whether they are local or remote, but usually, they are not identical, so local calls can be distinguished from remote calls. Remote calls are usually orders of magnitude slower and less reliable than local calls, so distinguishing them is important.</p>
+            <p class="normal">RPCs are a form of <a href="https://en.wikipedia.org/wiki/Inter-process_communication">inter-process communication</a> (IPC), in that different processes have different address spaces: if on the same host machine, they have distinct virtual address spaces, even though the physical address space is the same; while if they are on different hosts, the physical address space is different. Many different (often incompatible) technologies have been used to implement the concept.</p>
+            <p class="normal">Read the <a href="https://developers.google.com/protocol-buffers/docs/encoding">protobuf doc</a> and the <a href="https://grpc.io/docs/">gRPC doc</a> for more details.</p>
+            <p class="normal"><a href="https://github.com/hyperium/tonic">tonic</a> is a gRPC over HTTP/2 implementation focused on <b>high performance</b>, <b>interoperability</b>, and <b>flexibility</b>. This library was created to have first-class support of async/await and to act as a core building block for production systems written in Rust.</p>
+        </div>
+    </div>
+    <div id="footer" w3-include-html="./component/footer.html"></div>
+</div>
+<script>
+includeHTML();
+</script>
+</body>
+</html>

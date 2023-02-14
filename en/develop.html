@@ -13,9 +13,8 @@
 <div class="main">
     <div id="header_outer">
         <div class="header_box" w3-include-html="./component/header.html"></div>
-
         <div>
-        <p id="summary_intro">What's New</p>
+        <p id="summary_intro">Develop</p>
         </div>
         <div>
             <img id="summary_underline" src="../images/docs_underline.png">
@@ -25,20 +24,9 @@
         <div id="bar" w3-include-html="./component/doc_sidebar.html"></div>
         <div id="article">
             <div class="title_bar"></div>
-            <p id="v010" class="article_title">V0.1.0</p>
-            <ol>
-                <li>Support major etcd APIs, including KV, Watch, and Auth services. (the rest of etcd APIs, like the Lease API and the Lock API, will be covered in the next version)</li>
-                <li>Basic implementation of the CURP protocol</li>
-                <li>Basic Xline client</li>
-                <li>Benchmark tool</li>
-            </ol>
-
-            <div class="title_bar"></div>
-            <p id="v020" class="article_title">V0.2.0</p>
-            <ol>
-                <li>Compatible with the rest of etcd APIs, including Lease service and Lock service, and pass validation tests of etcd compatible APIs.</li>
-                <li>Implement crash recovery for CURP protocol</li>
-            </ol>
+            <p id="xline_api" class="article_title">Xline API</p>
+            <p class="normal">The current version of Xline implements some etcd-compatible APIs, such as KV API, Auth API, Watch API and so on. In the next release, we will further implement the remaining etcd APIs (v0.3~v0.5) ，such as Maintenance, Lease,  and provide a client in different languages (v0.6~v0.8). Read the <a href="https://github.com/datenlord/Xline#roadmap">roadmap</a> for more details.</p>
+            <p class="normal">Since Xline is fully compatible with etcd interfaces, you can use etcdctl to interact with Xline cluster in the current version. etcdctl can be used as described in the <a href="https://github.com/etcd-io/etcd/tree/main/etcdctl">documentation</a>. For more information, please refer to the documentation on how to use etcdctl.  Read the etcd-compatible API validation test report for more details.</p>
         </div>
     </div>
     <div id="footer" w3-include-html="./component/footer.html"></div>
