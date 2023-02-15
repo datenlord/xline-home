@@ -14,7 +14,7 @@
     <div id="header_outer">
         <div class="header_box" w3-include-html="./component/header.html"></div>
         <div>
-        <p id="summary_intro">Consensus</p>
+        <p id="summary_intro">Consensus Algorithm</p>
         </div>
         <div>
             <img id="summary_underline" src="../images/docs_underline.png">
@@ -135,7 +135,7 @@
             <p class="normal">Traditional approaches to replication, be it Raft or Multi-Paxos, require client requests to be ordered before making them durable by copying them to replica. As a result, clients must wait for two round-trip times (RTTs) before updates complete. The Consistent Unordered Replication Protocol (CURP) allows clients to replicate requests that have not yet been ordered, as long as they are commutative. This strategy allows most operations to complete in 1 RTT.</p>
             <p class="normal">CURP supplements a system's existing replication mechanism with a lightweight form of replication without ordering based on witness. A client replicates each operation to one or more witnesses in parallel with sending the request to the primary server. The primary can execute the operation and return to the client without waiting for normal replication, which happens asynchronously. This allows operations to complete in 1 RTT, as long as all witnessed-but-not-yet-replicated operations are commutative. Noncommutative operations still require 2 RTTs. If the primary crashes, information from witnesses is combined with that from the normal replicas to re-create a consistent server state.</p>
             <p class="normal">Xline is a distributed key-value store engine which can achieve high-performance data access and strong consistency in cross data center scenarios. The network latency between different data centers is very high, often tens or even hundreds of milliseconds.  Ideally, since CURP protocol can save a RTT to reach consensus than Raft or Multi-Paxos does, Xline uses CURP to achieve high-performance data access and strong consistency in cross data center situations.</p>
-            <p class="normal">Read the <a href="./blog.html">blog</a> for more information about the CURP Protocol.</p>
+            <p class="normal">Read the <a href="https://medium.com/@datenlord/curp-revisit-the-consensus-protocol-384464be1600">blog</a> for more information about the CURP Protocol.</p>
         </div>
     </div>
     <div id="footer" w3-include-html="./component/footer.html"></div>
