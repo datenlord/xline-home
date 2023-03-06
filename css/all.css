@@ -11,6 +11,10 @@ p {
     margin: 0px;
 }
 
+ul {
+  margin-top: -20px;
+}
+
 .main{
     min-width: 1440px;
     min-height:100vh;
@@ -96,7 +100,7 @@ p {
     margin-top: 90px;
     margin-left: -55px;
     padding: 26px 20px 5px 15px;
-    transition: all 0s ease 0.3s;
+    /* transition: all 0s ease 0.3s; */
     visibility: hidden;
     position: absolute;
     background-color: #282A35;
