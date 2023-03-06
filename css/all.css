@@ -100,7 +100,7 @@ ul {
     margin-top: 90px;
     margin-left: -55px;
     padding: 26px 20px 5px 15px;
-    /* transition: all 0s ease 0.3s; */
+    transition: all 0s ease 0.1s;
     visibility: hidden;
     position: absolute;
     background-color: #282A35;
