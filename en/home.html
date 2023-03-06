@@ -42,28 +42,28 @@
                     <div>
                         <img src="../images/home_sec1_1.png">
                     </div>
-                    <p class="single_feature_title">A distributed KV storage engine for multi-cluster.</p>
+                    <p class="single_feature_title">A distributed KV storage engine for multi-cluster</p>
                     <p class="single_feature_describe">Unified data management for multi-cluster scenarios, making mutual access, discovery, and modification simple and convenient.</p>
                 </div>
                 <div class="single_feature">
                     <div>
                         <img src="../images/home_sec1_2.png">
                     </div>
-                    <p class="single_feature_title">A unified metadata management system.</p>
+                    <p class="single_feature_title">A unified metadata management system</p>
                     <p class="single_feature_describe">Data access across clouds by caching hot data in memory, and provide unified data management to automate data migration and backup.</p>
                 </div>
                 <div class="single_feature">
                     <div>
                         <img src="../images/home_sec1_3.png">
                     </div>
-                    <p class="single_feature_title">A high-performance multi-datacenter consensus protocol .</p>
-                    <p class="single_feature_describe">It is the first geo distributed consistency management service based on the WAN consensus protocol. It addresses the challenges of convergence and consistency across clouds.</p>
+                    <p class="single_feature_title">A high-performance multi-datacenter consensus protocol</p>
+                    <p class="single_feature_describe">It is the first geo-distributed consistency management service based on the WAN consensus protocol. It addresses the challenges of convergence and consistency across clouds.</p>
                 </div>
                 <div class="single_feature">
                     <div>
                         <img src="../images/home_sec1_4.png">
                     </div>
-                    <p class="single_feature_title">Be compatible with the ETCD interface.</p>
+                    <p class="single_feature_title">Be compatible with the ETCD interface</p>
                     <p class="single_feature_describe">Provide KV interface, Multi-Version Concurrency Control and is compatible with K8S.</p>
                 </div>
             </div>
@@ -76,8 +76,8 @@
             <div><img id="innovation_big" src="../images/home_sec2_big.png"></div>
         </div>
         <div id="innovation_detail">
-            <p>Cross-datacenter network latency is the most important factor that impacts the performance of geo-distributed systems, especially when a consensus protocol is used. We know consensus protocols are popular to use to achieve high availability. For instance, Etcd uses the Raft protocol, which is quite popular in recently developed systems.</p>
-            <p>Although Raft is stable and easy to implement, it takes 2 RTTs to complete a consensus request from the view of a client. One RTT takes place between the client and the leader server, and the leader server takes another RTT to broadcast the message to the follower servers. In a geo-distributed environment, an RTT is quite long, varying from tens of milliseconds to hundreds of milliseconds, so 2 RTTs are too long in such cases.</p>
+            <p>Cross-datacenter network latency is the most important factor that impacts the performance of geo-distributed systems, especially when a consensus protocol is used. As is well known, consensus protocols are frequently used to achieve high availability. For instance, Etcd uses the Raft protocol, which is quite popular in recently developed systems.</p>
+            <p>Although Raft is stable and easy to implement, it takes 2 RTTs to complete a consensus request from the view of a client. One RTT takes place between the client and the leader server, and the leader server takes another RTT to broadcast the message to the follower servers. In a geo-distributed environment where an RTT can run from tens to hundreds of milliseconds, two RTTs would be two expensive.</p>
             <p>We adopt a new consensus protocol named CURP to resolve the above issue. Please refer to the paper for a detailed description. The main benefit of the protocol is reducing 1 RTT when contention is not too high. As far as we know, Xline is the first product to use CURP.</p>
         </div>
     </div>
