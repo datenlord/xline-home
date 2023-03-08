@@ -39,7 +39,7 @@
                     Partition tolerance: The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes.
                 </li>
             </ul>
-            <p class="normal">When a <a href="https://en.wikipedia.org/wiki/Network_partition">network partition</a> failure happens, it must be decided whether to do one of the following:</p>
+            <p class="normal">To deal with a <a href="https://en.wikipedia.org/wiki/Network_partition">network partition</a> failure, one of the following options must be chosen:</p>
             <ul>
                 <li>
                     cancel the operation and thus decrease the availability but ensure consistency.
@@ -75,7 +75,7 @@
             <div class="title_bar"></div>
             <p id="protocol" class="article_title">Consensus Protocol</p>
             <p class="bold">Paxos</p>
-            <p class="normal">Paxos is a consensus algorithm proposed by Lesile Lamport in 1989. The initial paper was "<a href="http://lamport.azurewebsites.net/pubs/pubs.html#lamport-paxos">The Part-Time Parliament</a>", but it was not published. Lamport wrote  “<a href="https://lamport.azurewebsites.net/pubs/paxos-simple.pdf">Paxos Made Simple</a>” in 2001 and formally proposed the algorithm.</p>
+            <p class="normal">Paxos is a consensus algorithm proposed by Leslie Lamport in 1989. The initial paper was "<a href="http://lamport.azurewebsites.net/pubs/pubs.html#lamport-paxos">The Part-Time Parliament</a>", but it was not published. Lamport wrote  “<a href="https://lamport.azurewebsites.net/pubs/paxos-simple.pdf">Paxos Made Simple</a>” in 2001 and formally proposed the algorithm.</p>
             <p class="normal">Paxos uses proposals to drive the entire algorithm, so that the system resolves to the same proposal. Each node continuously proposes a proposal through messaging, and each proposal includes a proposal number and a proposal value. Paxos considers that if more than half of the nodes in the cluster unanimously accept the proposal, a consensus on the proposal is reached and the proposal is said to be <b>chosen</b>.</p>
             <p class="normal">Paxos divides the system into the following roles:</p>
             <ul>
@@ -134,7 +134,7 @@
             <p class="normal">The CURP algorithm was proposed by Seo Jin Park and John Ousterhout of Stanford University in their paper “<a href="https://www.usenix.org/system/files/nsdi19-park.pdf">Exploiting Commutativity For Practical Fast Replication</a>” published in 2019.</p>
             <p class="normal">Traditional approaches to replication, be it Raft or Multi-Paxos, require client requests to be ordered before making them durable by copying them to replica. As a result, clients must wait for two round-trip times (RTTs) before updates complete. The Consistent Unordered Replication Protocol (CURP) allows clients to replicate requests that have not yet been ordered, as long as they are commutative. This strategy allows most operations to complete in 1 RTT.</p>
             <p class="normal">CURP supplements a system's existing replication mechanism with a lightweight form of replication without ordering based on witness. A client replicates each operation to one or more witnesses in parallel with sending the request to the primary server. The primary can execute the operation and return to the client without waiting for normal replication, which happens asynchronously. This allows operations to complete in 1 RTT, as long as all witnessed-but-not-yet-replicated operations are commutative. Noncommutative operations still require 2 RTTs. If the primary crashes, information from witnesses is combined with that from the normal replicas to re-create a consistent server state.</p>
-            <p class="normal">Xline is a distributed key-value store engine which can achieve high-performance data access and strong consistency in cross data center scenarios. The network latency between different data centers is very high, often tens or even hundreds of milliseconds.  Ideally, since CURP protocol can save a RTT to reach consensus than Raft or Multi-Paxos does, Xline uses CURP to achieve high-performance data access and strong consistency in cross data center situations.</p>
+            <p class="normal">Xline is a distributed key-value store engine which can achieve high-performance data access and strong consistency in cross data center scenarios. The network latency between different data centers is very high, often tens or even hundreds of milliseconds.  Ideally, since CURP protocol can save an RTT to reach consensus than Raft or Multi-Paxos does, Xline uses CURP to achieve high-performance data access and strong consistency in cross data center situations.</p>
             <p class="normal">Read the <a href="https://medium.com/@datenlord/curp-revisit-the-consensus-protocol-384464be1600">blog</a> for more information about the CURP Protocol.</p>
         </div>
     </div>

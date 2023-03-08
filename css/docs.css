@@ -97,6 +97,7 @@
 }
 
 .bar_child {
+    padding-left: 12px;
     display:none;
 }
 
