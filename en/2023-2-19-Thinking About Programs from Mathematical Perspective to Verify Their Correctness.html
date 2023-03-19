@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Xline</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="styleSheet" href="../css/all.css?v=20221120" />
+    <link type="text/css" rel="styleSheet" href="../css/docs.css?v=20221120" />
+    <link type="text/css" rel="styleSheet" href="../css/blogs.css?v=20221120" />
+    <script src="../script/include_html.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div id="blog-detail-page-top-wrapper">
+        <div class="header_box" w3-include-html="./component/header.html"></div>
+      </div>
+      <div id="blog-detail-page-main">
+        <h1>
+          Thinking About Programs from Mathematical Perspective to Verify Their
+          Correctness
+        </h1>
+        <div id="blog-author">
+          <img src="../images/blog/author-datenlord.svg" alt="author" />
+          <p id="blog-author-name">DatenLord</p>
+        </div>
+        <img
+          id="blog-detail-cover"
+          src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/cover.png"
+          alt="cover"
+        />
+        <div id="blog-detail-page-article">
+          <p class="normal">
+            The purpose of this article is to provide readers who have not been
+            exposed to formal methods with a new perspective on computer systems
+            and algorithms, rather than formal methods or TLA+ tutorials.
+            Therefore, the focus of this article is how to think about programs
+            from a mathematical perspective, without using a lot of space to
+            explain the syntax of TLA+.
+          </p>
+          <p class="article_title">How do we write correct programs?</p>
+          <p class="normal">
+            The goal of programming is always to write correct programs. Our
+            programs become more complex over time, and the errors that may
+            exist in them become more numerous. To write correct programs, we
+            should first understand what errors may occur in our programs.
+          </p>
+          <p class="article_title">What errors will there be in the program?</p>
+          <p class="normal">
+            I will roughly divide the errors that may occur in the program into
+            two categories: simple errors and logical errors.
+          </p>
+          <p class="article_title">Simple errors</p>
+          <p class="normal">
+            Simple errors include semantic errors, memory errors, etc. For these
+            easy-to-analyze errors, we already have many mature methods and
+            tools to avoid them, such as compilers, static analysis tools,
+            garbage collector. Because these errors can be relatively easily
+            found and fixed, they are not the focus of our attention.
+          </p>
+          <p class="article_title">Logical errors</p>
+          <p class="normal">
+            Logical errors are the most difficult to find and fix in programs,
+            such as deadlocks, race conditions, data inconsistencies. Logical
+            errors affect the correctness, performance and reliability of the
+            program, and are usually caused by insufficient design of the
+            program. For these errors, we need to analyze and solve them from a
+            higher level, rather than just from the implementation details of
+            the code.
+          </p>
+          <p class="normal">
+            We usually use some methods to avoid logical errors, such as:
+          </p>
+          <ul>
+            <li>
+              <b>Optimize software architecture design</b> — Consider the
+              correctness of the program in the design stage
+            </li>
+            <li>
+              <b>Testing</b> — Use various testing methods to reduce the errors
+              in the program, but it cannot guarantee the complete correctness
+              of the program
+            </li>
+          </ul>
+          <p class="article_title">Experience</p>
+          <p class="normal">
+            It is not hard to see that the theories above are derived from
+            experience. Experience is accumulated in practice, and we summarize
+            the experience to derive guiding principles, methods and steps that
+            can help us design better programs.
+          </p>
+          <p class="article_title">But can we rely only on experience?</p>
+          <p class="normal">
+            The more experienced people are, the more details and possibilities
+            they can think of, and the systems they design are usually more
+            stable. But we can't just rely on experience:
+          </p>
+          <ul>
+            <li>
+              <b>Experience is limited</b> — Human experience is limited and
+              unreliable
+            </li>
+            <li>
+              <b>The behavior and state of complex systems are numerous</b>
+              — A complex system has too many behaviors and states to predict
+            </li>
+            <li>
+              <b
+                >The requirements for correctness of a specific program are very
+                high</b
+              >
+              — Some programs have very high requirements for correctness, such
+              as financial systems, medical systems, which are difficult to
+              guarantee through experience
+            </li>
+            <li>
+              <b>Unable to verify correctness from theory</b>
+              — Can only reduce the occurrence of errors as much as possible,
+              but cannot prove the correctness of the program from theory
+            </li>
+          </ul>
+          <p class="normal">
+            Therefore, we need a more rigorous method to guarantee the
+            correctness of the program from the design.
+          </p>
+          <p class="article_title">Formal methods</p>
+          <p class="normal">
+            If we can verify the correctness of a program from mathematical
+            perspective, we can solve the above problems. Actually, this is the
+            goal of formal methods.
+          </p>
+          <p class="normal">
+            Formal methods are based on mathematics, by establishing
+            mathematical models for systems to define the behavior, state, etc.
+            of the system, and then defining the constraints of the system, such
+            as safety, liveness, and finally proving that the model satisfies
+            the formal specification of the system to verify the correctness of
+            the system. For finite-state systems, model checking based on
+            finite-state search can be used to verify the behavior of the system
+            to verify whether the system has the expected properties. For
+            systems with infinite state spaces, deductive verification based on
+            logical inference is used to verify the correctness of the system
+            using induction.
+          </p>
+          <p class="normal">
+            This article uses the TLA+ language as a tool to introduce formal
+            methods.
+          </p>
+          <p class="article_title">TLA+</p>
+          <p class="normal">
+            Leslie Lamport, the author of TLA+, is a computer scientist who won
+            the Turing Award in 2013 for his groundbreaking work in the field of
+            concurrent and distributed systems.
+          </p>
+          <p class="article_title">What is TLA+?</p>
+          <p class="normal">
+            TLA+ is an high-level language for modeling programs and systems —
+            especially concurrent and distributed programs and systems. Its core
+            idea is that the best way to precisely describe things is to use
+            simple mathematics. TLA+ and its tools can be used to eliminate
+            design errors that are difficult to find and correct in code and are
+            expensive to correct.
+          </p>
+          <p class="normal">
+            The following two simple examples introduce TLA+. These two examples
+            are from <a>Leslie Lamport's The TLA+ Video Course</a>. The goal of
+            this article is to provide a new perspective on computer systems and
+            algorithms for readers who have not been exposed to formal methods,
+            rather than a TLA+ tutorial, so the syntax and use of TLA+ tools
+            will not be discussed in detail.
+          </p>
+          <p class="article_title">Simple Example</p>
+          <p class="normal">
+            TLA+ allows us to use simple mathematics to abstract system models,
+            mainly set theory and boolean logic. In the process of abstraction,
+            we need to abandon some implementation details and only focus on the
+            logic of the program itself.
+          </p>
+          <p class="normal">
+            Here is a simple C program that we try to abstract as a TLA+
+            program:
+          </p>
+          <p class="code">
+            int i;<br />
+            void main() {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; i = someNumber(); // someNumber() returns a
+            number between 0 and 1000<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; i = i + 1;<br />
+            }
+          </p>
+          <p class="article_title">State Abstraction</p>
+          <p class="normal">
+            We need to abstract this program into a series of independent
+            states. Obviously, the difference between each state is only the
+            value of i. Suppose that the default value of i is 0 after
+            initialization, and that someNumber() returns 42 when this program
+            is run, then the state transition relationship of this program is:
+          </p>
+          <p class="normal">[i : 0] -> [i : 42] -> [i : 43]</p>
+          <p class="normal">
+            There are three states in this, and the difference between each
+            state is that the value of <code>i</code> is different.
+          </p>
+          <p class="normal">
+            It seems that the abstraction is complete, but there are problems.
+            Suppose that <code>someNumber()</code> returns 43 in another run,
+            then the state transition relationship of this program is:
+          </p>
+          <p class="normal">[i : 0] -> [i : 43] -> [i : 44]</p>
+          <p class="normal">
+            This is inconsistent with the previous abstraction, because the
+            state transition relationship of the two runs is different. This is
+            because we have not considered the return value of
+            <code>someNumber()</code>.
+          </p>
+          <p class="normal">
+            The state of a program refers to the time point when the program is
+            at each stage, not the process of the program running. Therefore,
+            each state is independent, and the transition between states is
+            atomic. This is very different from traditional programming, which
+            is procedural, and TLA+ is state-oriented. We only care about what
+            state the program is currently running in, so we can introduce a new
+            variable pc to represent which stage the program is running in, so
+            that we can clearly represent the sub-state relationship of the
+            program:
+          </p>
+          <p class="code">
+            int i;<br />
+            void main() {<br />
+            &nbsp; &nbsp;&nbsp;&nbsp; i = someNumber(); // pc = "start"<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; i = i +
+            1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            // pc = "middle"<br />
+            }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            // pc = "done"
+          </p>
+          <p class="normal">
+            In this way, we no longer need to consider the value of i, but only
+            the value of <code>pc</code>:
+          </p>
+          <p class="normal">[pc : start] -> [pc : middle] -> [pc : done]</p>
+          <p class="article_title">Writing States</p>
+          <p class="normal">
+            The initial value of <code>i</code> is 0, and the initial value of
+            <code>pc</code> is <code>start</code>, so we can write the sub-state
+            relationship as:
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/1.png"
+            alt="image"
+          />
+          <p class="normal">
+            In which, for the variable <code>i</code>, its next state is
+            represented as <code>i'</code>, which is the way TLA+ defines the
+            state transition of variables. <code>i' ∈ 0..1000</code> means that
+            the value of <code>i</code> in the next state is a number between 0
+            and 1000, that is, <code>someNumber()</code>,<code>0..1000</code>
+            represents the set <code>{0,1,...,1000}</code> .<code>∧</code> is
+            the logical and in Boolean logic, which can be understood as "and".
+            Finally, the program runs to completion and there is no next state,
+            so it is represented as <code>FALSE</code>.
+          </p>
+          <p class="normal">
+            In TLA+ , we write a state. Therefore, it is not “because
+            <code>pc = start</code>
+            so <code>i' ∈ 0..1000</code>", in fact, the relationship between the
+            two is parallel:
+            <b
+              >In this state, the value of <code>pc</code> is
+              <code>start</code> and the value of <code>i</code> in the next
+              state <code>∈ 0..1000</code>.</b
+            >
+            With this idea, we can rewrite the above abstraction as:
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/2.webp"
+            alt="image"
+          />
+          <p class="normal">
+            In which, the "or" is used to connect two states, which can be
+            represented by the logical or <code>∨</code> in Boolean logic. In
+            this way, we can clearly represent the state transition relationship
+            of the program. For the sake of beauty, the same Boolean logic
+            symbol can also be supplemented before the first sentence in TLA+ :
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/3.webp"
+            alt="image"
+          />
+          <p class="normal">
+            We finally get the two states after the initial state of this simple
+            program, and then we will complete the initial state and supplement
+            the entire specification according to the requirements of the TLA+
+            language:
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/4.webp"
+            alt="image"
+          />
+          <p class="normal">
+            In which, the "or" is used to connect two states, which can be
+            represented by the logical or <code>∨</code> in Boolean logic. In
+            this way, we can clearly represent the state transition relationship
+            of the program. For the sake of beauty, the same Boolean logic
+            symbol can also be supplemented before the first sentence in TLA+ :
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/5.webp"
+            alt="image"
+          />
+          <p class="normal">
+            We finally get the two states after the initial state of this simple
+            program, and then we will complete the initial state and supplement
+            the entire specification according to the requirements of the TLA+
+            language:
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/6.webp"
+            alt="image"
+          />
+          <ul>
+            <li>
+              <code>EXTENDS</code> is used to introduce modules defined in other
+              specifications, which is mainly used in
+              <code>i' ∈ 0..1000</code> here.
+            </li>
+            <li>
+              <code>VARIABLES</code> is used to define variables, which are
+              defined as <code>i</code> and <code>pc</code> here.
+            </li>
+            <li>
+              <code>Init</code> is used to define the initial state, which is
+              defined as <code>i = 0</code> and <code>pc = "start"</code> here.
+            </li>
+            <li>
+              <code>Next</code> is used to define the state transition
+              relationship.
+            </li>
+          </ul>
+          <p class="normal">
+            Now we have a complete TLA+ specification. Later, we can use the TLC
+            Model Checker to check the model, but this is not within the scope
+            of this article.
+          </p>
+          <p class="article_title">Two-Phase Commit</p>
+          <p class="quote">
+            In transaction processing, databases, and computer networking, the
+            two-phase commit protocol (2PC) is a type of atomic commitment
+            protocol (ACP). It is a distributed algorithm that coordinates all
+            the processes that participate in a distributed atomic transaction
+            on whether to commit or abort (roll back) the transaction. This
+            protocol (a specialised type of consensus protocol) achieves its
+            goal even in many cases of temporary system failure (involving
+            either process, network node, communication, etc. failures), and is
+            thus widely used. — —
+            <a href="https://en.wikipedia.org/wiki/Two-phase_commit_protocol"
+              >Two-phase commit protocol (Wikipedia)</a
+            >
+          </p>
+          <p class="normal">
+            Lamport explains Two-Phase Commit in the following analogy in
+            <a
+              href="https://www.youtube.com/playlist?list=PLWAv2Etpa7AOAwkreYImYt0gIpOdWQevD"
+              >Leslie Lamport's The TLA+ Video Course:</a
+            >
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/7.webp"
+            alt="image"
+          />
+          <ol>
+            <li>The minister asks the groom: Do you agree to this marriage?</li>
+            <li>The groom answers: I agree (prepared).</li>
+            <li>The minister asks the bride: Do you agree to this marriage?</li>
+            <li>The bride answers: I agree (prepared).</li>
+            <li>
+              The minister announces: The marriage is officially established
+              (committed).
+            </li>
+          </ol>
+          <p class="normal">
+            If one of them does not agree, the minister will abort the marriage.
+          </p>
+          <p class="normal">
+            In a database, the Transaction Manager is the coordinator (the
+            minister). When the Transaction Manager asks all the participants
+            Resource Managers (the groom / bride), if all the Resource Managers
+            agree to commit the transaction, the Transaction Manager will commit
+            the transaction. If one of them does not agree, the Transaction
+            Manager will abort the transaction.
+          </p>
+          <p class="normal">
+            The detailed introduction and process of Two-Phase Commit can be
+            found on Wikipedia.
+          </p>
+          <p class="normal">
+            First, let's define some constants and variables and their initial
+            state:
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/8.webp"
+            alt="image"
+          />
+          <ul>
+            <li>
+              The constant <code>RM</code> is the set of all Resource Manager
+              identifiers, for example, it can be set to the set
+              <code>{"r1", "r2", "r3"}</code>.
+            </li>
+            <li>
+              The variable <code>rmState</code> is used to record the state of
+              each Resource Manager, and <code>rmState[r]</code> is used to
+              represent the state of <code>r</code>, which has four states:
+              <code>working</code>
+              , <code>prepared</code>, <code>committed</code>,
+              <code>aborted</code>. The initial state of each RM is
+              <code>working</code>.
+            </li>
+            <li>
+              The variable <code>tmState</code> is used to record the state of
+              the Transaction Manager, which has three states:
+              <code>init</code>, <code>committed</code>, <code>aborted</code>.
+              The initial state is <code>init</code>.
+            </li>
+            <li>
+              The variable <code>tmPrepared</code> is used to record the
+              Resource Manager that is ready (in the
+              <code>prepared</code> state). The initial value is an empty set.
+            </li>
+            <li>
+              The variable <code>msgs</code> is used as a message pool to record
+              all messages that are being transmitted. The initial value is an
+              empty set.
+            </li>
+          </ul>
+          <p class="normal">
+            Next, let's define the actions that the system may perform.
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/9.png"
+            alt="image"
+          />
+          <ul>
+            <li>
+              In TLA+, expressions similar to the "function" concept in other
+              programming languages can be defined in the above way, so there is
+              no need to define an expression for each Resource Manager.
+            </li>
+            <li>
+              <code>[type → "prepare", rm → r]</code> is a record in TLA+,
+              similar to a struct in other programming languages.
+            </li>
+            <li>
+              <code>UNCHANGED ⟨rmState, tmState, msgs⟩</code> means that this
+              action will not change the values of the variables
+              <code>rmState</code>, <code>tmState</code>, <code>msgs</code>. In
+              TLA+, it is necessary to explicitly declare whether the value of
+              each variable changes or not.
+            </li>
+          </ul>
+          <p class="normal">
+            When the state of <code>TM</code> is <code>init</code>, and there is
+            a <code>Prepared</code> message from r in the message pool, the
+            value of <code>tmPrepared</code> in the next state will be the union
+            of <code>tmPrepared</code> and <code>{r}</code>.
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/10.png"
+            alt="image"
+          />
+          <p class="normal">
+            The above two actions are Transaction Manager performing Commit and
+            Abort.
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/11.webp"
+            alt="image"
+          />
+          <p class="normal">
+            The above 4 Resource Manager actions are Resource Manager choosing
+            Prepare and Abort, and handling the Commit and Abort decided by the
+            Transaction Manager.
+          </p>
+          <p class="normal">
+            The syntax
+            <code>rmState' = [rmState except ![r] = "prepared"]</code> means "in
+            the next state, the value of <code>rmState[r]</code> is changed to
+            <code>prepared</code>, and the other parts remain unchanged".
+          </p>
+          <p class="normal">
+            If we use a form like <code>rmState[r]' = "prepared"</code>, we have
+            not explicitly stated the values of the other parts of
+            <code>rmState</code> in the next state, so it is incorrect.
+          </p>
+          <p class="normal">
+            TLA+ is different from the programs we usually write, it is
+            mathematics. In programming, we use arrays, and in TLA+, we use
+            functions to express similar concepts, and the set of array indices
+            is the domain of the function.
+          </p>
+          <p class="normal">
+            After writing all the actions that the system may exist, we can
+            start to deduce the state transition of the system:
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/12.webp"
+            alt="image"
+          />
+          <p class="normal">
+            We use the existential quantifier <code>∃r ∈ RM</code> to represent
+            "for any element <code>r</code> in the set <code>RM</code>, there is
+            such an action". The state transition in TLA+ is atomic, so in a
+            state, only one <code>r</code> will be selected in this "or" branch,
+            which can be compared to the <code>for r in RM</code> in the
+            programming language, but fundamentally different.
+          </p>
+          <p class="normal">
+            At this point, the modeling of the system is complete. Now we need
+            to write the system's constraint conditions:
+          </p>
+          <img
+            src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/13.webp"
+            alt="image"
+          />
+          <p class="normal">
+            In the constraint condition TypeOK, we have limited the possible
+            values of each variable. The
+            <code>[RM → {"working", "prepared", "committed", "aborted"}]</code>
+            is similar to the Cartesian product of the set RM and the set
+            <code>{"working", "prepared", "committed", "aborted"}</code>
+            , but the result is a set composed of records:
+          </p>
+          <p class="code">
+            {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; [r1 |-> "working", r2 |-> "working"],<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; [r1 |-> "working", r2 |-> "prepared"],<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; [r1 |-> "working", r2 |-> "committed"],<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; ...<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; [r1 |-> "aborted", r2 |-> "committed"],<br />
+            &nbsp;&nbsp;&nbsp; [r1 |-> "aborted", r2 |-> "aborted"]<br />
+            }
+          </p>
+          <p class="normal">
+            In <code>TypeOK</code>, we use the set <code>Messages</code> defined
+            above. When defining <code>Messages</code>, we used the syntax:
+            <code>[type: {"Prepared"}, rm: RM]</code> . This syntax is also
+            similar to the Cartesian product of <code>{"Prepared"}</code> and
+            <code>RM</code>, but the result is also a record set:
+          </p>
+          <p class="code">
+            {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; [type |-> "Prepared", rm |-> r1],<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;[type |-> "Prepared", rm |-> r2],<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; ...<br />
+            }
+          </p>
+          <p class="normal">
+            The final constraint condition <code>Consistent</code> is used to
+            ensure the consistency of the system: at any time, it is impossible
+            for two Resource Managers to be in the <code>committed</code> and
+            <code>abort</code> state respectively.
+          </p>
+          <p class="normal">
+            Finally, we will give the constraint conditions as invariants,
+            together with the system model, to the TLC Model Checker for
+            verification, and we can prove the correctness of the system.
+          </p>
+          <p class="article_title">Summary</p>
+          <p class="normal">
+            From the above two examples, we have a preliminary understanding of
+            the idea of formal methods. TLA+ is designed for verifying
+            distributed systems, but its ideas can be applied to fields far
+            beyond distributed systems. When writing programs, if we can not
+            only consider the contents on the code level, but also think from a
+            higher level, from a mathematical point of view, we can write more
+            robust programs.
+          </p>
+          <p class="normal">
+            If you are interested in TLA+, you can refer to Leslie
+            <a
+              href="https://youtube.com/playlist?list=PLWAv2Etpa7AOAwkreYImYt0gIpOdWQevD"
+              >Lamport's The TLA+ Video Course — YouTube</a
+            >
+            and <a href="https://learntla.com/">Learn TLA+</a>.
+          </p>
+          <p class="article_title">Xline</p>
+          <p class="normal">
+            TLA+ is widely used in the research and development of distributed
+            system algorithms. In our project Xline, TLA+ is used to verify the
+            correctness of the consensus algorithm during the design phase.
+            Xline is a geo-distributed KV store for metadata management. We are
+            using a modified version of [Consistent Unordered Replication
+            Protocol (CURP)](<a
+              href="https://www.usenix.org/system/files/nsdi19-park.pdf"
+              >https://www.usenix.org/system/files/nsdi19-park.pdf</a
+            >) as the consensus protocol in Xline, and TLA+ is used to guarantee
+            the correctness of it in our design.
+          </p>
+          <p>
+            If you are looking for more information about our project Xline,
+            please refer to our Github:
+            <a href="https://github.com/datenlord/Xline"
+              >https://github.com/datenlord/Xline</a
+            >
+          </p>
+        </div>
+      </div>
+      <div id="blog-detail-related-resources">
+        <h1 id="blog-detail-related-resources-title">
+          <img
+            id="blog-detail-related-resources-title-underline"
+            src="../images/docs_underline.png"
+            alt="underline"
+          />
+          Related Resources
+        </h1>
+        <div id="blog-detail-related-resources-container">
+          <div class="blog-list-item" id="blog">
+            <img
+              src="../images/blog/2023-1-8-CURP — Revisit the Consensus Protocol/cover.png"
+              alt="cover"
+            />
+            <div id="blog-list-item-main">
+              <h6>CURP — Revisit the Consensus Protocol</h6>
+              <p>
+                Revisit-Consensus protocol is a protocol to keep the information
+                consistent and durable in multiple servers.
+              </p>
+              <button
+                onclick="window.location.href='./2023-1-8-CURP — Revisit the Consensus Protocol.html'"
+              >
+                Get start
+              </button>
+            </div>
+          </div>
+          <div class="blog-list-item" id="blog">
+            <img
+              src="../images/blog/2023-3-10-How to elegantly organize async Rust code/cover.png"
+              alt="cover"
+            />
+            <div id="blog-list-item-main">
+              <h6>How to elegantly organize async Rust code?</h6>
+              <p>
+                Elegant-The article starts from my experience of writing async
+                Rust code and concludes with my practice of applying the
+                principles in a recent refractoring of Curp.
+              </p>
+              <button
+                onclick="window.location.href='./2023-3-10-How to elegantly organize async Rust code.html'"
+              >
+                Get start
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="blog-detail-related-resources-button-container"
+          onclick="window.location.href='./blog.html'"
+        >
+          <p>View All</p>
+          <img src="../images/arrow-right.svg" alt="arrow-right" />
+        </div>
+      </div>
+      <div id="footer" w3-include-html="./component/footer.html"></div>
+    </div>
+    <script>
+      includeHTML();
+    </script>
+  </body>
+</html>
