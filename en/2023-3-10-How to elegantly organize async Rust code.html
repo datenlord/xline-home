@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Xline</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="styleSheet" href="../css/all.css?v=20221120" />
+    <link type="text/css" rel="styleSheet" href="../css/docs.css?v=20221120" />
+    <link type="text/css" rel="styleSheet" href="../css/blogs.css?v=20221120" />
+    <script src="../script/include_html.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div id="blog-detail-page-top-wrapper">
+        <div class="header_box" w3-include-html="./component/header.html"></div>
+      </div>
+      <div id="blog-detail-page-main">
+        <h1>How to elegantly organize async Rust code?</h1>
+        <div id="blog-author">
+          <img src="../images/blog/author-datenlord.svg" alt="author" />
+          <p id="blog-author-name">DatenLord</p>
+        </div>
+        <img
+          id="blog-detail-cover"
+          src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/cover.png"
+          alt="cover"
+        />
+        <div id="blog-detail-page-article">
+          <p class="article_title">Abstraction</p>
+          <p class="normal">
+            Anyone who has worked with async Rust has likely struggled with the
+            bounds it requires, e.g., the <code>'static</code> bound on spawned
+            tasks, MutexGuard can not be held across <code>.await</code> point.
+            Overcoming these constraints requires carefully structured scopes,
+            which might result in opaque and nested code that is challenging for
+            both the developer to write and for reviewers to read. In this
+            article, I will first list some pain points from my experience of
+            writing async Rust code. Then, I will point out scenarios where we
+            actually need async code and argue why we should separate async and
+            non-async code. Finally, I will demonstrate how I've practiced this
+            principle in a recent refactoring of Curp.
+          </p>
+          <p class="article_title">Outline</p>
+          <p class="article_title">
+            Async Rust is powerful, but why is it difficult to write?
+          </p>
+          <ul>
+            <li>Any spawned task must have a <code>'static</code> bound</li>
+            <p class="code">
+              let a_arc = Arc::clone(&a); <br />
+              let b_arc = Arc::clone(&b);<br />
+              tokio::spawn(async move {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp; // ...<br />
+              });
+            </p>
+            <li>
+              Non-<code>Send</code> struct(like <code>MutexGuard</code>) can not
+              be held across <code>.await</code> point
+            </li>
+            <p class="normal"><i>example from tokio website:</i></p>
+            <p class="code">
+              let mut log_l = log.lock();<br />
+              log_l.append(new_entry.clone());<br />
+              broadcast(new_entry).await;<br />
+            </p>
+            <p class="article_title">
+              To elegantly organize async code, we need to know when we can
+              actually take advantage of async:
+            </p>
+            <li>
+              I/O: you don’t want I/O to block the current thread since I/O can
+              take a long time
+            </li>
+            <p class="code">
+              // .await will enable other scheduled tasks to progress<br />
+              let mut file = File::create(“foo.txt”).await?;<br />
+              <br />
+              file.write(b"some bytes”).await?;<br />
+            </p>
+            <p class="normal">
+              Background tasks: you want to spawn a background task in order to
+              handle things in the background(usually paired with the receive
+              end of an async channel)
+            </p>
+            <p>
+              <i>example: <code>cmd_worker</code> in Curp:</i>
+            </p>
+            <p class="code">
+              tokio::spawn(async move {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp; while let Some(job) = rx.recv().await
+              {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ...<br />
+              &nbsp;&nbsp;&nbsp;&nbsp; }<br />
+              };
+            </p>
+            <li>
+              Concurrent tasks: you want to spawn multiple tasks to utilize
+              multicore
+            </li>
+            <p>
+              <i
+                >example: send <code>append_entries</code> to each Curp node
+                concurrently:</i
+              >
+            </p>
+            <p class="code">
+              let chunks = data.chunks(data.len() / N_TASKS);<br />
+              for chunk in chunks {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp; tokio::spawn(work_on(chunk));<br />
+              }
+            </p>
+            <p class="article_title">
+              Why do you want to separate async and non-async code?
+            </p>
+            <li>Code readability</li>
+            <p class="normal"><i>example:</i></p>
+            <p class="code">
+              // wait for some event<br />
+              event.listen().await;<br />
+              <br />
+              // barrier<br />
+              barrier.wait().await;<br />
+            </p>
+            <li>
+              <b>A healthy mindset:</b> Separate async and non-async code is
+              actually about separating your project’s transport logic and
+              processing logic; minimize your async functions
+            </li>
+            <li>Async only for IO and background/concurrent tasks</li>
+            <li>Non-async for others</li>
+            <p class="code">
+              {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;let mut log_w = log.write();<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;log_w.append(new_entry.clone());<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;// ...<br />
+              }<br />
+              broadcast(new_entry).await;<br />
+              <br />
+              // move the logic to another function instead<br />
+              <br />
+              fn update_log(log: &mut Log, new_entry: Entry) {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;log.append(new_entry);<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;// ...<br />
+              }<br />
+              <br />
+              update_log(&mut log.write(), new_entry.clone());<br />
+              broadcast(new_entry).await;
+            </p>
+            <p class="article_title">
+              A real-world example: regarding a major refactor of Curp
+            </p>
+            <img
+              src="../images/blog/2023-3-10-How to elegantly organize async Rust code/1.webp"
+              alt="images"
+            />
+            <li>Before</li>
+            <p class="code">
+              loop {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp; let _now = ticker.tick().await;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp; let task = {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; let state_c =
+              Arc::clone(&state);<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; let state_r =
+              state.upgradable_read();<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+              state_r.is_leader() {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              if state_r.needs_hb {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              let resps = bcast_heartbeats(connects.clone(), state_r,
+              rpc_timeout);<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Either::Left(handle_heartbeat_responses(<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              resps,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              state_c,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Arc::clone(&timeout),<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              ))<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              } else {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              continue;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              }<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              let mut state_w = RwLockUgradableReadGuard::upgrade(state_r);<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              // ...<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              let resps = bcast_votes(connects.clone(), state_r,
+              rpc_timeout);<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Either::Right(handle_vote_responses(resps, state_c))<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+              &nbsp;&nbsp;&nbsp;&nbsp };<br />
+              &nbsp;&nbsp;&nbsp;&nbsp; task.await;<br />
+              }<br />
+            </p>
+            <li>After</li>
+            <p class="code">
+              loop {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;let _now = ticker.tick().await;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;let action = curp.tick();<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;match action {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TickAction::Heartbeat(hbs)
+              => {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Self::bcast_heartbeats(Arc::clone(&curp),
+              &connects, hbs).await;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspTickAction::Votes(votes)
+              => {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Self::bcast_votes(Arc::clone(&curp),
+              &connects, votes).await;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TickAction::Nothing
+              => {}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+              }<br />
+            </p>
+          </ul>
+        </div>
+      </div>
+      <div id="blog-detail-related-resources">
+        <h1 id="blog-detail-related-resources-title">
+          <img
+            id="blog-detail-related-resources-title-underline"
+            src="../images/docs_underline.png"
+            alt="underline"
+          />
+          Related Resources
+        </h1>
+        <div id="blog-detail-related-resources-container">
+          <div class="blog-list-item" id="blog">
+            <img
+              src="../images/blog/2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness/cover.png"
+              alt="cover"
+            />
+            <div id="blog-list-item-main">
+              <h6>
+                Thinking About Programs from Mathematical Perspective to Verify
+                Their Correctness
+              </h6>
+              <p>
+                Thinking About-The purpose of this article is concerning how to
+                think about computer systems and algorithms from a mathematics
+                perspective.
+              </p>
+              <button
+                onclick="window.location.href='./2023-2-19-Thinking About Programs from Mathematical Perspective to Verify Their Correctness.html'"
+              >
+                Get start
+              </button>
+            </div>
+          </div>
+          <div class="blog-list-item" id="blog">
+            <img
+              src="../images/blog/2023-1-8-CURP — Revisit the Consensus Protocol/cover.png"
+              alt="cover"
+            />
+            <div id="blog-list-item-main">
+              <h6>CURP — Revisit the Consensus Protocol</h6>
+              <p>
+                Revisit-Consensus protocol is a protocol to keep the information
+                consistent and durable in multiple servers.
+              </p>
+              <button
+                onclick="window.location.href='./2023-1-8-CURP — Revisit the Consensus Protocol.html'"
+              >
+                Get start
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="blog-detail-related-resources-button-container"
+          onclick="window.location.href='./blog.html'"
+        >
+          <p>View All</p>
+          <img src="../images/arrow-right.svg" alt="arrow-right" />
+        </div>
+      </div>
+      <div id="footer" w3-include-html="./component/footer.html"></div>
+    </div>
+    <script>
+      includeHTML();
+    </script>
+  </body>
+</html>

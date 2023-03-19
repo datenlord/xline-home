@@ -142,6 +142,7 @@
 }
 
 .code {
+    margin-block: 32px;
     padding: 38px 20px 42px 38px;
     font-weight: 400;
     font-size: 18px;
