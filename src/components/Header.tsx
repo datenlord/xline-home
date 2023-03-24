@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import logoUrl from '@/assets/logo.svg'
+import githubIconUrl from '@/assets/github-icon.svg'
 
 type MenuItemProps = {
   active: boolean
@@ -119,7 +121,7 @@ export const Header: React.FC = () => {
   return (
     <HeaderWrapper>
       <HeaderContainer>
-        <Logo src="src/assets/logo.svg" alt="Xline" />
+        <Logo src={logoUrl} alt="Xline" />
         <Menu>
           <MenuItem
             active={isDocsActive}
@@ -169,7 +171,7 @@ export const Header: React.FC = () => {
         </Menu>
         <Placeholder />
         <Button as="a" href="https://github.com/datenlord/xline">
-          <Icon src="src/assets/github-icon.svg" alt="icon" />
+          <Icon src={githubIconUrl} alt="icon" />
           <Text>github</Text>
         </Button>
       </HeaderContainer>

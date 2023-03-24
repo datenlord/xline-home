@@ -1,7 +1,11 @@
 import styled from 'styled-components'
+import backgroundUrl from '@/assets/footer-background.svg'
+import logoUrl from '@/assets/logo.svg'
+import githubIconUrl from '@/assets/github-icon.svg'
+import gitterIconUrl from '@/assets/gitter-icon.svg'
 
 const FooterWrapper = styled.footer`
-  background-image: url(src/assets/footer-background.svg);
+  background-image: url(${backgroundUrl});
   background-size: cover;
 `
 
@@ -116,20 +120,20 @@ export const Footer: React.FC = () => {
             </LinkClass>
           </LinkClassContainer>
           <FooterBottom>
-            <Logo src="src/assets/logo.svg" alt="Xline" />
+            <Logo src={logoUrl} alt="Xline" />
             <Placeholder />
             <BottomLinkContainer
               as="a"
               href="https://github.com/datenlord/xline"
             >
-              <BottomLinkIcon src="src/assets/github-icon.svg" alt="icon" />
+              <BottomLinkIcon src={githubIconUrl} alt="icon" />
               <BottomLinkText>GitHub</BottomLinkText>
             </BottomLinkContainer>
             <BottomLinkContainer
               as="a"
               href="https://app.gitter.im/#/room/#datenlord_Xline:gitter.im"
             >
-              <BottomLinkIcon src="src/assets/gitter-icon.svg" alt="icon" />
+              <BottomLinkIcon src={gitterIconUrl} alt="icon" />
               <BottomLinkText>Gitter</BottomLinkText>
             </BottomLinkContainer>
           </FooterBottom>
