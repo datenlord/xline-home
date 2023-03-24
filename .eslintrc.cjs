@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'react/no-children-prop': 'off',
     'react/no-unescaped-entities': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
