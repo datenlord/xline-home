@@ -33,6 +33,7 @@ module.exports = {
         trailingComma: 'all',
       },
     ],
+    'react/jsx-key': 'warn',
   },
   settings: {
     react: {
