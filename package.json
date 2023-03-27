@@ -22,7 +22,8 @@
     "react-markdown": "^8.0.6",
     "react-router-dom": "^6.9.0",
     "remark-gfm": "^3.0.1",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "yaml": "^2.2.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
