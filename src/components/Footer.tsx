@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+import { docsConfig, deepDiveConfig } from '@/doc.config'
+
 import backgroundUrl from '@/assets/footer-background.svg'
 import logoUrl from '@/assets/logo.svg'
 import githubIconUrl from '@/assets/github-icon.svg'
@@ -35,6 +38,7 @@ const LinkClassTitle = styled.h2`
   line-height: 33.89px;
   text-transform: capitalize;
   border-bottom: 1px solid white;
+  cursor: default;
 `
 
 const LinkList = styled.ul``
@@ -45,6 +49,7 @@ const LinkListItem = styled.li`
   font-size: 22px;
   line-height: 1.5;
   text-transform: capitalize;
+  cursor: pointer;
 `
 
 const FooterBottom = styled.div`
@@ -54,6 +59,7 @@ const FooterBottom = styled.div`
 
 const Logo = styled.img`
   height: 48px;
+  cursor: pointer;
 `
 
 const Placeholder = styled.div`
@@ -81,6 +87,8 @@ const BottomLinkText = styled.p`
 `
 
 export const Footer: React.FC = () => {
+  const navigate = useNavigate()
+
   return (
     <>
       <FooterWrapper>
@@ -89,38 +97,79 @@ export const Footer: React.FC = () => {
             <LinkClass>
               <LinkClassTitle>docs</LinkClassTitle>
               <LinkList>
-                <LinkListItem>what's new</LinkListItem>
-                <LinkListItem>get start</LinkListItem>
-                <LinkListItem>deploy</LinkListItem>
-                <LinkListItem>develop</LinkListItem>
-                <LinkListItem>reference</LinkListItem>
+                {docsConfig.map(({ title, url }) => (
+                  <LinkListItem
+                    key={title}
+                    onClick={() => {
+                      navigate(url)
+                      window.scrollTo(0, 0)
+                    }}
+                  >
+                    {title}
+                  </LinkListItem>
+                ))}
               </LinkList>
             </LinkClass>
             <LinkClass>
               <LinkClassTitle>deep dive</LinkClassTitle>
               <LinkList>
-                <LinkListItem>consensus algorithm</LinkListItem>
-                <LinkListItem>kv engine</LinkListItem>
-                <LinkListItem>rpc</LinkListItem>
-                <LinkListItem>testing</LinkListItem>
+                {deepDiveConfig.map(({ title, url }) => (
+                  <LinkListItem
+                    key={title}
+                    onClick={() => {
+                      navigate(url)
+                      window.scrollTo(0, 0)
+                    }}
+                  >
+                    {title}
+                  </LinkListItem>
+                ))}
               </LinkList>
             </LinkClass>
             <LinkClass>
               <LinkClassTitle>community</LinkClassTitle>
               <LinkList>
-                <LinkListItem>contribute</LinkListItem>
-                <LinkListItem>chat</LinkListItem>
+                <LinkListItem
+                  onClick={() => {
+                    navigate('/contribute')
+                    window.scrollTo(0, 0)
+                  }}
+                >
+                  contribute
+                </LinkListItem>
+                <LinkListItem
+                  onClick={() =>
+                    (window.location.href =
+                      'https://app.gitter.im/#/room/#datenlord_Xline:gitter.im')
+                  }
+                >
+                  chat
+                </LinkListItem>
               </LinkList>
             </LinkClass>
             <LinkClass>
               <LinkClassTitle>blog</LinkClassTitle>
               <LinkList>
-                <LinkListItem>blog</LinkListItem>
+                <LinkListItem
+                  onClick={() => {
+                    navigate('/blog')
+                    window.scrollTo(0, 0)
+                  }}
+                >
+                  blog
+                </LinkListItem>
               </LinkList>
             </LinkClass>
           </LinkClassContainer>
           <FooterBottom>
-            <Logo src={logoUrl} alt="Xline" />
+            <Logo
+              src={logoUrl}
+              alt="Xline"
+              onClick={() => {
+                window.scrollTo(0, 0)
+                navigate('/')
+              }}
+            />
             <Placeholder />
             <BottomLinkContainer
               as="a"
