@@ -102,7 +102,7 @@ const BlogListItem = styled.div`
 
 const BlogListItemCover = styled.img`
   width: 100%;
-  height: ${props => props.theme.scale.scale08};
+  /* height: ${props => props.theme.scale.scale08}; */
 `
 
 const BlogListItemContentContainer = styled.div`
