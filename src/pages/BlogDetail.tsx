@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeHighlight from 'rehype-highlight'
 import moment from 'moment'
 import YAML from 'yaml'
 import styled from 'styled-components'
@@ -10,6 +11,7 @@ import { Text } from '@/components/Text'
 import { Font } from '@/components/Font'
 import { Divider } from '@/components/Divider'
 import { List, ListItem } from '@/components/List'
+import { Image } from '@/components/Image'
 
 import underlineUrl from '@/assets/underline.svg'
 
@@ -19,11 +21,11 @@ const Header = styled.div`
 `
 
 const MainContainer = styled.main`
-  max-width: ${props => props.theme.scale.scale12};
+  max-width: 892px;
   margin-top: -${props => props.theme.scale.scale09};
   margin-bottom: ${props => props.theme.scale.scale07};
   margin-inline: auto;
-  padding-inline: ${props => props.theme.scale.scale08};
+  /* padding-inline: ${props => props.theme.scale.scale08}; */
   // - - -
   /* height: 400px; */
 `
@@ -201,6 +203,7 @@ const BlogDetailPage: React.FC = () => {
         <Article>
           <ReactMarkdown
             children={article}
+            rehypePlugins={[rehypeHighlight]}
             remarkPlugins={[remarkGfm]}
             components={{
               h1: ({ level, children }) => (
@@ -244,6 +247,7 @@ const BlogDetailPage: React.FC = () => {
                 />
               ),
               li: ({ children }) => <ListItem children={children} />,
+              img: ({ src, alt }) => <Image src={src} alt={alt} />,
             }}
           />
         </Article>
