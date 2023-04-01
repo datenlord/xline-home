@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { docsConfig, deepDiveConfig } from '@/doc.config'
 import logoUrl from '@/assets/logo.svg'
 import githubIconUrl from '@/assets/github-icon.svg'
 
@@ -46,6 +48,7 @@ const MenuItem = styled.li<MenuItemProps>`
   display: flex;
   align-items: center;
   padding-inline: ${props => props.theme.scale.md};
+  color: white;
   font-size: 18px;
   line-height: 1.2;
   text-transform: capitalize;
@@ -69,6 +72,7 @@ const SubMenu = styled.div<SubMenuProps>`
 `
 
 const SubMenuItem = styled.p`
+  display: block;
   padding-block: 8px;
   color: hsl(0, 0%, 88%);
   font-weight: 400;
@@ -113,6 +117,7 @@ const Text = styled.p`
 `
 
 export const Header: React.FC = () => {
+  const navigate = useNavigate()
   const [isDocsActive, setIsDocsActive] = useState<boolean>(false)
   const [isDeepDiveActive, setIsDeepDiveActive] = useState<boolean>(false)
   const [isCommunityActive, setIsCommunityActive] = useState<boolean>(false)
@@ -121,7 +126,7 @@ export const Header: React.FC = () => {
   return (
     <HeaderWrapper>
       <HeaderContainer>
-        <Logo src={logoUrl} alt="Xline" />
+        <Logo src={logoUrl} alt="Xline" onClick={() => navigate('/')} />
         <Menu>
           <MenuItem
             active={isDocsActive}
@@ -130,11 +135,11 @@ export const Header: React.FC = () => {
           >
             docs
             <SubMenu active={isDocsActive}>
-              <SubMenuItem>What's New</SubMenuItem>
-              <SubMenuItem>Get Started</SubMenuItem>
-              <SubMenuItem>Deploy</SubMenuItem>
-              <SubMenuItem>Develop</SubMenuItem>
-              <SubMenuItem>Reference</SubMenuItem>
+              {docsConfig.map(({ title, url }) => (
+                <SubMenuItem key={title} onClick={() => navigate(url)}>
+                  {title}
+                </SubMenuItem>
+              ))}
             </SubMenu>
           </MenuItem>
           <MenuItem
@@ -144,10 +149,11 @@ export const Header: React.FC = () => {
           >
             deep dive
             <SubMenu active={isDeepDiveActive}>
-              <SubMenuItem>Consensus</SubMenuItem>
-              <SubMenuItem>KV Engine</SubMenuItem>
-              <SubMenuItem>RPC</SubMenuItem>
-              <SubMenuItem>Test</SubMenuItem>
+              {deepDiveConfig.map(({ title, url }) => (
+                <SubMenuItem key={title} onClick={() => navigate(url)}>
+                  {title}
+                </SubMenuItem>
+              ))}
             </SubMenu>
           </MenuItem>
           <MenuItem
@@ -157,11 +163,20 @@ export const Header: React.FC = () => {
           >
             community
             <SubMenu active={isCommunityActive}>
-              <SubMenuItem>Contribute</SubMenuItem>
-              <SubMenuItem>Chat</SubMenuItem>
+              <SubMenuItem as={Link} to="/contribute">
+                Contribute
+              </SubMenuItem>
+              <SubMenuItem
+                as="a"
+                href="https://app.gitter.im/#/room/#datenlord_Xline:gitter.im"
+              >
+                Chat
+              </SubMenuItem>
             </SubMenu>
           </MenuItem>
           <MenuItem
+            as={Link}
+            to="/blog"
             active={isBlogActive}
             onMouseOver={() => setIsBlogActive(true)}
             onMouseLeave={() => setIsBlogActive(false)}
