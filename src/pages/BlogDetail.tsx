@@ -12,6 +12,7 @@ import { Font } from '@/components/Font'
 import { Divider } from '@/components/Divider'
 import { List, ListItem } from '@/components/List'
 import { Image } from '@/components/Image'
+import { Blockquote } from '@/components/Blockquote'
 
 import underlineUrl from '@/assets/underline.svg'
 
@@ -248,6 +249,7 @@ const BlogDetailPage: React.FC = () => {
               ),
               li: ({ children }) => <ListItem children={children} />,
               img: ({ src, alt }) => <Image src={src} alt={alt} />,
+              blockquote: ({ children }) => <Blockquote>{children}</Blockquote>,
             }}
           />
         </Article>

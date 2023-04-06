@@ -12,6 +12,7 @@ import { Divider } from '@/components/Divider'
 import { List, ListItem } from '@/components/List'
 import { Menu } from '@/components/Menu'
 import { Image } from '@/components/Image'
+import { Blockquote } from '@/components/Blockquote'
 
 const modules = import.meta.glob('@/deep-dive/*.md', { as: 'raw', eager: true })
 
@@ -147,6 +148,7 @@ const DeepDivePage = () => {
               ),
               li: ({ children }) => <ListItem children={children} />,
               img: ({ src, alt }) => <Image src={src} alt={alt} />,
+              blockquote: ({ children }) => <Blockquote>{children}</Blockquote>,
             }}
           />
         </ArticleContainer>

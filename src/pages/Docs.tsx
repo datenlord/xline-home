@@ -9,6 +9,7 @@ import { Text } from '@/components/Text'
 import { Font } from '@/components/Font'
 import { Divider } from '@/components/Divider'
 import { List, ListItem } from '@/components/List'
+import { Blockquote } from '@/components/Blockquote'
 import { Menu } from '@/components/Menu'
 import { Image } from '@/components/Image'
 import underlineUrl from '@/assets/underline.svg'
@@ -147,6 +148,7 @@ const DocsPage = () => {
               ),
               li: ({ children }) => <ListItem children={children} />,
               img: ({ src, alt }) => <Image src={src} alt={alt} />,
+              blockquote: ({ children }) => <Blockquote>{children}</Blockquote>,
             }}
           />
         </ArticleContainer>
