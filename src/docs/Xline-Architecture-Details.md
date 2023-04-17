@@ -1,3 +1,3 @@
 # Xline Architecture Details
 
-![image](/test/docs/Xline-Architecture-Details/image1.jpg)
+![image](/xline-home/docs/Xline-Architecture-Details/image1.jpg)

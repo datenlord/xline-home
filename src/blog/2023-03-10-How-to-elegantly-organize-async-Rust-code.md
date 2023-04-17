@@ -1,10 +1,10 @@
 ---
 
-  cover: /test/blog/How-to-elegantly-organize-async-Rust-code/cover.png
+  cover: /xline-home/blog/How-to-elegantly-organize-async-Rust-code/cover.png
   author:
     name: DatenLord
     url: https://github.com/datenlord
-    img_url: https://github.com/datenlord.png
+    img_url: /xline-home/DatenLord.png
   read_time: 5
 
 ---
@@ -156,7 +156,7 @@ Therefore, we reorganized the structure of Curp server, dividing it into an asyn
   - Background tasks: periodically checking leader activity, copying and aligning data on each node
 - Rawcurp can be considered as a state machine that receives calls from CurpNode and updates the state. It includes only non-async code. If RawCurp wants to perform some async operations (such as broadcasting heartbeat), it can use return values and channels to let CurpNode make requests on its behalf.
 
-![image1](/test/blog/How-to-elegantly-organize-async-Rust-code/image1.png)
+![image1](/xline-home/blog/How-to-elegantly-organize-async-Rust-code/image1.png)
 
 Take our tick function as an example. Before refactoring, due to the limitation that LockGuard cannot pass the await point and the restriction of multiple logical branches, we had to organize the code in this way:
 

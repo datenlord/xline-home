@@ -12,7 +12,7 @@ Xline is the first geo-distributed consistency management service based on CURP(
 - Functional Logic Layer: This layer implements Xline business logic, including the typical KV Server, Auth Server, Lease Server and Watch Server, etc. Client sends requests to Xline Server through the access layer, and Xline Server dispatches the requests to specific servers for execution.
 - Storage Layer: This layer contains two components, Index and DB, where Index is based on BTreeMap while DB is mainly responsible for persistent storage of data. At present, Xline is still in the early stage of development, so DB is mainly implemented based on memory. We will introduce persistent storage in the next release.
 
-![image](/test/docs/Get-Started/image1.png)
+![image](/xline-home/docs/Get-Started/image1.png)
 
 For more information about the Architecture of Xline, read Xline Architecture Details.
 

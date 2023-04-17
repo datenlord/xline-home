@@ -1,9 +1,9 @@
 ---
-  cover: /test/blog/Revisit-the-Consensus-Protocol/cover.png
+  cover: /xline-home/blog/Revisit-the-Consensus-Protocol/cover.png
   author:
     name: DatenLord
     url: https://github.com/datenlord
-    img_url: /test/DatenLord.png
+    img_url: /xline-home/DatenLord.png
   read_time: 7
 ---
 
@@ -17,11 +17,11 @@ Consensus protocol is a protocol to keep the information consistent and durable 
 
 First let’s take a look at Paxos, which is shown in the below graph. Paxos has two phases. The first phase is Prepare, and its main assignment is to take a Slot on the Log. The second phase is Accept, which makes sure this specific Slot has been explicitly occupied, and not taken by others between two phases. When Client receives OK response from the majority of servers, it means this particular record has been submitted and a consensus is reached. Here we can take Client and Proposer as a whole, and there are two messages delivered in the whole process and one message in each phase respectively.
 
-![image1](/test/blog/Revisit-the-Consensus-Protocol/image1.jpg)
+![image1](/xline-home/blog/Revisit-the-Consensus-Protocol/image1.jpg)
 
 Then let’s move on to talk about Raft, which is also shown below. In Raft protocol a Client sends a request to the leader server, then the leader broadcast the request to all the follower servers. When the leader collects the OK response from the majority of all servers, including itself, a consensus is reached, then it tells the result to Client. There are two messages delivered during the process, one is between Client and the leader, the other is between the leader and the followers.
 
-![image1](/test/blog/Revisit-the-Consensus-Protocol/image2.webp)
+![image1](/xline-home/blog/Revisit-the-Consensus-Protocol/image2.webp)
 
 It thus can be told that the above two protocols take two RTTs to complete a request and reach a consensus. It usually does not have a big impact on performance if the protocol runs in a single data center, while the situation is totally different if we run the protocol in multiple data centers. Because the latency between the data-centers is too high, up to hundreds of milliseconds. Therefore, in multi-data center scenarios, it is critical to reduce the number of messages delivered in the process.  
 
@@ -39,7 +39,7 @@ Then how do we come up with a way to reduce one number of message delivery? The 
 
 We won’t discuss all the details of the CURP protocol for it’s too complicated, so only the critical parts will be covered. Here’s the process diagram of the CURP protocol:
 
-![image1](/test/blog/Revisit-the-Consensus-Protocol/image3.webp)
+![image1](/xline-home/blog/Revisit-the-Consensus-Protocol/image3.webp)
 
 To start with, let’s describe the main procedures briefly below:
 
