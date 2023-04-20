@@ -6,10 +6,10 @@ Read the [quick start](https://github.com/datenlord/Xline/blob/master/QUICK_STAR
 
 We compare Xline with ETCD in a simulated multi-cluster environment. The details of the deployment are shown below.
 
-![image](/xline-home/docs/Deploy/image1.png)
+![image](/docs/Deploy/image1.png)
 
 We compare the performance with two different workloads. One is 1 key case, the other is 100k key space case. Here is the test result.
 
-![image](/xline-home/docs/Deploy/image2.png)
+![image](/docs/Deploy/image2.png)
 
-![image](/xline-home/docs/Deploy/image3.png)
+![image](/docs/Deploy/image3.png)
