@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
     background: ${props => props.theme.color.neutral.gray04};
     padding: 12px;
     border-radius: 4px;
+    overflow-x: scroll;
   }
 
   code {

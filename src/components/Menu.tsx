@@ -100,8 +100,8 @@ const MenuItem: React.FC<MenuItemProps> = ({ items }) => {
 
   return (
     <>
-      <StyleMenuItem>
-        <MenuItemIconContainer onClick={() => setDropdown(!dropdown)}>
+      <StyleMenuItem onClick={() => setDropdown(!dropdown)}>
+        <MenuItemIconContainer>
           {!dropdown ? (
             <MenuItemIcon src={dropdownCloseUrl} />
           ) : (

@@ -51,12 +51,6 @@ export const docsConfig = [
         url: '/docs/Deploy',
         id: 'Install',
       },
-      {
-        type: 'heading',
-        title: 'Performance Comparison',
-        url: '/docs/Deploy',
-        id: 'Performance-Comparison',
-      },
     ],
   },
   {

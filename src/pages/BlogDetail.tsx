@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -177,6 +178,10 @@ const blogMap = import.meta.glob('@/blog/*.md', { as: 'raw', eager: true })
 const BlogDetailPage: React.FC = () => {
   const { msg } = useParams()
   // console.log(`/src/blog/${msg}.md`)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const [year, month, day, ...name] = (msg || '').split('-')
   const blogName = name.join(' ')
