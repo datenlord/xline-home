@@ -303,7 +303,7 @@ const HomePage = () => {
                 <FeaturesItemIcon src={featureIcon1} alt="icon" />
               </FeaturesItemIconWrapper>
               <FeaturesItemTitle>
-                A distributed KV storage engine for multi-cluster.
+                A distributed KV storage engine for multi-cluster
               </FeaturesItemTitle>
               <FeaturesItemDescription>
                 Unified data management for multi-cluster scenarios, making
@@ -316,7 +316,7 @@ const HomePage = () => {
                 <FeaturesItemIcon src={featureIcon2} alt="icon" />
               </FeaturesItemIconWrapper>
               <FeaturesItemTitle>
-                A unified metadata management system.
+                A unified metadata management system
               </FeaturesItemTitle>
               <FeaturesItemDescription>
                 Data access across clouds by caching hot data in memory, and
@@ -329,7 +329,7 @@ const HomePage = () => {
                 <FeaturesItemIcon src={featureIcon3} alt="icon" />
               </FeaturesItemIconWrapper>
               <FeaturesItemTitle>
-                A high-performance multi-datacenter consensus protocol.
+                A high-performance multi-datacenter consensus protocol
               </FeaturesItemTitle>
               <FeaturesItemDescription>
                 It is the first geo distributed consistency management service
@@ -342,7 +342,7 @@ const HomePage = () => {
                 <FeaturesItemIcon src={featureIcon4} alt="icon" />
               </FeaturesItemIconWrapper>
               <FeaturesItemTitle>
-                Be compatible with the ETCD interface.
+                Compatible with the ETCD interface
               </FeaturesItemTitle>
               <FeaturesItemDescription>
                 Provide KV interface, Multi-Version Concurrency Control and is
@@ -364,19 +364,19 @@ const HomePage = () => {
             <InnovationText>
               Cross-datacenter network latency is the most important factor that
               impacts the performance of geo-distributed systems, especially
-              when a consensus protocol is used. We know consensus protocols are
-              popular to use to achieve high availability. For instance, Etcd
-              uses the Raft protocol, which is quite popular in recently
-              developed systems.
+              when a consensus protocol is used. As is well known, consensus
+              protocols are frequently used to achieve high availability. For
+              instance, Etcd uses the Raft protocol, which is quite popular in
+              recently developed systems.
             </InnovationText>
             <InnovationText>
               Although Raft is stable and easy to implement, it takes 2 RTTs to
               complete a consensus request from the view of a client. One RTT
               takes place between the client and the leader server, and the
               leader server takes another RTT to broadcast the message to the
-              follower servers. In a geo-distributed environment, an RTT is
-              quite long, varying from tens of milliseconds to hundreds of
-              milliseconds, so 2 RTTs are too long in such cases.
+              follower servers. In a geo-distributed environment where an RTT
+              can run from tens to hundreds of milliseconds, two RTTs would be
+              two expensive
             </InnovationText>
             <InnovationText>
               We adopt a new consensus protocol named CURP to resolve the above

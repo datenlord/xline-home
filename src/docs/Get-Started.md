@@ -31,8 +31,3 @@ $ ./xline --name node3 --cluster-peers 127.0.0.1:2379 127.0.0.1:2380 --self-ip-p
 $ etcdctl --endpoints=http://127.0.0.1:2379 put foo bar
 $ etcdctl --endpoints=http://127.0.0.1:2379 get foo
 ~~~
-~~~js
-const hello = 'hello word'
-~~~
-
-   
