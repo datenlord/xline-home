@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 import logoUrl from '@/assets/logo.svg'
 import homeCoverUrl from '@/assets/home-cover.png'
@@ -248,6 +249,7 @@ const InnovationText = styled.p`
 `
 
 const HomePage = () => {
+  const navigate = useNavigate()
   return (
     <>
       <CoverWrapper>
@@ -256,7 +258,9 @@ const HomePage = () => {
           <CoverDescription>
             A High-Performance Geo-distributed Metadata Management System
           </CoverDescription>
-          <CoverButton>get start</CoverButton>
+          <CoverButton onClick={() => navigate('/docs/Get-Started')}>
+            get start
+          </CoverButton>
         </Cover>
       </CoverWrapper>
       <IntroductionWrapper>

@@ -63,7 +63,7 @@ This article uses the TLA+ language as a tool to introduce formal methods.
 
 Leslie Lamport, the author of TLA+, is a computer scientist who won the Turing Award in 2013 for his groundbreaking work in the field of concurrent and distributed systems.
 
-### TLA+ 是什么
+### What's TLA+
 
 TLA+ is an high-level language for modeling programs and systems - especially concurrent and distributed programs and systems. Its core idea is that the best way to precisely describe things is to use simple mathematics. TLA+ and its tools can be used to eliminate design errors that are difficult to find and correct in code and are expensive to correct.
 
@@ -210,7 +210,7 @@ At this point, the modeling of the system is complete. Now we need to write the 
 
 In the constraint condition `TypeOK`, we have limited the possible values of each variable. The `[RM → {"working", "prepared", "committed", "aborted"}]` is similar to the Cartesian product of the set `RM` and the set `{"working", "prepared", "committed", "aborted"}`, but the result is a set composed of records:
 
-```
+```rust
 {
     [r1 |-> "working", r2 |-> "working"],
     [r1 |-> "working", r2 |-> "prepared"],
@@ -223,7 +223,7 @@ In the constraint condition `TypeOK`, we have limited the possible values of eac
 
 In `TypeOK`, we use the set `Messages` defined above. When defining `Messages`, we used the syntax: `[type: {"Prepared"}, rm: RM]`. This syntax is also similar to the Cartesian product of `{"Prepared"}` and `RM`, but the result is also a record set:
 
-```
+```rust
 {
     [type |-> "Prepared", rm |-> r1],
     [type |-> "Prepared", rm |-> r2],

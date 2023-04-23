@@ -6,7 +6,7 @@ B-trees and Log-Structured Merge-trees (LSM trees) are two of the most widely us
 
 In general, there are three key metrics to measure the performance of a data structure: write amplification, read amplification, and spatial amplification. This section aims to describe these metrics.
 
-For HDDs, a disk read or write requires three steps: seek, seek and read, where seek is a mechanical movement with very high latency. Therefore, the performance of sequential disk reads and writes is much better than that of random reads and writes. Even for SSDs, sequential read and write performance is better than random read and write.
+For hard disk drives (HDDs), the cost of disk seek is enormous, such that the performance of random read/write is worse than that of sequential read/write. Therefore, the performance of sequential disk reads and writes is much better than that of random reads and writes. Even for SSDs, sequential read and write performance is better than random read and write.
 
 ## Write Amplification
 

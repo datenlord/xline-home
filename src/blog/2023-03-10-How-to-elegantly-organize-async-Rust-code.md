@@ -24,7 +24,7 @@ Anyone who has worked with async Rust has likely struggled with the bounds it re
 The compiler has no idea how long an asynchronous task will run for when we create it; it may be ephemeral or it may continue to run until the program terminates. For this reason, the compiler requires all types owned by the tasks to be `'static`.
 Such a limitation often leads to a lot of cloning before spawning a task. Admittedly, these codes help programmers to better understand which variables' ownership should be transferred to the new task. Unfortunately, the code will look tedious.
 
-```
+```rust
 let a_arc = Arc::clone(&a);
 let b_arc = Arc::clone(&b);
 tokio::spawn(async move {
@@ -38,7 +38,7 @@ The Tokio runtime can move a task between threads at every `.await`. That's why 
 
 For example, the following code does not compile because `log_l`, a non-`Send` `MutexGuard`, can not be held across the `.await` point.
 
-```
+```rust
 let mut log_l = log.lock();
 log_l.append(new_entry.clone());
 broadcast(new_entry).await;
@@ -48,7 +48,7 @@ As the broadcast could take a while, we don't want the `MutexGuard` to be held a
 
 To avoid this, we naturally add a line to drop the lock just before broadcasting.
 
-```
+```rust
 let mut log_l = log.lock();
 log_l.append(new_entry.clone());
 drop(log_l);
@@ -61,7 +61,7 @@ Sadly, it still won't compile. The explanation here is from `tokio` official web
 
 To get around, we must wrap our code in an redundant scope. The code is not elegant anymore🙁.
 
-```
+```rust
 {
     let mut log_w = log.write();
     log_w.append(new_entry.clone());
@@ -81,7 +81,7 @@ The previously mentioned problems are, in my opinion, caused by a lack of clarit
 
 You don't want I/O to block the current thread since I/O can take a long time. Async I/O helps us to hand out control flow to other tasks when we are waiting for I/O resources.
 
-```
+```rust
 // .await will enable other scheduled tasks to progress
 let mut file = File::create("foo.txt").await?;
 
@@ -92,7 +92,7 @@ file.write(b"some bytes").await?;
 
 You want to spawn a background task in order to handle things in the background(usually paired with the receive end of an async channel).
 
-```
+```rust
 tokio::spawn(async move {
     while let Some(job) = rx.recv().await {
         // ...
@@ -104,7 +104,7 @@ tokio::spawn(async move {
 
 You want to spawn multiple tasks to utilize multicore.
 
-```
+```rust
 let chunks = data.chunks(data.len() / N_TASKS);
 for chunk in chunks {
   tokio::spawn(work_on(chunk));
@@ -115,7 +115,7 @@ for chunk in chunks {
 
 You want to pause the current thread and wait for some other events.
 
-```
+```rust
 // wait for some event
 event.listen().await;
 
@@ -125,7 +125,7 @@ barrier.wait().await;
 
 As can be seen, async code usually resides in limited places: I/O, concurrent, and background tasks. Therefore, when we are designing our code, we can consciously identify async functions and try to minimize them. Separating these two parts can not only alleviate the pain points mentioned at the beginning of the article, but also help us to clarify the code structure.
 
-```
+```rust
 // before
 {
     let mut log_w = log.write();
@@ -160,7 +160,7 @@ Therefore, we reorganized the structure of Curp server, dividing it into an asyn
 
 Take our tick function as an example. Before refactoring, due to the limitation that LockGuard cannot pass the await point and the restriction of multiple logical branches, we had to organize the code in this way:
 
-```
+```rust
     loop {
         let _now = ticker.tick().await;
         let task = {
@@ -191,7 +191,7 @@ Take our tick function as an example. Before refactoring, due to the limitation 
 
 After the refactoring, the code is significantly more understandable because all of the non-async functionality has been transferred to `RawCurp`.
 
-```
+```rust
 loop {
     let _now = ticker.tick().await;
     let action = raw_curp.tick();
