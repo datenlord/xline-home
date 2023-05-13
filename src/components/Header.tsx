@@ -30,27 +30,33 @@ const HeaderContainer = styled.div`
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-  padding-inline: ${props => props.theme.scale.lg};
+  padding-left: 105px;
+  padding-right: 101px;
 `
 
 const Logo = styled.img`
+  width: 111px;
   height: 32px;
-  margin-right: ${props => props.theme.scale.sm};
+  margin-right: calc(68px - 20px);
 `
 
 const Menu = styled.ul`
   display: flex;
   height: 100%;
+
+  @media screen and (max-width: 1023px) {
+    display: none;
+  }
 `
 
 const MenuItem = styled.li<MenuItemProps>`
   position: relative;
   display: flex;
   align-items: center;
-  padding-inline: ${props => props.theme.scale.md};
+  padding-inline: 20px;
   color: white;
   font-size: 18px;
-  line-height: 1.2;
+  line-height: 21.78px;
   text-transform: capitalize;
   white-space: nowrap;
   border-bottom: ${props =>
@@ -90,8 +96,10 @@ const Placeholder = styled.div`
 const Button = styled.button`
   display: flex;
   align-items: center;
-  height: 40px;
-  padding: 8px 16px;
+  justify-content: center;
+  width: 131px;
+  height: 48px;
+  /* padding: 8px 16px; */
   color: ${props => props.theme.color.white};
   background: linear-gradient(
     90deg,
@@ -105,13 +113,14 @@ const Button = styled.button`
 `
 
 const Icon = styled.img`
-  height: 100%;
+  width: 24.94px;
+  height: 24.94px;
   margin-right: 8px;
 `
 
 const Text = styled.p`
-  font-size: 16px;
-  line-height: 1.2;
+  font-size: 18px;
+  line-height: 1;
   text-transform: capitalize;
   transform: translateY(5%);
 `
