@@ -1,17 +1,93 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { docsConfig, deepDiveConfig } from '@/doc.config'
+import { useNavigate } from 'react-router-dom'
+
+import { PCNav } from './PCNav'
+import type { NavItem } from './PCNav'
+import { MobNav } from './MobNav'
+
 import logoUrl from '@/assets/logo.svg'
 import githubIconUrl from '@/assets/github-icon.svg'
 
-type MenuItemProps = {
-  active: boolean
-}
-
-type SubMenuProps = {
-  active: boolean
-}
+const items: NavItem[] = [
+  {
+    key: 'docs',
+    label: 'Docs',
+    children: [
+      {
+        key: "what's-new",
+        label: "What's new",
+        url: "/docs/What's-New",
+      },
+      {
+        key: 'get-started',
+        label: 'Get started',
+        url: '/docs/Get-Started',
+      },
+      {
+        key: 'deploy',
+        label: 'Deploy',
+        url: '/docs/Deploy',
+      },
+      {
+        key: 'develop',
+        label: 'Develop',
+        url: '/docs/Develop',
+      },
+      {
+        key: 'reference',
+        label: 'reference',
+        url: '/docs/Xline-Architecture-Details',
+      },
+    ],
+  },
+  {
+    key: 'deep-dive',
+    label: 'Deep dive',
+    children: [
+      {
+        key: 'consensus',
+        label: 'Consensus',
+        url: '/deep-dive/Consensus',
+      },
+      {
+        key: 'kv-engine',
+        label: 'KV engine',
+        url: '/deep-dive/Key-value-Engine',
+      },
+      {
+        key: 'rpc',
+        label: 'RPC',
+        url: '/deep-dive/Remote-Procedure-Calls-(RPC)',
+      },
+      {
+        key: 'test',
+        label: 'Test',
+        url: '/deep-dive/Testing',
+      },
+    ],
+  },
+  {
+    key: 'community',
+    label: 'Community',
+    children: [
+      {
+        key: 'contribute',
+        label: 'Contribute',
+        url: '/contribute',
+      },
+      {
+        key: 'chat',
+        label: 'Chat',
+        url: 'https://app.gitter.im/#/room/#datenlord_Xline:gitter.im',
+      },
+    ],
+  },
+  {
+    key: 'blog',
+    label: 'Blog',
+    url: '/blog',
+  },
+]
 
 const HeaderWrapper = styled.header`
   position: absolute;
@@ -21,9 +97,15 @@ const HeaderWrapper = styled.header`
   width: 100%;
   background-color: hsla(236, 60%, 10%, 0.4);
   color: ${props => props.theme.color.white};
+  @media screen and (max-width: 1024px) {
+    height: 69px;
+  }
+  @media screen and (max-width: 768px) {
+    height: 53px;
+  }
 `
-
 const HeaderContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   height: inherit;
@@ -32,67 +114,35 @@ const HeaderContainer = styled.div`
   margin-inline: auto;
   padding-left: 105px;
   padding-right: 101px;
+  @media screen and (max-width: 1024px) {
+    padding-inline: 64px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-inline: 20px;
+  }
 `
-
 const Logo = styled.img`
   width: 111px;
   height: 32px;
   margin-right: calc(68px - 20px);
-`
-
-const Menu = styled.ul`
-  display: flex;
-  height: 100%;
-
-  @media screen and (max-width: 1023px) {
-    display: none;
+  @media screen and (max-width: 1024px) {
+    width: 86px;
+    height: 22px;
+    margin-right: 24px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 64px;
+    height: 18px;
+    margin-right: 0;
   }
 `
-
-const MenuItem = styled.li<MenuItemProps>`
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-inline: 20px;
-  color: white;
-  font-size: 18px;
-  line-height: 21.78px;
-  text-transform: capitalize;
-  white-space: nowrap;
-  border-bottom: ${props =>
-    props.active ? '4px solid hsla(234, 60%, 66%, 1)' : 'none'};
-  transition: all 0.05s;
-  cursor: pointer;
-`
-
-const SubMenu = styled.div<SubMenuProps>`
-  position: absolute;
-  top: 86px;
-  left: 0;
-  display: ${props => (props.active ? 'block' : 'none')};
-  padding: 16px 20px;
-  background: hsl(231, 14%, 18%);
-  border-radius: 8px;
-  transition: all 0s ease 0.1s;
-  width: 200px;
-`
-
-const SubMenuItem = styled.p`
-  display: block;
-  padding-block: 8px;
-  color: hsl(0, 0%, 88%);
-  font-weight: 400;
-  font-size: 14px;
-  &:hover {
-    color: hsl(234, 60%, 66%);
-  }
-`
-
 const Placeholder = styled.div`
   flex: 1;
   min-width: ${props => props.theme.scale.md};
+  @media screen and (max-width: 1024px) {
+    min-width: 16px;
+  }
 `
-
 const Button = styled.button`
   display: flex;
   align-items: center;
@@ -110,91 +160,55 @@ const Button = styled.button`
   border: none;
   border-radius: 50vh;
   cursor: pointer;
+  @media screen and (max-width: 1024px) {
+    width: 106px;
+    height: 36px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 84px;
+    height: 24px;
+  }
 `
-
 const Icon = styled.img`
   width: 24.94px;
   height: 24.94px;
   margin-right: 8px;
+  @media screen and (max-width: 1024px) {
+    width: 18px;
+    margin-right: 7px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 15px;
+    margin-right: 6px;
+  }
 `
-
 const Text = styled.p`
   font-size: 18px;
   line-height: 1;
   text-transform: capitalize;
   transform: translateY(5%);
+  @media screen and (max-width: 1024px) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+  }
 `
 
 export const Header: React.FC = () => {
   const navigate = useNavigate()
-  const [isDocsActive, setIsDocsActive] = useState<boolean>(false)
-  const [isDeepDiveActive, setIsDeepDiveActive] = useState<boolean>(false)
-  const [isCommunityActive, setIsCommunityActive] = useState<boolean>(false)
-  const [isBlogActive, setIsBlogActive] = useState<boolean>(false)
 
   return (
     <HeaderWrapper>
       <HeaderContainer>
         <Logo src={logoUrl} alt="Xline" onClick={() => navigate('/')} />
-        <Menu>
-          <MenuItem
-            active={isDocsActive}
-            onMouseOver={() => setIsDocsActive(true)}
-            onMouseLeave={() => setIsDocsActive(false)}
-          >
-            docs
-            <SubMenu active={isDocsActive}>
-              {docsConfig.map(({ title, url }) => (
-                <SubMenuItem key={title} onClick={() => navigate(url)}>
-                  {title}
-                </SubMenuItem>
-              ))}
-            </SubMenu>
-          </MenuItem>
-          <MenuItem
-            active={isDeepDiveActive}
-            onMouseOver={() => setIsDeepDiveActive(true)}
-            onMouseLeave={() => setIsDeepDiveActive(false)}
-          >
-            deep dive
-            <SubMenu active={isDeepDiveActive}>
-              {deepDiveConfig.map(({ title, url }) => (
-                <SubMenuItem key={title} onClick={() => navigate(url)}>
-                  {title}
-                </SubMenuItem>
-              ))}
-            </SubMenu>
-          </MenuItem>
-          <MenuItem
-            active={isCommunityActive}
-            onMouseOver={() => setIsCommunityActive(true)}
-            onMouseLeave={() => setIsCommunityActive(false)}
-          >
-            community
-            <SubMenu active={isCommunityActive}>
-              <SubMenuItem as={Link} to="/contribute">
-                Contribute
-              </SubMenuItem>
-              <SubMenuItem as="a" href="https://discord.gg/CatfEGVC">
-                Chat
-              </SubMenuItem>
-            </SubMenu>
-          </MenuItem>
-          <MenuItem
-            as={Link}
-            to="/blog"
-            active={isBlogActive}
-            onMouseOver={() => setIsBlogActive(true)}
-            onMouseLeave={() => setIsBlogActive(false)}
-          >
-            blog
-          </MenuItem>
-        </Menu>
+        <PCNav items={items} />
         <Placeholder />
         <Button as="a" href="https://github.com/datenlord/xline">
           <Icon src={githubIconUrl} alt="icon" />
           <Text>github</Text>
         </Button>
+        <MobNav items={items} />
       </HeaderContainer>
     </HeaderWrapper>
   )
