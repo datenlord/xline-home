@@ -28,6 +28,7 @@ const StyledNav = styled.ul<{ isDropDown: boolean }>`
   top: 53px;
   left: 0;
   width: 100%;
+  z-index: 1000;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -139,10 +140,14 @@ const NavItem: React.FC<{
 }
 
 const Nav: React.FC<{ items: NavItem[] }> = ({ items }) => {
+  const [dropdown, setDropdown] = useState<boolean>(false)
   return (
     <>
-      <NavButton src={NavButtonIcon}></NavButton>
-      <StyledNav isDropDown>
+      <NavButton
+        src={NavButtonIcon}
+        onClick={() => setDropdown(!dropdown)}
+      ></NavButton>
+      <StyledNav isDropDown={dropdown}>
         {(items || []).map(({ key, label, url, children }) => (
           <NavItem key={key} label={label} url={url} subNavItems={children} />
         ))}
