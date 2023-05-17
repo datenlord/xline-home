@@ -24,13 +24,18 @@ const StyledNavItem = styled.li<{ isDropdown: boolean }>`
   padding-inline: 20px;
   color: #ffffff;
   font-size: 18px;
-  line-height: 21.78px;
+  line-height: 1;
   text-transform: capitalize;
   white-space: nowrap;
   border-bottom: ${props =>
     props.isDropdown ? '4px solid hsla(234, 60%, 66%, 1)' : 'none'};
   transition: all 0.05s;
   cursor: pointer;
+  @media screen and (max-width: 1024px) {
+    font-size: 16px;
+    font-weight: 300;
+    padding-inline: 16px;
+  }
 `
 const StyledSubNav = styled.ul<{ isDropdown: boolean }>`
   position: absolute;
