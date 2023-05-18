@@ -12,56 +12,61 @@ import featureIcon3 from '@/assets/home-feature-icon-3.svg'
 import featureIcon4 from '@/assets/home-feature-icon-4.svg'
 import innovationUrl from '@/assets/home-innovation.svg'
 
-const TitleContainer = styled.div`
-  text-align: center;
-`
-
-const Title = styled.div`
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  height: 70px;
-  margin-inline: auto;
-  margin-bottom: 48px;
-  font-weight: 700;
-  font-size: 46px;
-  line-height: 61.15px;
-  background-image: url(${underlineUrl});
-  background-repeat: no-repeat;
-  background-position: bottom 0 right 0;
-`
-
 const CoverWrapper = styled.div`
-  min-width: 100%;
-  height: 661px;
   background-image: url(${homeCoverUrl});
+  background-size: cover;
 `
-
 const Cover = styled.div`
   max-width: 1440px;
   margin-inline: auto;
-  padding-top: calc(86px + 96px);
-  padding-inline: 128px;
+  padding-top: calc(86px + 134px);
+  padding-bottom: 96px;
+  padding-inline: 156px;
   color: white;
+  @media screen and (max-width: 1024px) {
+    padding-top: calc(69px + 100px);
+    padding-bottom: 72px;
+    padding-inline: 117px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: calc(53px + 67px);
+    padding-bottom: 48px;
+    padding-inline: 78px;
+  }
 `
-
 const CoverTitle = styled.img`
+  width: 346px;
   height: 100px;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+  @media screen and (max-width: 1024px) {
+    width: 225px;
+    height: 65px;
+    margin-bottom: 28px;
+  }
+  @media screen and (max-width: 786px) {
+    width: 104px;
+    height: 30px;
+    margin-bottom: 24px;
+  }
 `
-
 const CoverDescription = styled.h1`
-  max-width: 992px;
+  max-width: 90%;
   margin-bottom: 32px;
   font-weight: 500;
   font-size: 39px;
-  line-height: 1.5;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 24px;
+    font-size: 28.5px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 16px;
+    font-size: 19px;
+  }
 `
-
 const CoverButton = styled.button`
   display: flex;
   align-items: center;
-  height: 48px;
+  height: 56px;
   padding-inline: 48px;
   color: ${props => props.theme.color.white};
   font-size: 26px;
@@ -75,44 +80,89 @@ const CoverButton = styled.button`
   border: none;
   border-radius: 50vh;
   cursor: pointer;
+  @media screen and (max-width: 1024px) {
+    height: 42px;
+    padding-inline: 36px;
+    font-size: 19.5px;
+  }
+  @media screen and (max-width: 768px) {
+    height: 28px;
+    padding-inline: 24px;
+    font-size: 13px;
+  }
 `
-
+// - - -
 const IntroductionWrapper = styled.div`
-  height: 840px;
   background: hsl(210, 20%, 98%);
 `
-
 const Introduction = styled.div`
-  display: flex;
-  height: inherit;
+  /* display: flex; */
   max-width: 1440px;
   margin-inline: auto;
   padding-block: ${({ theme }) => theme.scale.xxl};
-  padding-inline: ${({ theme }) => theme.scale.lg};
+  padding-inline: 96px;
+  @media screen and (max-width: 1024px) {
+    padding-block: 96px;
+    padding-inline: 72px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-block: 64px;
+    padding-inline: 48px;
+  }
 `
-
-const IntroductionContent = styled.div`
-  margin-right: ${({ theme }) => theme.scale.lg};
+const IntroductionImage = styled.img`
+  float: right;
+  width: 40%;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  object-fit: contain;
+  @media screen and (max-width: 1024px) {
+    margin-left: 30px;
+    margin-bottom: 30px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    margin-left: 0px;
+  }
 `
-
+const IntroductionContent = styled.div``
 const IntroductionText = styled.p`
   margin-bottom: ${({ theme }) => theme.scale.md};
   font-weight: 400;
   font-size: 20px;
   line-height: 1.6;
+  @media screen and (max-width: 1024px) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+  }
 `
-
 const IntroductionList = styled.ul`
   padding-left: ${({ theme }) => theme.scale.lg};
+  @media screen and (max-width: 1024px) {
+    padding-left: 48px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-left: 32px;
+  }
 `
-
 const IntroductionListItem = styled.li`
   position: relative;
   margin-bottom: ${({ theme }) => theme.scale.sm};
   font-weight: 400;
-  font-size: 20;
+  font-size: 20px;
   line-height: 1.7;
-
+  @media screen and (max-width: 1024px) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+  }
   ::before {
     content: '';
     position: absolute;
@@ -122,51 +172,91 @@ const IntroductionListItem = styled.li`
     width: 32px;
     background: linear-gradient(90deg, #767ee5, #9966cc);
     border-radius: 50%;
+    @media screen and (max-width: 1024px) {
+      left: -36px;
+      top: 3px;
+      width: 24px;
+      height: 24px;
+    }
+    @media screen and (max-width: 768px) {
+      left: -24px;
+      top: 2px;
+      width: 16px;
+      height: 16px;
+    }
   }
 `
-
-const FeaturesWrapper = styled.div`
-  height: 920px;
-`
-
+// - - -
+const FeaturesWrapper = styled.div``
 const Features = styled.div`
   display: flex;
-  height: inherit;
+  /* align-items: center; */
   max-width: 1440px;
   margin-inline: auto;
   padding-block: ${({ theme }) => theme.scale.xxl};
-  padding-inline: ${({ theme }) => theme.scale.lg};
+  padding-inline: 96px;
+  @media screen and (max-width: 1440px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: 1024px) {
+    padding-block: 96px;
+    padding-inline: 72px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-block: 64px;
+    padding-inline: 48px;
+  }
 `
-
 const FeaturesLeft = styled.div`
   flex-shrink: 0;
   width: 25%;
-  margin-right: 32px;
+  margin-right: 48px;
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
 `
 const FeaturesTitleText = styled.h2`
   position: relative;
-  margin-bottom: 128px;
+  margin-top: 104px;
+  margin-bottom: 96px;
   font-weight: 700;
-  font-size: 46px;
+  font-size: 44px;
   line-height: 1.4;
-
-  ::after {
+  @media screen and (max-width: 1440px) {
+    margin-top: 0;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+  @media screen and (max-width: 1024px) {
+    font-size: 36px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
+  /* ::after {
     content: '';
     z-index: -1;
     position: absolute;
     bottom: 0;
-    left: 50px;
+    right: 50px;
     display: inline-block;
     width: 250px;
     height: 30px;
     background-image: url(${underlineUrl});
     background-repeat: no-repeat;
     background-size: contain;
+  } */
+`
+const FeaturesTitleImg = styled.img`
+  display: block;
+  margin-inline: auto;
+  width: 100%;
+  @media screen and (max-width: 1440px) {
+    width: 30%;
   }
 `
-
-const FeaturesTitleImg = styled.img``
-
 const FeaturesItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -174,14 +264,13 @@ const FeaturesItemContainer = styled.div`
   flex: 1;
   flex-flow: wrap;
 `
-
 const FeaturesItem = styled.div`
   width: 48%;
-  height: 48%;
   padding: 16px;
-  /* background-color: lightblue; */
+  @media screen and (max-width: 425px) {
+    width: 100%;
+  }
 `
-
 const FeaturesItemIconWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -191,61 +280,151 @@ const FeaturesItemIconWrapper = styled.div`
   margin-bottom: 32px;
   background: linear-gradient(90deg, #767ee5, #9966cc);
   border-radius: 24px;
+  @media screen and (max-width: 1024px) {
+    width: 76.5px;
+    height: 76.5px;
+    margin-bottom: 24px;
+    border-radius: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 51px;
+    height: 51px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
 `
-
-const FeaturesItemIcon = styled.img``
-
+const FeaturesItemIcon = styled.img`
+  width: 50%;
+  height: 50%;
+`
 const FeaturesItemTitle = styled.h3`
   margin-bottom: 16px;
   font-weight: 500;
   font-size: 28px;
   line-height: 1.2;
+  @media screen and (max-width: 1024px) {
+    font-size: 21px;
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
 `
-
 const FeaturesItemDescription = styled.p`
   font-weight: 400;
-  font-weight: 16px;
+  font-size: 16px;
   line-height: 1.5;
   color: hsla(0, 0%, 0%, 0.6);
+  @media screen and (max-width: 1024px) {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 8px;
+    line-height: 1.1;
+  }
 `
-
+// - - -
 const InnovationWrapper = styled.div`
-  /* height: 920px; */
-  z-index: -2;
   background: #f9fafb;
 `
-
 const Innovation = styled.div`
   display: flex;
-  height: inherit;
   max-width: 1440px;
   margin-inline: auto;
   padding-block: ${({ theme }) => theme.scale.xxl};
-  padding-inline: ${({ theme }) => theme.scale.lg};
+  padding-inline: 96px;
+  @media screen and (max-width: 1440px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: 1024px) {
+    padding-block: 96px;
+    padding-inline: 72px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-block: 64px;
+    padding-inline: 48px;
+  }
 `
-
 const InnovationTitleContainer = styled.div`
   flex-shrink: 0;
   width: 25%;
-  margin-right: 32px;
+  margin-right: 48px;
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
 `
-
-const InnovationImg = styled.img`
+const TitleContainer = styled.div`
+  text-align: center;
+`
+const Title = styled.div`
+  display: inline-block;
+  position: relative;
   width: 100%;
+  /* height: 70px; */
+  margin-inline: auto;
+  margin-top: 72px;
+  margin-bottom: 48px;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.4;
+  /* background-image: url(${underlineUrl});
+  background-repeat: no-repeat;
+  background-position: bottom 0 right 0; */
+  @media screen and (max-width: 1440px) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  @media screen and (max-width: 1024px) {
+    font-size: 36px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 `
-
+const InnovationImg = styled.img`
+  display: block;
+  position: relative;
+  left: 16px;
+  width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+  @media screen and (max-width: 1440px) {
+    left: 12px;
+    width: 30%;
+  }
+`
 const InnovationTextWrapper = styled.div`
   flex: 1;
   padding: 48px;
   height: min-content;
   background: white;
   border-radius: 24px;
+  @media screen and (max-width: 1024px) {
+    padding: 36px;
+    border-radius: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 24px;
+    border-radius: 12px;
+  }
 `
 const InnovationText = styled.p`
   margin-bottom: 32px;
   font-weight: 400;
   font-size: 18px;
-  line-height: 28.26px;
+  line-height: 1.4;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 24px;
+    font-size: 13.5px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 16px;
+    font-size: 9px;
+  }
 `
 
 const HomePage = () => {
@@ -265,6 +444,7 @@ const HomePage = () => {
       </CoverWrapper>
       <IntroductionWrapper>
         <Introduction>
+          <IntroductionImage src={introductionUrl} alt="Image" />
           <IntroductionContent>
             <IntroductionText>
               Data isolation and data fragmentation resulting from cloud
@@ -292,7 +472,6 @@ const HomePage = () => {
               </IntroductionListItem>
             </IntroductionList>
           </IntroductionContent>
-          <img src={introductionUrl} alt="Image" />
         </Introduction>
       </IntroductionWrapper>
       <FeaturesWrapper>

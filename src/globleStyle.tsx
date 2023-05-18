@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: Inter;
+    line-height: 1.5;
   }
 
   a {
