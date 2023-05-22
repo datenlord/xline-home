@@ -6,118 +6,186 @@ import howUrl from '@/assets/contribute-how.svg'
 import protocolIconUrl from '@/assets/protocol-icon.svg'
 import severIconUrl from '@/assets/sever-icon.svg'
 
-const CoverWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: calc(86px + 586px);
-  padding-top: 86px;
-  color: white;
-  background-image: url(${coverUrl});
-  background-repeat: no-repeat;
-  background-size: cover;
-`
-
-const CoverContainer = styled.div`
-  width: 100%;
-  max-width: ${props => props.theme.scale.scale12};
-  margin-inline: auto;
-  padding-inline: 128px;
-`
-
-const CoverTitle = styled.h1`
-  margin-bottom: ${props => props.theme.scale.scale04};
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 80.64px;
-  text-transform: capitalize;
-`
-
-const CoverDescription = styled.p`
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 45px;
-`
-
-const HowWrapper = styled.div`
-  // - - -
-  /* min-height: 400px;
-  background: lightblue; */
-`
-
-const HowContainer = styled.div`
-  /* text-align: center; */
-  max-width: ${props => props.theme.scale.scale12};
-  margin-inline: auto;
-  padding-inline: ${props => props.theme.scale.scale07};
-  padding-block: ${props => props.theme.scale.scale06};
-  // - - -
-  /* min-height: 400px;
-  background: lightcoral; */
-`
-
 const TitleContainer = styled.div`
   text-align: center;
+  margin-bottom: 24px;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 12px;
+  }
 `
-
 const Title = styled.div`
   display: inline-block;
   position: relative;
-  height: 70px;
   margin-inline: auto;
-  margin-bottom: 48px;
   font-weight: 700;
   font-size: 46px;
-  line-height: 61.15px;
+  line-height: 2;
   background-image: url(${underlineUrl});
   background-repeat: no-repeat;
   background-position: bottom 0 right 0;
+  background-size: 50%;
+  @media screen and (max-width: 1024px) {
+    font-size: 34.5px;
+    line-height: 1.3;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 23px;
+  }
 `
-
 const Description = styled.p`
   text-align: center;
   margin-bottom: 48px;
   font-weight: 500;
   font-size: 28px;
-  line-height: 44.25px;
+  line-height: 1.5;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 36px;
+    font-size: 21px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
 `
-
+// - - -
+const CoverWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding-block: calc(160px + 86px);
+  color: white;
+  background-image: url(${coverUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media screen and (max-width: 1024px) {
+    padding-block: calc(120px + 69px);
+  }
+  @media screen and (max-width: 768px) {
+    padding-block: calc(80px + 53px);
+  }
+`
+const CoverContainer = styled.div`
+  width: 100%;
+  max-width: ${props => props.theme.scale.scale12};
+  margin-inline: auto;
+  padding-inline: 128px;
+  @media screen and (max-width: 1024px) {
+    padding-inline: 96px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-inline: 64px;
+  }
+`
+const CoverTitle = styled.h1`
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 80px;
+  text-transform: capitalize;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 15px;
+    font-size: 54px;
+    line-height: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 10px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+`
+const CoverDescription = styled.p`
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.5;
+  @media screen and (max-width: 1024px) {
+    font-size: 22.5px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 22.5px;
+  }
+`
+// - - -
+const HowWrapper = styled.div``
+const HowContainer = styled.div`
+  max-width: ${props => props.theme.scale.scale12};
+  margin-inline: auto;
+  padding-inline: 128px;
+  padding-block: 80px;
+  line-height: 1.5;
+  @media screen and (max-width: 1024px) {
+    padding-inline: 96px;
+    padding-block: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-inline: 64px;
+    padding-block: 40px;
+  }
+`
 const HowMainContainer = styled.div`
   display: flex;
   align-items: center;
   text-align: left;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `
-
 const HowMainText = styled.p`
   height: min-content;
   padding: ${props => props.theme.scale.scale06};
   background: #f9fafb;
   font-weight: 600;
   font-size: 28px;
-  line-height: 44.25px;
+  line-height: 1.5;
   border-radius: 24px;
+  @media screen and (max-width: 1024px) {
+    padding: 60px;
+    font-size: 21px;
+    border-radius: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 40px;
+    font-size: 14px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
 `
-
-const HowMainImg = styled.img``
-
+const HowMainImg = styled.img`
+  width: 40%;
+  @media screen and (max-width: 425px) {
+    width: 70%;
+  }
+`
+// - - -
 const AreaWrapper = styled.div`
   background: #f9fafb;
-  // - - -
-  min-height: 400px;
 `
-
 const AreaContainer = styled.div`
   width: 100%;
   max-width: ${props => props.theme.scale.scale12};
   margin-inline: auto;
   padding-inline: 128px;
   padding-block: ${props => props.theme.scale.scale06};
+  @media screen and (max-width: 1024px) {
+    padding-inline: 96px;
+    padding-block: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-inline: 64px;
+    padding-block: 40px;
+  }
 `
-
 const AreaMainContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `
-
 const AreaCard = styled.div`
   display: flex;
   flex-flow: column;
@@ -127,75 +195,143 @@ const AreaCard = styled.div`
   background: #fff;
   box-shadow: 0px 2px 15px -4px rgba(0, 0, 0, 0.11);
   border-radius: 24px;
-  // - - -
-  height: 400px;
+  @media screen and (max-width: 1024px) {
+    padding: 48px;
+    border-radius: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 32px;
+    border-radius: 12px;
+    width: 100%;
+    margin-bottom: 24px;
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
 `
-
 const AreaIcon = styled.img`
+  width: 54px;
   margin-bottom: 32px;
+  @media screen and (max-width: 1024px) {
+    width: 40.5px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 27px;
+  }
 `
-
 const AreaTitle = styled.h3`
   margin-bottom: 32px;
   font-weight: 500;
   font-size: 28px;
-  line-height: 44.25px;
+  line-height: 1.5;
+  @media screen and (max-width: 1024px) {
+    font-size: 21px;
+    margin-bottom: 24px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
 `
-
 const AreaDescription = styled.p`
   font-weight: 400;
   font-size: 18px;
-  line-height: 28.26px;
+  line-height: 1.5;
+  @media screen and (max-width: 1024px) {
+    font-size: 13.5px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 9px;
+  }
 `
-
+// - - -
 const IssueWrapper = styled.div``
-
 const IssueContainer = styled.div`
   max-width: ${props => props.theme.scale.scale12};
   margin-inline: auto;
   padding-inline: ${props => props.theme.scale.scale07};
   padding-block: ${props => props.theme.scale.scale06};
+  @media screen and (max-width: 1024px) {
+    padding-inline: 96px;
+    padding-block: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-inline: 64px;
+    padding-block: 40px;
+  }
 `
-
 const IssueMainContainer = styled.div`
   padding: 64px;
   background: #f9fafb;
   border-radius: 24px;
   text-align: left;
+  @media screen and (max-width: 1024px) {
+    padding: 48px;
+    border-radius: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 32px;
+    border-radius: 12px;
+  }
 `
 const IssueText = styled.p`
   font-weight: 400;
   font-size: 22px;
-  line-height: 34.76px;
+  line-height: 1.6;
+  @media screen and (max-width: 1024px) {
+    font-size: 16.5px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+  }
 `
-
 const IssueList = styled.ul`
   list-style-type: disc;
+  padding-left: 2em;
 `
-
 const IssueListItem = styled.li`
   font-weight: 400;
   font-size: 22px;
-  line-height: 34.76px;
+  line-height: 1.6;
+  @media screen and (max-width: 1024px) {
+    font-size: 16.5px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+  }
 `
-
+// - - -
 const QuestionWrapper = styled.div`
   background: #f9fafb;
 `
-
 const QuestionContainer = styled.div`
   max-width: ${props => props.theme.scale.scale12};
   margin-inline: auto;
   padding-inline: ${props => props.theme.scale.scale07};
   padding-block: ${props => props.theme.scale.scale06};
+  @media screen and (max-width: 1024px) {
+    padding-inline: 96px;
+    padding-block: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-inline: 64px;
+    padding-block: 40px;
+  }
 `
-
 const QuestionMain = styled.p`
   text-align: center;
   font-weight: 500;
   font-size: 28px;
-  line-height: 44.25px;
-  margin-bottom: ${props => props.theme.scale.scale07};
+  line-height: 1.5;
+  margin-bottom: 256px;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 192px;
+    font-size: 21px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 128px;
+    font-size: 14px;
+  }
 `
 
 const ContributePage = () => {
@@ -230,7 +366,7 @@ const ContributePage = () => {
       <AreaWrapper>
         <AreaContainer>
           <TitleContainer>
-            <Title>How to be a contributor?</Title>
+            <Title>Pick an area to contribute</Title>
           </TitleContainer>
           <Description>
             You can choose one of the following areas to contribute to:
@@ -261,42 +397,42 @@ const ContributePage = () => {
         <IssueContainer>
           <TitleContainer>
             <Title>Find an issue to work on</Title>
-            <Description>
-              For beginners, we have prepared many suitable tasks for you. You
-              can check out, for example, our Help Wanted issues in the
-              repository.
-            </Description>
-            <IssueMainContainer>
-              <IssueText>
-                See below for some commonly used labels across major
-                repositories listed in:
-              </IssueText>
-              <IssueList>
-                <IssueListItem>
-                  bug - Indicates an unexpected problem or unintended behavior;
-                  it can be small or big in scope
-                </IssueListItem>
-                <IssueListItem>
-                  good first issue - An ideal first issue to work on for
-                  first-time contributors, with mentoring available
-                </IssueListItem>
-                <IssueListItem>
-                  help wanted - Indicates that a maintainer wants help on an
-                  issue or pull request
-                </IssueListItem>
-                <IssueListItem>
-                  discussion - Status: Under discussion or needs discussion
-                </IssueListItem>
-                <IssueListItem>
-                  enhancement - New feature or request
-                </IssueListItem>
-                <IssueListItem>
-                  question - Further information is requested, or the question
-                  is to be answered.
-                </IssueListItem>
-              </IssueList>
-            </IssueMainContainer>
           </TitleContainer>
+          <Description>
+            For beginners, we have prepared many suitable tasks for you. You can
+            check out, for example, our Help Wanted issues in the TiKV
+            repository.
+          </Description>
+          <IssueMainContainer>
+            <IssueText>
+              See below for some commonly used labels across major repositories
+              listed in:
+            </IssueText>
+            <IssueList>
+              <IssueListItem>
+                bug - Indicates an unexpected problem or unintended behavior; it
+                can be small or big in scope
+              </IssueListItem>
+              <IssueListItem>
+                good first issue - An ideal first issue to work on for
+                first-time contributors, with mentoring available
+              </IssueListItem>
+              <IssueListItem>
+                help wanted - Indicates that a maintainer wants help on an issue
+                or pull request
+              </IssueListItem>
+              <IssueListItem>
+                discussion - Status: Under discussion or needs discussion
+              </IssueListItem>
+              <IssueListItem>
+                enhancement - New feature or request
+              </IssueListItem>
+              <IssueListItem>
+                question - Further information is requested, or the question is
+                to be answered.
+              </IssueListItem>
+            </IssueList>
+          </IssueMainContainer>
         </IssueContainer>
       </IssueWrapper>
       <QuestionWrapper>
