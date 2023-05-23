@@ -23,6 +23,14 @@ const CoverWrapper = styled.div`
   height: calc(86px + 416px);
   padding-top: 86px;
   background: #0a0c28;
+  @media screen and (max-width: 1024px) {
+    height: calc(63px + 312px);
+    padding-top: 64.5px;
+  }
+  @media screen and (max-width: 768px) {
+    height: calc(53px + 208px);
+    padding-top: 43px;
+  }
 `
 
 const CoverTitle = styled.h1`
@@ -32,9 +40,18 @@ const CoverTitle = styled.h1`
   color: white;
   font-weight: 700;
   font-size: 72px;
-  line-height: 80.64px;
+  /* line-height: 80.64px; */
+  line-height: 1.1;
   text-transform: capitalize;
   transform: translateY(-10%);
+  @media screen and (max-width: 1024px) {
+    padding-inline: 24px;
+    font-size: 54px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-inline: 16px;
+    font-size: 36px;
+  }
 `
 
 const Underline = styled.img`
@@ -45,6 +62,16 @@ const Underline = styled.img`
   transform: translateX(-45%);
   width: 295.01px;
   height: 35.35px;
+  @media screen and (max-width: 1024px) {
+    bottom: -12px;
+    width: 222px;
+    height: 27px;
+  }
+  @media screen and (max-width: 768px) {
+    bottom: -8px;
+    width: 148px;
+    height: 18px;
+  }
 `
 
 const MainContainer = styled.main`
@@ -56,6 +83,14 @@ const MainContainer = styled.main`
   // - - -
   /* height: 200px;
   background-color: lightcoral; */
+  @media screen and (max-width: 1024px) {
+    padding-block: 36px;
+    padding-inline: 96px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-block: 24px;
+    padding-inline: 64px;
+  }
 `
 
 const ArticleContainer = styled.div`
@@ -65,6 +100,9 @@ const ArticleContainer = styled.div`
   // - - -
   /* min-height: 100px;
   background-color: lightcyan; */
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `
 
 const SideBarContainer = styled.div`
@@ -74,6 +112,9 @@ const SideBarContainer = styled.div`
   // - - -
   /* height: 100px;
   background-color: lightblue; */
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `
 
 const SideBarTitle = styled.p`
