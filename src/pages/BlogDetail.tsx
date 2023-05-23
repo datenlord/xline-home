@@ -22,16 +22,33 @@ import underlineUrl from '@/assets/underline.svg'
 const Header = styled.div`
   height: ${props => props.theme.scale.scale10};
   background: #0a0c28;
+  @media screen and (max-width: 1024px) {
+    height: 414px;
+  }
+  @media screen and (max-width: 768px) {
+    height: 276px;
+  }
 `
 
 const MainContainer = styled.main`
-  max-width: 892px;
+  max-width: 1024px;
   margin-top: -${props => props.theme.scale.scale09};
   margin-bottom: ${props => props.theme.scale.scale07};
   margin-inline: auto;
-  /* padding-inline: ${props => props.theme.scale.scale08}; */
+  padding-inline: 64px;
   // - - -
   /* height: 400px; */
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
+  @media screen and (max-width: 1024px) {
+    margin-top: -252px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: -168px;
+    padding-inline: 32px;
+  }
 `
 
 const BlogTitle = styled.h1`
@@ -39,9 +56,18 @@ const BlogTitle = styled.h1`
   color: ${props => props.theme.color.neutral.gray01};
   font-weight: ${props => props.theme.font.fontWeightBold};
   font-size: ${props => props.theme.font.fontSize8};
-  line-height: ${props => props.theme.font.lineHeight9};
+  /* line-height: ${props => props.theme.font.lineHeight9}; */
+  line-height: 1.4;
   text-transform: capitalize;
   /* word-break: break-all; */
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 15px;
+    font-size: 34.5px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 10px;
+    font-size: 23px;
+  }
 `
 
 const DateAndReadTime = styled.p`
@@ -49,13 +75,28 @@ const DateAndReadTime = styled.p`
   color: ${props => props.theme.color.neutral.gray01};
   font-weight: ${props => props.theme.font.fontWeightRegular};
   font-size: ${props => props.theme.font.fontSize5};
-  line-height: ${props => props.theme.font.lineHeight5};
+  /* line-height: ${props => props.theme.font.lineHeight5}; */
+  line-height: 1.3;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 24px;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
 `
 
 const AuthorContainer = styled.a`
   display: flex;
   align-items: center;
   margin-bottom: ${props => props.theme.scale.scale04};
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 24px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 16px;
+  }
 `
 
 const Avatar = styled.img`
@@ -64,6 +105,16 @@ const Avatar = styled.img`
   width: ${props => props.theme.scale.scale06};
   border: 2px solid ${props => props.theme.color.neutral.gray01};
   border-radius: 50%;
+  @media screen and (max-width: 1024px) {
+    margin-right: 18px;
+    height: 60px;
+    width: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-right: 12px;
+    height: 60px;
+    width: 60px;
+  }
 `
 
 const Name = styled(DateAndReadTime)`
@@ -75,29 +126,54 @@ const Cover = styled.img`
   margin-bottom: ${props => props.theme.scale.scale04};
   border-radius: ${props => props.theme.scale.scale02};
   /* height: 336px; */
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 24px;
+    border-radius: 9px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 16px;
+    border-radius: 6px;
+  }
 `
 const Article = styled.div`
   margin-bottom: ${props => props.theme.scale.scale08};
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 156px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 104px;
+  }
 `
-
+// - - -
 const RelatedContainer = styled.div``
-
 const TitleContainer = styled.div`
   text-align: center;
   margin-bottom: ${props => props.theme.scale.scale06};
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 60px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-bottom: 40px;
+  }
 `
-
 const TitleText = styled.span`
   padding-inline: ${props => props.theme.scale.scale06};
   padding-bottom: ${props => props.theme.scale.scale01};
   font-weight: ${props => props.theme.font.fontWeightBold};
   font-size: ${props => props.theme.font.fontSize8};
-  line-height: ${props => props.theme.font.lineHeight8};
+  /* line-height: ${props => props.theme.font.lineHeight8}; */
+  line-height: 1.2;
   text-transform: capitalize;
   background-image: url(${underlineUrl});
   background-clip: border-box;
   background-repeat: no-repeat;
   background-position: bottom 0 right 0;
+  background-size: 50%;
+  @media screen and (max-width: 768px) {
+    padding-inline: 60px;
+    padding-bottom: 6px;
+    font-size: 34.5px;
+  }
 `
 
 const RelatedList = styled.ul`
@@ -106,6 +182,13 @@ const RelatedList = styled.ul`
   justify-content: space-between;
   flex: 1;
   margin-bottom: ${props => props.theme.scale.scale04};
+  @media screen and (max-width: 1024px) {
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+
+    margin-bottom: 24px;
+  }
 `
 
 const RelatedListItem = styled.li`
@@ -115,28 +198,45 @@ const RelatedListItem = styled.li`
   border-radius: ${props => props.theme.scale.scale03};
   box-shadow: 5px 5px 15px -5px ${props => props.theme.color.neutral.gray06};
   overflow: hidden;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 16px;
+    border-radius: 15px;
+  }
 `
 
 const RelatedListItemCover = styled.img`
   width: 100%;
   height: ${props => props.theme.scale.scale08};
+  flex-direction: column;
+  @media screen and (max-width: 1024px) {
+    height: 156px;
+  }
 `
 
 const RelatedListItemContentContainer = styled.div`
   padding: ${props => props.theme.scale.scale03};
   // - - -
   /* height: 100px; */
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
 `
 
 const RelatedListItemTitle = styled.h1`
   margin-bottom: ${props => props.theme.scale.scale03};
   font-weight: ${props => props.theme.font.fontWeightBold};
   font-size: ${props => props.theme.font.fontSize4};
-  line-height: ${props => props.theme.font.lineHeight4};
+  /* line-height: ${props => props.theme.font.lineHeight4}; */
+  line-height: 1.4;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: capitalize;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
 `
 
 const RelatedListItemDescription = styled.p`
@@ -144,12 +244,17 @@ const RelatedListItemDescription = styled.p`
   margin-bottom: ${props => props.theme.scale.scale03};
   font-weight: ${props => props.theme.font.fontWeightRegular};
   font-size: ${props => props.theme.font.fontSize3};
-  line-height: ${props => props.theme.font.lineHeight3};
+  /* line-height: ${props => props.theme.font.lineHeight3}; */
+  line-height: 1.5;
   word-break: break-all;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
 `
 
 const RelatedListItemButton = styled(Link)`
@@ -160,9 +265,17 @@ const RelatedListItemButton = styled(Link)`
   color: ${props => props.theme.color.neutral.gray01};
   font-weight: ${props => props.theme.font.fontWeightRegular};
   font-size: ${props => props.theme.font.fontSize2};
-  line-height: ${props => props.theme.font.lineHeight2};
+  /* line-height: ${props => props.theme.font.lineHeight2}; */
+  line-height: 1.5;
   background: linear-gradient(90deg, #767ee5, #9966cc);
   border-radius: 20px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 6px;
+    padding-block: 6px;
+    padding-inline: 24px;
+    font-size: 10.5px;
+    border-radius: 15px;
+  }
 `
 
 const RelatedButton = styled(Link)`
@@ -171,7 +284,11 @@ const RelatedButton = styled(Link)`
   color: #7680dd;
   font-weight: ${props => props.theme.font.fontWeightRegular};
   font-size: ${props => props.theme.font.fontSize4};
-  line-height: ${props => props.theme.font.lineHeight4};
+  /* line-height: ${props => props.theme.font.lineHeight4}; */
+  line-height: 1.4;
+  @media screen and (max-width: 768px) {
+    font-size: 15px;
+  }
 `
 
 const blogMap = import.meta.glob('@/blog/*.md', { as: 'raw', eager: true })
