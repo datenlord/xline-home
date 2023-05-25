@@ -12,6 +12,11 @@ const StyledText = styled.p`
   font-weight: 400;
   font-size: 18px;
   line-height: 28px;
+  @media screen and (max-width: 768px) {
+    margin-block: 24px;
+    font-size: 13.5px;
+    line-height: 21px;
+  }
 `
 
 export const Text: React.FC<TextProps> = ({ children }) => {

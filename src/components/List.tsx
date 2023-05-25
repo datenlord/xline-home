@@ -20,6 +20,9 @@ const StyledList = styled.ul<StyledListProps>`
   margin-block: 32px;
   padding-inline-start: ${props => props.theme.scale.scale03};
   list-style-type: ${props => (props.ordered ? 'decimal' : 'disc')};
+  @media screen and (max-width: 768px) {
+    margin-block: 24px;
+  }
 `
 
 const StyledListItem = styled.li`
@@ -27,6 +30,11 @@ const StyledListItem = styled.li`
   font-weight: 400px;
   font-size: 18px;
   line-height: 28px;
+  @media screen and (max-width: 768px) {
+    margin-block: 6px;
+    font-size: 13.5px;
+    line-height: 21px;
+  }
 `
 
 export const List: React.FC<ListProps> = ({ ordered, children }) => {

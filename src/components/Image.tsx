@@ -7,10 +7,13 @@ interface ImageProps {
 
 const StyledImage = styled.img`
   display: block;
-  max-width: 764px;
+  max-width: 90%;
   margin-block: 32px;
   margin-inline: auto;
   border-radius: 12px;
+  @media screen and (max-width: 768px) {
+    margin-block: 24px;
+  }
 `
 
 export const Image: React.FC<ImageProps> = ({ src, alt }) => (
