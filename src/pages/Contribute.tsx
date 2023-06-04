@@ -263,7 +263,7 @@ const ContributePage = () => {
             <Title>Find an issue to work on</Title>
             <Description>
               For beginners, we have prepared many suitable tasks for you. You
-              can check out, for example, our Help Wanted issues in the TiKV
+              can check out, for example, our Help Wanted issues in the
               repository.
             </Description>
             <IssueMainContainer>
