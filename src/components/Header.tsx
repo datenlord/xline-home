@@ -175,10 +175,7 @@ export const Header: React.FC = () => {
               <SubMenuItem as={Link} to="/contribute">
                 Contribute
               </SubMenuItem>
-              <SubMenuItem
-                as="a"
-                href="https://app.gitter.im/#/room/#datenlord_Xline:gitter.im"
-              >
+              <SubMenuItem as="a" href="https://discord.gg/CatfEGVC">
                 Chat
               </SubMenuItem>
             </SubMenu>
