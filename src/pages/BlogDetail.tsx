@@ -6,6 +6,8 @@ import rehypeHighlight from 'rehype-highlight'
 import moment from 'moment'
 import YAML from 'yaml'
 import styled from 'styled-components'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 
 import { Title } from '@/components/Title'
 import { Text } from '@/components/Text'
@@ -209,8 +211,8 @@ const BlogDetailPage: React.FC = () => {
         <Article>
           <ReactMarkdown
             children={article}
-            rehypePlugins={[rehypeHighlight]}
-            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight, rehypeKatex]}
+            remarkPlugins={[remarkGfm, remarkMath]}
             components={{
               h1: ({ level, children }) => (
                 <Title level={level} children={children} />
