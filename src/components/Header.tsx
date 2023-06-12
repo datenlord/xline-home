@@ -78,7 +78,7 @@ const items: NavItem[] = [
       {
         key: 'chat',
         label: 'Chat',
-        url: 'https://app.gitter.im/#/room/#datenlord_Xline:gitter.im',
+        url: 'https://discord.gg/XyFXGpSfvb',
       },
     ],
   },

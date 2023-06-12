@@ -237,10 +237,7 @@ export const Footer: React.FC = () => {
               <BottomLinkIcon src={githubIconUrl} alt="icon" />
               <BottomLinkText>GitHub</BottomLinkText>
             </BottomLinkContainer>
-            <BottomLinkContainer
-              as="a"
-              href="https://app.gitter.im/#/room/#datenlord_Xline:gitter.im"
-            >
+            <BottomLinkContainer as="a" href="https://discord.gg/XyFXGpSfvb">
               <BottomLinkIcon src={gitterIconUrl} alt="icon" />
               <BottomLinkText>Gitter</BottomLinkText>
             </BottomLinkContainer>

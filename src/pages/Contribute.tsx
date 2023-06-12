@@ -443,7 +443,7 @@ const ContributePage = () => {
           <QuestionMain>
             If you need any help to get started, understand the codebase, or
             make a PR(or anything else really), please feel free to ask us on
-            Discord, Chat.
+            Discord.
           </QuestionMain>
         </QuestionContainer>
       </QuestionWrapper>
