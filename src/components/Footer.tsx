@@ -199,7 +199,7 @@ export const Footer: React.FC = () => {
               </LinkList>
             </LinkClass>
             <LinkClass>
-              <LinkClassTitle>blog</LinkClassTitle>
+              <LinkClassTitle>resources</LinkClassTitle>
               <LinkList>
                 <LinkListItem
                   onClick={() => {
@@ -208,6 +208,14 @@ export const Footer: React.FC = () => {
                   }}
                 >
                   blog
+                </LinkListItem>
+                <LinkListItem
+                  onClick={() => {
+                    navigate('/video')
+                    window.scrollTo(0, 0)
+                  }}
+                >
+                  video
                 </LinkListItem>
               </LinkList>
             </LinkClass>

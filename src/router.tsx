@@ -7,6 +7,7 @@ import DocsPage from './pages/Docs'
 import DeepDivePage from './pages/DeepDive'
 import BlogListPage from './pages/BlogList'
 import BlogDetailPage from './pages/BlogDetail'
+import VideoListPage from './pages/VideoList'
 
 export const router = createHashRouter([
   {
@@ -36,6 +37,10 @@ export const router = createHashRouter([
       {
         path: '/deep-dive/:params',
         element: <DeepDivePage />,
+      },
+      {
+        path: '/video',
+        element: <VideoListPage />,
       },
     ],
   },

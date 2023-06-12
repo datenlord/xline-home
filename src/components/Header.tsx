@@ -83,9 +83,20 @@ const items: NavItem[] = [
     ],
   },
   {
-    key: 'blog',
-    label: 'Blog',
-    url: '/blog',
+    key: 'resources',
+    label: 'Resources',
+    children: [
+      {
+        key: 'blog',
+        label: 'Blog',
+        url: '/blog',
+      },
+      {
+        key: 'video',
+        label: 'Video',
+        url: '/video',
+      },
+    ],
   },
 ]
 
