@@ -14,7 +14,7 @@ Xline is the first geo-distributed consistency management service based on CURP(
 
 ![image](/docs/Get-Started/image1.png)
 
-For more information about the Architecture of Xline, read Xline Architecture Details.
+For more information about the Architecture of Xline, read [Xline Architecture Details](/#/docs/Xline-Architecture-Details).
 
 # Xline In 5 Minutes
 
