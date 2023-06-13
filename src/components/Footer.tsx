@@ -6,6 +6,7 @@ import backgroundUrl from '@/assets/footer-background.svg'
 import logoUrl from '@/assets/logo.svg'
 import githubIconUrl from '@/assets/github-icon.svg'
 import gitterIconUrl from '@/assets/gitter-icon.svg'
+import DiscordIconUrl from '@/assets/discord-icon.svg'
 
 const FooterWrapper = styled.footer`
   background-image: url(${backgroundUrl});
@@ -190,8 +191,7 @@ export const Footer: React.FC = () => {
                 </LinkListItem>
                 <LinkListItem
                   onClick={() =>
-                    (window.location.href =
-                      'https://app.gitter.im/#/room/#datenlord_Xline:gitter.im')
+                    (window.location.href = 'https://discord.gg/XyFXGpSfvb')
                   }
                 >
                   chat
@@ -238,8 +238,8 @@ export const Footer: React.FC = () => {
               <BottomLinkText>GitHub</BottomLinkText>
             </BottomLinkContainer>
             <BottomLinkContainer as="a" href="https://discord.gg/XyFXGpSfvb">
-              <BottomLinkIcon src={gitterIconUrl} alt="icon" />
-              <BottomLinkText>Gitter</BottomLinkText>
+              <BottomLinkIcon src={DiscordIconUrl} alt="icon" />
+              <BottomLinkText>Discord</BottomLinkText>
             </BottomLinkContainer>
           </FooterBottom>
         </FooterContainer>
