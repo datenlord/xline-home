@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import ReactMarkdown from 'react-markdown'
@@ -127,6 +128,10 @@ const SideBarTitle = styled.p`
 
 const DocsPage = () => {
   const { params } = useParams()
+
+  useEffect(() => {
+    params === 'Xline-Architecture-Details' && window.scrollTo(0, 0)
+  }, [params])
 
   return (
     <>
