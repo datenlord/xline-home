@@ -6,6 +6,4 @@ We compare Xline with ETCD in a simulated multi-cluster environment. The details
 
 We compare the performance with two different workloads. One is 1 key case, the other is 100k key space case. Here is the test result.
 
-![image](/docs/Deploy/image2.png)
-
-![image](/docs/Deploy/image3.png)
+![image](/docs/Deploy/xline-key-perf.png)
