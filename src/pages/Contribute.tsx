@@ -400,8 +400,7 @@ const ContributePage = () => {
           </TitleContainer>
           <Description>
             For beginners, we have prepared many suitable tasks for you. You can
-            check out, for example, our Help Wanted issues in the TiKV
-            repository.
+            check out, for example, our Help Wanted issues in the repository.
           </Description>
           <IssueMainContainer>
             <IssueText>
