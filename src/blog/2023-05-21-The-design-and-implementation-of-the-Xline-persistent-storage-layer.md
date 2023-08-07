@@ -1,9 +1,9 @@
 ---
-  cover: /blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/cover.png
+  cover: /xline-home/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/cover.png
   author:
     name: DatenLord
     url: https://github.com/datenlord
-    img_url: /DatenLord.png
+    img_url: /xline-home/DatenLord.png
   read_time: 20
 ---
 
@@ -48,7 +48,7 @@ Continuing this pattern, the final read amplification can be calculated as R = $
 
 ### Summary
 
-![image](/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image1.PNG)
+![image](/xline-home/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image1.PNG)
 
 From the analysis of read and write amplification, it can be concluded that B+ Tree-based storage engines are more suitable for scenarios with more reads and fewer writes, while LSM Tree-based storage engines are more suitable for scenarios with more writes and fewer reads.
 
@@ -56,12 +56,13 @@ As an open-source distributed KV storage software written in Rust, Xline needs t
 
 1. In terms of Performance: Storage engines often become one of the performance bottlenecks in a system, so it is necessary to choose a high-performance storage engine. High-performance storage engines are typically implemented in high-performance languages, preferably with asynchronous implementations. Rust language is the first choice, followed by C/C++.
 
-2. From a development perspective: Prioritize the implementation  in Rust language to reduce additional development work at the current stage.
+2. From a development perspective: Prioritize the implementation in Rust language to reduce additional development work at the current stage.
 
 3. From a maintenance perspective:
-  - Consider the supporters behind the engine, with priority given to large commercial companies and open-source communities.
-  - It should be widely used in the industry to facilitate learning from experiences in debugging and tuning processes.
-  - It should have high visibility and popularity (GitHub stars) to attract excellent contributors.
+
+- Consider the supporters behind the engine, with priority given to large commercial companies and open-source communities.
+- It should be widely used in the industry to facilitate learning from experiences in debugging and tuning processes.
+- It should have high visibility and popularity (GitHub stars) to attract excellent contributors.
 
 4. From a functional perspective: The storage engine should provide transactional semantics, support basic KV operations, and batch processing operations.
 
@@ -76,6 +77,7 @@ Indeed, in theory, the most suitable storage engine should be based on B+ Trees.
 ## Design and Implementation of the Persistent Storage Layer
 
 Before discussing the design and implementation of the persistent storage layer, it is important to clarify our expectations and requirements for persistent storage:
+
 1. As mentioned earlier, after considering the trade-offs, we have chosen RocksDB as the backend storage engine for Xline. However, we cannot rule out the possibility of replacing this storage engine in the future. Therefore, the design of the StorageEngine should adhere to the Open-Closed Principle (OCP) and support configurability and easy replacement.
 2. We need to provide a basic key-value (KV) interface for the upper-layer users.
 3. A comprehensive recovery mechanism needs to be implemented.
@@ -83,9 +85,10 @@ Before discussing the design and implementation of the persistent storage layer,
 ### Overall Architecture and Write Flow
 
 Let's first take a look at the current overall architecture of Xline, as shown in the following diagram:
-![image](/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image2.png)
+![image](/xline-home/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image2.png)
 From top to bottom, the overall architecture of Xline can be divided into the access layer, consensus module, business logic module, storage API layer, and storage engine layer. The storage API layer is responsible for providing business-related StorageApi to both the business module and the consensus module, while abstracting the implementation details of the underlying storage engine. The storage engine layer is responsible for the actual data persistence operations.
 Let's take a PUT request as an example to understand the data writing process. When a client initiates a PUT request to the Xline Server, the following events occur:
+
 1. The KvServer receives the PutRequest from the client and performs validity checks. Once the request passes the checks, it sends a propose RPC request to the Curp Server using its own CurpClient.
 2. Upon receiving the Propose request, the Curp Server first enters the fast path flow. It stores the command from the request in the Speculative Executed Pool (aka. spec_pool) to determine if it conflicts with any existing commands in the pool. If there is a conflict, it returns ProposeError::KeyConflict and waits for the slow path to complete. Otherwise, it continues with the current fast path.
 3. In the fast path, if a command is neither conflicting nor duplicated, it notifies the background cmd_worker for execution through a specific channel. Once the cmd_worker starts executing the command, it stores the corresponding command in the CommandBoard to track the execution progress.
@@ -95,7 +98,7 @@ Let's take a PUT request as an example to understand the data writing process. W
 
 The following diagram illustrates the relationships between the StorageApi and StorageEngine traits, as well as their corresponding data structures.
 
-![image](/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image3.png)
+![image](/xline-home/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image3.png)
 
 #### Storage Engine Layer
 
@@ -218,6 +221,7 @@ impl StorageEngine for RocksEngine {
 ```
 
 #### StorageApi Layer
+
 ##### Business Module
 
 Definition of StorageApi in the business module:
@@ -260,7 +264,7 @@ impl<S> StorageApi for DB<S>
 where
     S: StorageEngine
 {
-    /// omit some code 
+    /// omit some code
 }
 ```
 
@@ -311,10 +315,12 @@ impl<C: 'static + Command> StorageApi for RocksDBStorage<C> {
 ```
 
 #### Implementation Details
+
 ##### Data Views
 
 With the introduction of the Persistent Storage Layer, Xline uses logical tables to separate different namespaces. Currently, these tables correspond to Column Families in the underlying RocksDB.
 The following tables are currently available:
+
 1. curp: Stores persistent information related to curp, including log entries, voted_for, and corresponding term information.
 2. lease: Stores granted lease information.
 3. kv: Stores key-value information.
@@ -371,6 +377,7 @@ impl<C: 'static + Command> StorageApi for RocksDBStorage<C> {
     }
 }
 ```
+
 For the consensus module, during the recovery process, the voted_for value and the corresponding term are first loaded from the underlying database. This is a security guarantee for the consensus algorithm to prevent voting twice within the same term. Subsequently, the corresponding log entries are loaded.
 
 ###### Business Module
@@ -423,9 +430,10 @@ where
     }
 }
 ```
+
 Among them, the recovery logic for `LeaseStore` and `AuthStore` is relatively simple, and we won't delve into it too much. Let's focus on the recovery process of `KvStore`. The flowchart for its recovery process is as follows:
 
-![image](/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image4.png)
+![image](/xline-home/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/image4.png)
 
 ###### Recovery Timing
 
@@ -512,7 +520,7 @@ impl<C: 'static + Command> CurpNode<C> {
                 entries,
                 last_applied.numeric_cast(),
             ))
-        };   
+        };
         // omit some code
         Ok(Self {
             curp,
@@ -525,5 +533,5 @@ impl<C: 'static + Command> CurpNode<C> {
 ```
 
 Performance Evaluation
-In v0.3.0, except for introducing the persistent storage layer, we also conducted significant refactoring on certain parts of CURP. After completing the refactoring and adding new features, we recently passed the validation test and integration test. The performance testing information has already been released in Xline v 0.4.0. 
+In v0.3.0, except for introducing the persistent storage layer, we also conducted significant refactoring on certain parts of CURP. After completing the refactoring and adding new features, we recently passed the validation test and integration test. The performance testing information has already been released in Xline v 0.4.0.
 Xline GitHub ：https://github.com/datenlord/Xline

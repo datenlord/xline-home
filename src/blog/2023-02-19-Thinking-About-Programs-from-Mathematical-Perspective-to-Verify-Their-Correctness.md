@@ -1,10 +1,10 @@
 ---
 
-  cover: /blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/cover.png
+  cover: /xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/cover.png
   author:
     name: DatenLord
     url: https://github.com/datenlord
-    img_url: /DatenLord.png
+    img_url: /xline-home/DatenLord.png
   read_time: 13
 
 ---
@@ -99,7 +99,7 @@ It seems that the abstraction is complete, but there are problems. Suppose that 
 
 This is inconsistent with the previous abstraction, because the state transition relationship of the two runs is different. This is because we have not considered the return value of `someNumber()`.
 
-The *state* of a program refers to the time point when the program is at each stage, not the process of the program running. Therefore, each state is independent, and the transition between states is atomic. This is very different from traditional programming, which is procedural, and TLA+ is state-oriented. We only care about what state the program is currently running in, so we can introduce a new variable `pc` to represent which stage the program is running in, so that we can clearly represent the sub-state relationship of the program:
+The _state_ of a program refers to the time point when the program is at each stage, not the process of the program running. Therefore, each state is independent, and the transition between states is atomic. This is very different from traditional programming, which is procedural, and TLA+ is state-oriented. We only care about what state the program is currently running in, so we can introduce a new variable `pc` to represent which stage the program is running in, so that we can clearly represent the sub-state relationship of the program:
 
 ```c
 int i;
@@ -117,21 +117,21 @@ In this way, we no longer need to consider the value of `i`, but only the value 
 
 The initial value of `i` is 0, and the initial value of `pc` is `start`, so we can write the sub-state relationship as:
 
-![image1](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image1.png)
+![image1](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image1.png)
 
 In which, for the variable `i`, its next state is represented as `i'`, which is the way TLA+ defines the state transition of variables. `i' ∈ 0..1000` means that the value of `i` in the next state is a number between 0 and 1000, that is, `someNumber()`, `0..1000` represents the set `{0,1,...,1000}`. `∧` is the logical and in Boolean logic, which can be understood as "and". Finally, the program runs to completion and there is no next state, so it is represented as `FALSE`.
 
 In TLA+ , we write a state. Therefore, it is not "because `pc = start` so `i' ∈ 0..1000`", in fact, the relationship between the two is parallel: **In this state, the value of `pc` is `start` and the value of `i` in the next state `∈ 0..1000`**. With this idea, we can rewrite the above abstraction as:
 
-![image2](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image2.png)
+![image2](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image2.png)
 
 In which, the "or" is used to connect two states, which can be represented by the logical or `∨` in Boolean logic. In this way, we can clearly represent the state transition relationship of the program. For the sake of beauty, the same Boolean logic symbol can also be supplemented before the first sentence in TLA+ :
 
-![image3](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image3.png)
+![image3](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image3.png)
 
 We finally get the two states after the initial state of this simple program, and then we will complete the initial state and supplement the entire specification according to the requirements of the TLA+ language:
 
-![image4](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image4.png)
+![image4](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image4.png)
 
 - `EXTENDS` is used to introduce modules defined in other specifications, which is mainly used in `i' ∈ 0..1000` here.
 - `VARIABLES` is used to define variables, which are defined as `i` and `pc` here.
@@ -148,7 +148,7 @@ For simple systems, modeling with TLA+ cannot bring many benefits. Generally spe
 
 Lamport explains Two-Phase Commit in the following analogy in [Leslie Lamport's The TLA+ Video Course](https://www.youtube.com/playlist?list=PLWAv2Etpa7AOAwkreYImYt0gIpOdWQevD):
 
-![image5](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image5.png)
+![image5](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image5.png)
 
 In a wedding, the minister is the coordinator, the groom and the bride are the participants. When the groom and the bride both agree to the marriage, the minister will officially announce the marriage. If one of them does not agree, the minister will abort the marriage:
 
@@ -166,7 +166,7 @@ The detailed introduction and process of Two-Phase Commit can be found on [Wikip
 
 First, let's define some constants and variables and their initial state:
 
-![image6](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image6.png)
+![image6](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image6.png)
 
 - The constant `RM` is the set of all Resource Manager identifiers, for example, it can be set to the set `{"r1", "r2", "r3"}`.
 - The variable `rmState` is used to record the state of each Resource Manager, and `rmState[r]` is used to represent the state of `r`, which has four states: `working`, `prepared`, `committed`, `aborted`. The initial state of each `RM` is `working`.
@@ -176,7 +176,7 @@ First, let's define some constants and variables and their initial state:
 
 Next, let's define the actions that the system may perform.
 
-![image7](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image7.png)
+![image7](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image7.png)
 
 - In TLA+, expressions similar to the "function" concept in other programming languages can be defined in the above way, so there is no need to define an expression for each Resource Manager.
 - `[type → "prepare", rm → r]` is a record in TLA+, similar to a struct in other programming languages.
@@ -184,11 +184,11 @@ Next, let's define the actions that the system may perform.
 
 When the state of `TM` is `init`, and there is a `Prepared` message from `r` in the message pool, the value of `tmPrepared` in the next state will be the union of `tmPrepared` and `{r}`.
 
-![image8](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image8.png)
+![image8](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image8.png)
 
 The above two actions are Transaction Manager performing Commit and Abort.
 
-![image9](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image9.png)
+![image9](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image9.png)
 
 The above 4 Resource Manager actions are Resource Manager choosing Prepare and Abort, and handling the Commit and Abort decided by the Transaction Manager.
 
@@ -200,13 +200,13 @@ TLA+ is different from the programs we usually write, it is mathematics. In prog
 
 After writing all the actions that the system may exist, we can start to deduce the state transition of the system:
 
-![image10](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image10.png)
+![image10](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image10.png)
 
 We use the existential quantifier `∃r ∈ RM` to represent "for any element `r` in the set `RM`, there is such an action". The state transition in TLA+ is atomic, so in a state, only one `r` will be selected in this "or" branch, which can be compared to the `for r in RM` in the programming language, but fundamentally different.
 
 At this point, the modeling of the system is complete. Now we need to write the system's constraint conditions:
 
-![image11](/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image11.png)
+![image11](/xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/image11.png)
 
 In the constraint condition `TypeOK`, we have limited the possible values of each variable. The `[RM → {"working", "prepared", "committed", "aborted"}]` is similar to the Cartesian product of the set `RM` and the set `{"working", "prepared", "committed", "aborted"}`, but the result is a set composed of records:
 

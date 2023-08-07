@@ -1,9 +1,9 @@
 ---
-  cover: /blog/Revisit-the-Consensus-Protocol/cover.png
+  cover: /xline-home/blog/Revisit-the-Consensus-Protocol/cover.png
   author:
     name: DatenLord
     url: https://github.com/datenlord
-    img_url: /DatenLord.png
+    img_url: /xline-home/DatenLord.png
   read_time: 7
 ---
 
@@ -17,13 +17,13 @@ Consensus protocol is a protocol to keep the information consistent and durable 
 
 First let’s take a look at Paxos, which is shown in the below graph. Paxos has two phases. The first phase is Prepare, and its main assignment is to take a Slot on the Log. The second phase is Accept, which makes sure this specific Slot has been explicitly occupied, and not taken by others between two phases. When Client receives OK response from the majority of servers, it means this particular record has been submitted and a consensus is reached. Here we can take Client and Proposer as a whole, and there are two messages delivered in the whole process and one message in each phase respectively.
 
-![image](/blog/Revisit-the-Consensus-Protocol/image1.jpg)
+![image](/xline-home/blog/Revisit-the-Consensus-Protocol/image1.jpg)
 
 Then let’s move on to talk about Raft, which is also shown below. In Raft protocol a Client sends a request to the leader server, then the leader broadcast the request to all the follower servers. When the leader collects the OK response from the majority of all servers, including itself, a consensus is reached, then it tells the result to Client. There are two messages delivered during the process, one is between Client and the leader, the other is between the leader and the followers.
 
-![image](/blog/Revisit-the-Consensus-Protocol/image2.webp)
+![image](/xline-home/blog/Revisit-the-Consensus-Protocol/image2.webp)
 
-It thus can be told that the above two protocols take two RTTs to complete a request and reach a consensus. It usually does not have a big impact on performance if the protocol runs in a single data center, while the situation is totally different if we run the protocol in multiple data centers. Because the latency between the data-centers is too high, up to hundreds of milliseconds. Therefore, in multi-data center scenarios, it is critical to reduce the number of messages delivered in the process.  
+It thus can be told that the above two protocols take two RTTs to complete a request and reach a consensus. It usually does not have a big impact on performance if the protocol runs in a single data center, while the situation is totally different if we run the protocol in multiple data centers. Because the latency between the data-centers is too high, up to hundreds of milliseconds. Therefore, in multi-data center scenarios, it is critical to reduce the number of messages delivered in the process.
 
 Then, the next question is “Are two phases necessary?”. The answer is yes if we want to keep the following properties:
 
@@ -39,7 +39,7 @@ Then how do we come up with a way to reduce one number of message delivery? The 
 
 We won’t discuss all the details of the CURP protocol for it’s too complicated, so only the critical parts will be covered. Here’s the process diagram of the CURP protocol:
 
-![image](/blog/Revisit-the-Consensus-Protocol/image3.webp)
+![image](/xline-home/blog/Revisit-the-Consensus-Protocol/image3.webp)
 
 To start with, let’s describe the main procedures briefly below:
 
@@ -60,7 +60,7 @@ A1: Because the waiting pool is exclusive as conflict requests won’t be in the
 
 A2: The reason is the recovery procedure requires the number. In the worst case, there are at most f failures, we must find out the committed requests in the waiting pool according to the remaining informed (f + 1)/ 2 + 1 servers, which are the majority of all remaining servers.
 
-The consensus protocol allows at most f server failures, so the remaining server is f+1. In the worst case, all failed servers contain that request, then the remaining f+1 still have at least (f+1_)/2+1 servers containing that particular request, accounting for the vast majority and is convenient for the recovery process to restore the request and prevent any losses.
+The consensus protocol allows at most f server failures, so the remaining server is f+1. In the worst case, all failed servers contain that request, then the remaining f+1 still have at least (f+1\_)/2+1 servers containing that particular request, accounting for the vast majority and is convenient for the recovery process to restore the request and prevent any losses.
 
 **Q3: Do all the requests reach the consensus after one message delivery?**
 
