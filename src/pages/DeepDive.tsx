@@ -127,12 +127,13 @@ const SideBarTitle = styled.p`
 
 const DeepDivePage = () => {
   const { params } = useParams()
+  const coverTitle = params?.split('-').join(' ')
 
   return (
     <>
       <CoverWrapper>
         <CoverTitle>
-          {params?.split('-').join(' ')}
+          {coverTitle === 'Testing' ? 'Test' : coverTitle}
           <Underline src={underlineUrl} alt="underline" />
         </CoverTitle>
       </CoverWrapper>
