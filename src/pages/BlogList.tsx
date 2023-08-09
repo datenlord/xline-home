@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import YAML from 'yaml'
@@ -221,6 +222,10 @@ const blogMap = import.meta.glob('@/blog/*.md', { as: 'raw', eager: true })
 // console.log(blogMap)
 
 const BlogListPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       <CoverWrapper>

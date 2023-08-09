@@ -82,4 +82,4 @@ CURP supplements a system's existing replication mechanism with a lightweight fo
 
 Xline is a distributed key-value store engine which can achieve high-performance data access and strong consistency in cross data center scenarios. The network latency between different data centers is very high, often tens or even hundreds of milliseconds. Ideally, since CURP protocol can save an RTT to reach consensus than Raft or Multi-Paxos does, Xline uses CURP to achieve high-performance data access and strong consistency in cross data center situations.
 
-Read the blog for more information about the CURP Protocol.
+Read the [blog](/xline-home/#/blog) for more information about the CURP Protocol.
