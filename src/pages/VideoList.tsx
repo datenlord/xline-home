@@ -6,6 +6,7 @@ import moment from 'moment'
 import underlineUrl from '@/assets/underline.svg'
 import Image1Url from '@/assets/video/image1.png'
 import Image2Url from '@/assets/video/image2.png'
+import Image3Url from '@/assets/video/image3.png'
 import DotUrl from '@/assets/video/dot.svg'
 
 const CoverWrapper = styled.div`
@@ -356,6 +357,16 @@ const data = [
     read: '20min',
     img: Image2Url,
     url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-proofing-the-correctness-of-the-curp-consensus-protocol-using-tla/',
+  },
+  {
+    date: '2023-09-08',
+    title: 'How to write a distributed key-value store in Rust',
+    description:
+      'In this presentation, we will explore how to use Rust to build a distributed key-value store, taking the open-source distributed KV storage Xline as an example. ',
+    author: 'By Jiawei Zhao',
+    read: '35min',
+    img: Image3Url,
+    url: 'https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-how-to-write-a-distributed-key-value-store-in-rust/',
   },
 ]
 
