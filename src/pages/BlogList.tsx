@@ -160,7 +160,7 @@ const BlogListItemTitle = styled.h1`
   /* white-space: nowrap; */
   overflow: hidden;
   text-overflow: ellipsis;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   @media screen and (max-width: 1024px) {
     margin-bottom: 15px;
     font-size: 15px;
@@ -261,6 +261,7 @@ const BlogListPage = () => {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const [year, month, day, ...name] = _blogFileName[3].split('-')
             const blogName = name.join(' ')
+            console.log(blogName)
             // console.log(blogMap[blogFileName])
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const [space, _metadata, description, article] =

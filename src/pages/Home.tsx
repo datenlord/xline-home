@@ -559,7 +559,7 @@ const HomePage = () => {
               leader server takes another RTT to broadcast the message to the
               follower servers. In a geo-distributed environment where an RTT
               can run from tens to hundreds of milliseconds, two RTTs would be
-              two expensive
+              too expensive.
             </InnovationText>
             <InnovationText>
               We adopt a new consensus protocol named CURP to resolve the above

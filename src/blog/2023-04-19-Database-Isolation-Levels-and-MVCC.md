@@ -1,5 +1,5 @@
 ---
-  cover: /xline-home/blog/Database-Isolation-Levels-and-MVCC/cover.jpeg
+  cover: /xline-home/blog/Database-Isolation-Levels-and-MVCC/cover.png
   author:
     name: DatenLord
     url: https://github.com/datenlord
