@@ -340,7 +340,7 @@ const ReadTime = styled.div`
 const data = [
   {
     date: '2023-01-19',
-    title: 'Geo-distributed Metadata Management System',
+    title: 'Geo distributed Metadata Management System',
     description:
       'The webinar aims to briefly introduce DatenLord’s open source project Xline, a distributed metadata management system for multi-clusters. It reveals the motivation of Xline, the architecture of it and the important consensus protocol, CURP. The performance comparison shows the advantage of Xline over the current solution.',
     author: 'By DatenLord',
@@ -360,7 +360,7 @@ const data = [
   },
   {
     date: '2023-09-08',
-    title: 'How to write a distributed key-value store in Rust',
+    title: 'How to Write a Distributed Key-value store in Rust',
     description:
       'In this presentation, we will explore how to use Rust to build a distributed key-value store, taking the open-source distributed KV storage Xline as an example. ',
     author: 'By Jiawei Zhao',

@@ -2,7 +2,7 @@
 
   cover: /xline-home/blog/How-to-elegantly-organize-async-Rust-code/cover.png
   author:
-    name: DatenLord
+    name: Tianyu Chen
     url: https://github.com/datenlord
     img_url: /xline-home/DatenLord.png
   read_time: 5

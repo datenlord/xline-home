@@ -1,9 +1,9 @@
 ---
   cover: /xline-home/blog/Database-Isolation-Levels-and-MVCC/cover.png
   author:
-    name: DatenLord
-    url: https://github.com/datenlord
-    img_url: /xline-home/DatenLord.png
+    name: Roger Shi
+    url: https://github.com/rogercloud
+    img_url: https://avatars.githubusercontent.com/u/939078?v=4
   read_time: 5
 ---
 

@@ -1,9 +1,9 @@
 ---
   cover: /xline-home/blog/The-design-and-implementation-of-the-Xline-persistent-storage-layer/cover.png
   author:
-    name: DatenLord
-    url: https://github.com/datenlord
-    img_url: /xline-home/DatenLord.png
+    name: Phoenix
+    url: https://github.com/Phoenix500526
+    img_url: https://avatars.githubusercontent.com/u/9337239?v=4
   read_time: 20
 ---
 

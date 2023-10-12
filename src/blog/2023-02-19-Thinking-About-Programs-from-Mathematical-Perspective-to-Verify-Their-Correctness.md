@@ -2,7 +2,7 @@
 
   cover: /xline-home/blog/Thinking-About-Programs-from-Mathematical-Perspective-to-Verify-Their-Correctness/cover.png
   author:
-    name: DatenLord
+    name: Ye Tian
     url: https://github.com/datenlord
     img_url: /xline-home/DatenLord.png
   read_time: 13

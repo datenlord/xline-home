@@ -1,9 +1,9 @@
 ---
   cover: /xline-home/blog/Mechanism-and-Implementation-of-Lease/cover.png
   author:
-    name: DatenLord
-    url: https://github.com/datenlord
-    img_url: /xline-home/DatenLord.png
+    name: themanforfree
+    url: https://github.com/themanforfree
+    img_url: https://avatars.githubusercontent.com/u/56149350?v=4
   read_time: 20
 ---
 
@@ -229,6 +229,6 @@ Xline is a geo-distributed KV storage for metadata management. the Xline project
 
 GitHub link:  
 https://github.com/xline-kv/Xline  
-Xline official website: www.xline.cloud   
+Xline official website: www.xline.cloud  
 Xline Discord:  
 https://discord.gg/XyFXGpSfvb

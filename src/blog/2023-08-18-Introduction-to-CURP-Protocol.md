@@ -1,12 +1,14 @@
 ---
   cover: /xline-home/blog/Introduction-to-CURP-Protocol/cover.png
   author:
-    name: DatenLord
-    url: https://github.com/datenlord
-    img_url: /xline-home/DatenLord.png
+    name: Phoenix
+    url: https://github.com/Phoenix500526
+    img_url: https://avatars.githubusercontent.com/u/9337239?v=4
   read_time: 20
 ---
+
 Xline is an open source distributed KV storage engine, its core purpose is to achieve high-performance strong consistency across data centers, providing cross-data center metadata management. So how does Xline achieve this high-performance strong consistency across data centers? This article will lead you to find out.
+
 ---
 
 ## 1. What is Xline
