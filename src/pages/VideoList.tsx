@@ -343,7 +343,7 @@ const data = [
     title: 'Geo distributed Metadata Management System',
     description:
       'The webinar aims to briefly introduce DatenLord’s open source project Xline, a distributed metadata management system for multi-clusters. It reveals the motivation of Xline, the architecture of it and the important consensus protocol, CURP. The performance comparison shows the advantage of Xline over the current solution.',
-    author: 'By DatenLord',
+    author: 'By Jicheng Shi',
     read: '19min',
     img: Image1Url,
     url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-geo-distributed-metadata-management-system/',
@@ -353,7 +353,7 @@ const data = [
     title: 'Proofing the Correctness of the CURP Consensus Protocol Using TLA+',
     description:
       'The CURP Replication Protocol (NSDI ’19) aims to eliminate the additional round trips between servers in replicated state machines. We extended CURP into a consensus protocol and used it in our open source project Xline. This webinar is about how we modeled the CURP consensus protocol in TLA+ and verified the correctness of it.',
-    author: 'By DatenLord',
+    author: 'By Ye Tian',
     read: '20min',
     img: Image2Url,
     url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-proofing-the-correctness-of-the-curp-consensus-protocol-using-tla/',

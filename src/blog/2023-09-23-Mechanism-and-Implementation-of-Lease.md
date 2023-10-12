@@ -1,7 +1,7 @@
 ---
   cover: /xline-home/blog/Mechanism-and-Implementation-of-Lease/cover.png
   author:
-    name: themanforfree
+    name: Yu Guan
     url: https://github.com/themanforfree
     img_url: https://avatars.githubusercontent.com/u/56149350?v=4
   read_time: 20

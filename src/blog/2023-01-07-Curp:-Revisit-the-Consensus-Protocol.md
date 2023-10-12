@@ -1,7 +1,7 @@
 ---
   cover: /xline-home/blog/Revisit-the-Consensus-Protocol/cover.png
   author:
-    name: Roger Shi
+    name: Jicheng Shi
     url: https://github.com/rogercloud
     img_url: https://avatars.githubusercontent.com/u/939078?v=4
   read_time: 7

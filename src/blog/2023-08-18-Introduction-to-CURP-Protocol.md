@@ -1,7 +1,7 @@
 ---
   cover: /xline-home/blog/Introduction-to-CURP-Protocol/cover.png
   author:
-    name: Phoenix
+    name: Jiawei Zhao
     url: https://github.com/Phoenix500526
     img_url: https://avatars.githubusercontent.com/u/9337239?v=4
   read_time: 20
