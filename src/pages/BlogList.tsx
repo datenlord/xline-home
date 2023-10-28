@@ -255,34 +255,36 @@ const BlogListPage = () => {
           })}
         </SideBarContainer>
         <BlogList>
-          {Object.keys(blogMap).map((blogFileName, index) => {
-            const _blogFileName = blogFileName.split(/[/,.]/)
-            const routerName = _blogFileName[3]
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const [year, month, day, ...name] = _blogFileName[3].split('-')
-            const blogName = name.join(' ')
-            console.log(blogName)
-            // console.log(blogMap[blogFileName])
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const [space, _metadata, description, article] =
-              blogMap[blogFileName].split('---\n')
-            const metadata = YAML.parse(_metadata)
-            // console.log(metadata)
-            return (
-              <BlogListItem key={index}>
-                <BlogListItemCover src={metadata.cover} alt="cover" />
-                <BlogListItemContentContainer>
-                  <BlogListItemTitle>{blogName}</BlogListItemTitle>
-                  <BlogListItemDescription>
-                    {description}
-                  </BlogListItemDescription>
-                  <BlogListItemButton to={routerName}>
-                    Read more
-                  </BlogListItemButton>
-                </BlogListItemContentContainer>
-              </BlogListItem>
-            )
-          })}
+          {Object.keys(blogMap)
+            .reverse()
+            .map((blogFileName, index) => {
+              const _blogFileName = blogFileName.split(/[/,.]/)
+              const routerName = _blogFileName[3]
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const [year, month, day, ...name] = _blogFileName[3].split('-')
+              const blogName = name.join(' ')
+              console.log(blogName)
+              // console.log(blogMap[blogFileName])
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const [space, _metadata, description, article] =
+                blogMap[blogFileName].split('---\n')
+              const metadata = YAML.parse(_metadata)
+              // console.log(metadata)
+              return (
+                <BlogListItem key={index}>
+                  <BlogListItemCover src={metadata.cover} alt="cover" />
+                  <BlogListItemContentContainer>
+                    <BlogListItemTitle>{blogName}</BlogListItemTitle>
+                    <BlogListItemDescription>
+                      {description}
+                    </BlogListItemDescription>
+                    <BlogListItemButton to={routerName}>
+                      Read more
+                    </BlogListItemButton>
+                  </BlogListItemContentContainer>
+                </BlogListItem>
+              )
+            })}
         </BlogList>
       </MainContainer>
     </>

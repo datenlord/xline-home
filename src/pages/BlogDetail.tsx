@@ -310,6 +310,7 @@ const BlogDetailPage: React.FC = () => {
   const [space, _metadata, description, article] = blogContent.split('---\n')
   const metadata = YAML.parse(_metadata)
   // console.log(metadata)
+  let cnt = 0
 
   return (
     <>
@@ -382,43 +383,47 @@ const BlogDetailPage: React.FC = () => {
             <TitleText>related resources</TitleText>
           </TitleContainer>
           <RelatedList>
-            {Object.keys(blogMap).map((blogFileName, index) => {
-              const _blogFileName = blogFileName.split(/[/,.]/)
-              const routerName = _blogFileName[3]
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              const [year, month, day, ...name] = _blogFileName[3].split('-')
-              const blogName = name.join(' ')
-              // console.log(blogMap[blogFileName])
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              const [space, _metadata, description, article] =
-                blogMap[blogFileName].split('---\n')
-              const metadata = YAML.parse(_metadata)
-              // console.log(metadata)
-              // console.log(blogFileName)
-              // console.log(`/src/blog/${msg}.md`)
-              const currentBlog = `/src/blog/${msg}.md`
+            {Object.keys(blogMap)
+              .reverse()
+              .map((blogFileName, index) => {
+                cnt++
+                const _blogFileName = blogFileName.split(/[/,.]/)
+                const routerName = _blogFileName[3]
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const [year, month, day, ...name] = _blogFileName[3].split('-')
+                const blogName = name.join(' ')
+                // console.log(blogMap[blogFileName])
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const [space, _metadata, description, article] =
+                  blogMap[blogFileName].split('---\n')
+                const metadata = YAML.parse(_metadata)
+                // console.log(metadata)
+                // console.log(blogFileName)
+                // console.log(`/src/blog/${msg}.md`)
+                const currentBlog = `/src/blog/${msg}.md`
 
-              if (blogFileName === currentBlog) {
-                return null
-              }
-              return (
-                <RelatedListItem key={index}>
-                  <RelatedListItemCover src={metadata.cover} alt="cover" />
-                  <RelatedListItemContentContainer>
-                    <RelatedListItemTitle>{blogName}</RelatedListItemTitle>
-                    <RelatedListItemDescription>
-                      {description}
-                    </RelatedListItemDescription>
-                    <RelatedListItemButton
-                      onClick={() => window.scrollTo(0, 0)}
-                      to={`/blog/${routerName}`}
-                    >
-                      Read more
-                    </RelatedListItemButton>
-                  </RelatedListItemContentContainer>
-                </RelatedListItem>
-              )
-            })}
+                if (blogFileName === currentBlog || cnt > 2) {
+                  cnt--
+                  return null
+                }
+                return (
+                  <RelatedListItem key={index}>
+                    <RelatedListItemCover src={metadata.cover} alt="cover" />
+                    <RelatedListItemContentContainer>
+                      <RelatedListItemTitle>{blogName}</RelatedListItemTitle>
+                      <RelatedListItemDescription>
+                        {description}
+                      </RelatedListItemDescription>
+                      <RelatedListItemButton
+                        onClick={() => window.scrollTo(0, 0)}
+                        to={`/blog/${routerName}`}
+                      >
+                        Read more
+                      </RelatedListItemButton>
+                    </RelatedListItemContentContainer>
+                  </RelatedListItem>
+                )
+              })}
           </RelatedList>
           <RelatedButton to="/blog">View All →</RelatedButton>
         </RelatedContainer>
