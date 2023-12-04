@@ -4,34 +4,28 @@
     name: Jiawei Zhao
     url: https://github.com/Phoenix500526
     img_url: https://avatars.githubusercontent.com/u/9337239?v=4
-  read_time: 30
+  read_time: 14
 ---
 
 In the previous article, An Introduction to the CURP Protocol, we gave a preliminary introduction to the CURP Protocol. Now, let’s continue from where we left off and delve into the internal workings of the CURP Server.
 
 ---
 
+In the previous article, An Introduction to the CURP Protocol, we gave a preliminary introduction to the CURP Protocol. Now, let’s continue from where we left off and delve into the internal workings of the CURP Server.
+
 ## Organization of the Curp Crate’s Source Code
 
 Now, let’s focus on the curp consensus module. The curp module is a separate crate in Xline, with all of its source code stored in the curp directory, which is organized as follows:
 
-curp/proto: Holds the definition of the rpc interfaces and messages related to the curp protocol.
-
-curp/tla+: Holds content related to the tla+ specification of the curp protocol
-
-curp/tests: integration tests
-
-curp/src: the main implementation code of the CURP protocol, which can be divided into:
-
-client.rs: CURP client-side implementation.
-
-cmd.rs: defines key traits for interacting with external mods
-
-log_entry.rs: state machine log entries.
-
-rpc/: CURP server implementation of rpc methods.
-
-server/: CURP server-side implementation, including the following
+> curp/proto: Holds the definition of the rpc interfaces and messages related to the curp protocol.  
+> curp/tla+: Holds content related to the tla+ specification of the curp protocol  
+> curp/tests: integration tests  
+> curp/src: the main implementation code of the CURP protocol, which can be divided into:  
+> client.rs: CURP client-side implementation.  
+> cmd.rs: defines key traits for interacting with external mods  
+> log_entry.rs: state machine log entries.  
+> rpc/: CURP server implementation of rpc methods.  
+> server/: CURP server-side implementation, including the following
 
 Key data structure definitions: cmd_board.rs, spec_pool.rs
 
