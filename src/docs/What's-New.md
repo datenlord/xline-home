@@ -133,3 +133,46 @@ Since we implemented the persistence feature for xline in v0.3.0, we have re-ben
 We'd like to thank all the contributors who worked on this release!
 
 [@liubog2008](https://github.com/liubog2008)
+
+# v0.6.0
+
+#### New Features
+
+- [Feature]: Add membership change mechanism for CUPR consensus Protocol (Read design doc [#306](https://github.com/xline-kv/Xline/issues/306) for more details)
+- [Feature]: Implement cluster server and client [#464](https://github.com/xline-kv/Xline/pull/464), [#465](https://github.com/xline-kv/Xline/pull/465)
+- [Feature]: Implement the graceful shutdown feature.
+- [Feature]: Implement the xlinctl to communicate with the xline cluster. Currently, the xlinectl covers functionalities:
+  - Compaction and member command: Implemented in pr [#484](https://github.com/xline-kv/Xline/pull/484)
+  - Txn, watch and lock command: Implemented in pr [#428](https://github.com/xline-kv/Xline/pull/484)
+  - Role command: Implemented in pr [#427](https://github.com/xline-kv/Xline/pull/427)
+  - User command: Implemented in pr [#426](https://github.com/xline-kv/Xline/pull/426)
+  - Snapshot and auth command: Implemented in pr [#425](https://github.com/xline-kv/Xline/pull/425)
+  - Delete and lease command: Implemented in pr [#424](https://github.com/xline-kv/Xline/pull/424)
+
+#### Bug Fixes
+
+- [Bug]: benchmark client cannot connect to server [#462](https://github.com/xline-kv/Xline/pull/462)
+- [Bug]: remove stop in simulation tests [#458](https://github.com/xline-kv/Xline/pull/458)
+- [Bug]: execute out of order [#454](https://github.com/xline-kv/Xline/pull/454)
+- [Bug]: check the password on leader [#435](https://github.com/xline-kv/Xline/pull/435)
+- [Bug]: remove recovery of uncommitted pool [#419](https://github.com/xline-kv/Xline/pull/419)
+- [Bug]: CURP TLA+ quorum size calculation & property check [#418](https://github.com/xline-kv/Xline/pull/418)
+- [Bug]: fix propose doesn't handle SyncedError [#407](https://github.com/xline-kv/Xline/pull/407)
+
+#### Refactor
+
+- [Refactor]: reduce code duplication [#407](https://github.com/xline-kv/Xline/pull/407)
+- [Refactor]: Take into account the interleaving states of a request broadcast in TLA+ [#429](https://github.com/xline-kv/Xline/pull/429)
+- [Refactor]: Refine the bench client implementation [#496](https://github.com/xline-kv/Xline/pull/496)
+- [Refactor]: Simplified the error handling logic [#480](https://github.com/xline-kv/Xline/pull/480)
+- [Refactor]: Improve readability of bootstrap errors [#432](https://github.com/xline-kv/Xline/pull/432)
+- [Refactor]: Imporve command serialization in execution and after-sync [#421](https://github.com/xline-kv/Xline/pull/421), [#422](https://github.com/xline-kv/Xline/pull/422)
+
+#### Contributors
+
+- [@EAimTY](https://github.com/EAimTY)
+- [@MarkGaox](https://github.com/MarkGaox)
+- [@Kikkon](https://github.com/Kikkon)
+
+Note：  
+Known issue: If the cluster is shut down immediately after adding a member, the leader node may not shut down properly, continuously trying to send entries to the shut-down new node. Read issue [#526](https://github.com/xline-kv/Xline/issues/526) for more details.
