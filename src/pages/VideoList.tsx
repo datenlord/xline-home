@@ -7,6 +7,7 @@ import underlineUrl from '@/assets/underline.svg'
 import Image1Url from '@/assets/video/image1.png'
 import Image2Url from '@/assets/video/image2.png'
 import Image3Url from '@/assets/video/image3.png'
+import Image4Url from '@/assets/video/image4.png'
 import DotUrl from '@/assets/video/dot.svg'
 
 const CoverWrapper = styled.div`
@@ -368,6 +369,16 @@ const data = [
     img: Image3Url,
     url: 'https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-how-to-write-a-distributed-key-value-store-in-rust/',
   },
+  {
+    date: '2023-12-14',
+    title: 'Application and Analysis of Jepsen Tests in Xline',
+    description:
+      'This presentation offers an overview of applying Jepsen tests to Xline, a distributed KV Store. It begins with a brief introduction to Jepsen, followed by an exploration of the application of Jepsen tests to Xline. The presentation then delves into the test results and system analysis. Finally, it discusses the lessons learned and outlines future work in chaos engineering for Xline. ',
+    author: 'By Zhenghao Yin',
+    read: '13min',
+    img: Image4Url,
+    url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-application-and-analysis-of-jepsen-tests-in-xline/',
+  },
 ]
 
 interface CardProps {
@@ -400,7 +411,6 @@ const Card: React.FC<CardProps> = data => {
     </ListItem>
   )
 }
-
 
 const VideoListPage = () => {
   return (
