@@ -83,9 +83,11 @@ const LinkListItem = styled.li`
   }
 `
 const FooterBottom = styled.div`
-  padding-bottom: 48px;
+  padding-bottom: 40px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  /* flex-wrap: wrap; */
   @media screen and (max-width: 1024px) {
     padding-bottom: 36px;
   }
@@ -95,6 +97,7 @@ const FooterBottom = styled.div`
 `
 const Logo = styled.img`
   height: 48px;
+  margin-bottom: 8px;
   cursor: pointer;
   @media screen and (max-width: 1024px) {
     height: 34px;
@@ -102,18 +105,25 @@ const Logo = styled.img`
   @media screen and (max-width: 768px) {
     height: 22px;
   }
+  /* @media screen and (max-width: 512px) {
+    display: none;
+  } */
   @media screen and (max-width: 320px) {
     height: 18px;
   }
 `
 const Placeholder = styled.div`
   flex: 1;
+  /* @media screen and (max-width: 512px) {
+    display: none;
+  } */
 `
 const BottomLinkContainer = styled.div`
   display: flex;
   align-items: center;
   height: 32px;
   margin-left: 32px;
+  margin-bottom: 8px;
   color: white;
   cursor: pointer;
   @media screen and (max-width: 1024px) {
@@ -273,22 +283,24 @@ export const Footer: React.FC = () => {
                 navigate('/')
               }}
             />
-            <Placeholder />
-            <CNCFLinkLogo>
-              <CNCFLogo src={CNCFLogoUrl} />
-              <CNCFLogoText src={CNCFLogoTextUrl} />
-            </CNCFLinkLogo>
-            <BottomLinkContainer
-              as="a"
-              href="https://github.com/datenlord/xline"
-            >
-              <BottomLinkIcon src={githubIconUrl} alt="icon" />
-              <BottomLinkText>GitHub</BottomLinkText>
-            </BottomLinkContainer>
-            <BottomLinkContainer as="a" href="https://discord.gg/XyFXGpSfvb">
-              <BottomLinkIcon src={DiscordIconUrl} alt="icon" />
-              <BottomLinkText>Discord</BottomLinkText>
-            </BottomLinkContainer>
+            {/* <Placeholder /> */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
+              <CNCFLinkLogo>
+                <CNCFLogo src={CNCFLogoUrl} />
+                <CNCFLogoText src={CNCFLogoTextUrl} />
+              </CNCFLinkLogo>
+              <BottomLinkContainer
+                as="a"
+                href="https://github.com/datenlord/xline"
+              >
+                <BottomLinkIcon src={githubIconUrl} alt="icon" />
+                <BottomLinkText>GitHub</BottomLinkText>
+              </BottomLinkContainer>
+              <BottomLinkContainer as="a" href="https://discord.gg/XyFXGpSfvb">
+                <BottomLinkIcon src={DiscordIconUrl} alt="icon" />
+                <BottomLinkText>Discord</BottomLinkText>
+              </BottomLinkContainer>
+            </div>
           </FooterBottom>
           <CopyRightContainer>
             <CopyRightText>
