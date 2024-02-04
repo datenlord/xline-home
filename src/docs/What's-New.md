@@ -176,3 +176,25 @@ We'd like to thank all the contributors who worked on this release!
 
 Note：  
 Known issue: If the cluster is shut down immediately after adding a member, the leader node may not shut down properly, continuously trying to send entries to the shut-down new node. Read issue [#526](https://github.com/xline-kv/Xline/issues/526) for more details.
+
+# v0.6.1
+
+#### Bug Fixes
+
+- [Bug]: Fixed a bug causing panic during the update node process. [issue #531](https://github.com/xline-kv/Xline/issues/531)
+- [Bug]: Fixed a bug causing panic during the CI process due to reading state. [issue #527](https://github.com/xline-kv/Xline/issues/527)
+- [Bug]: Fixed a bug in the previous version where immediately shutting down the cluster after executing "member add" would cause the leader to fail to shut down properly. [issue #526](https://github.com/xline-kv/Xline/issues/526)
+- [Bug]: Fixed an issue in TXN where the conflict detection process would ignore the key of child requests. [issue #470](https://github.com/xline-kv/Xline/issues/470)
+- [Bug]: Fixed a panic issue in watch caused by closing the channel. [issue #370](https://github.com/xline-kv/Xline/issues/370)
+  - pr 576: [fix: fix ce event tx logs](https://github.com/xline-kv/Xline/pull/576)
+  - pr 556: [[Fix]: kv update channel panic](https://github.com/xline-kv/Xline/pull/556)
+- [Bug]: Changed the calculation method for the cluster version to a hash to avoid misjudgments. [pr #590](https://github.com/xline-kv/Xline/pull/590)
+- [Bug]: Fixed a bug that caused the compact operation to behave abnormally in specific scenarios. [pr #570](https://github.com/xline-kv/Xline/pull/570)
+
+#### Refactor
+
+- [Refactor]: Refactored the implementation of the Curp client, reducing code complexity. ：
+  - pr 582: [Refactor/curp client tests suits](https://github.com/xline-kv/Xline/pull/582)
+  - pr 584: [Refactor/curp client retry](https://github.com/xline-kv/Xline/pull/584)
+  - pr 585: [Refactor/replace curp client](https://github.com/xline-kv/Xline/pull/585)
+- [Refactor]: Removed some command-related data structures from xline and xline-client. [pr #469](https://github.com/xline-kv/Xline/pull/469)
