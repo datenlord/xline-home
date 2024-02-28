@@ -8,6 +8,7 @@ import DeepDivePage from './pages/DeepDive'
 import BlogListPage from './pages/BlogList'
 import BlogDetailPage from './pages/BlogDetail'
 import VideoListPage from './pages/VideoList'
+import MeetingListPage from './pages/MeetingList'
 import GSoC from './pages/GSoC'
 
 export const router = createHashRouter([
@@ -22,6 +23,10 @@ export const router = createHashRouter([
       {
         path: '/contribute',
         element: <ContributePage />,
+      },
+      {
+        path: '/meeting',
+        element: <MeetingListPage />,
       },
       {
         path: '/GsoC',

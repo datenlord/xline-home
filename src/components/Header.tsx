@@ -81,9 +81,9 @@ const items: NavItem[] = [
         url: 'https://discord.gg/XyFXGpSfvb',
       },
       {
-        key: 'GSoC 2024',
-        label: 'GSoC 2024',
-        url: '/GSoC',
+        key: 'Community Meeting',
+        label: 'Community Meeting',
+        url: '/meeting',
       },
     ],
   },
