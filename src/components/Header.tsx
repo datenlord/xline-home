@@ -80,6 +80,11 @@ const items: NavItem[] = [
         label: 'Chat',
         url: 'https://discord.gg/XyFXGpSfvb',
       },
+      {
+        key: 'GSoC 2024',
+        label: 'GSoC 2024',
+        url: '/GSoC',
+      },
     ],
   },
   {
