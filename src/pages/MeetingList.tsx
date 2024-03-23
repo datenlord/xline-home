@@ -1,13 +1,9 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import YAML from 'yaml'
 import moment from 'moment'
 
 import underlineUrl from '@/assets/underline.svg'
-import Image1Url from '@/assets/video/image1.png'
-import Image2Url from '@/assets/video/image2.png'
-import Image3Url from '@/assets/video/image3.png'
-import Image4Url from '@/assets/video/image4.png'
+import Image1Url from '@/assets/meeting/image1.png'
 import DotUrl from '@/assets/video/dot.svg'
 
 const CoverWrapper = styled.div`
@@ -351,49 +347,18 @@ const ListTitle = styled.div`
 `
 const ListCtr = styled.div``
 
-const upcoming = [
-  {
-    date: '2023-01-19',
-    title: 'Geo distributed Metadata Management System',
-    description:
-      'The webinar aims to briefly introduce DatenLord’s open source project Xline, a distributed metadata management system for multi-clusters. It reveals the motivation of Xline, the architecture of it and the important consensus protocol, CURP. The performance comparison shows the advantage of Xline over the current solution.',
-    author: 'By Jicheng Shi',
-    read: '19min',
-    img: Image1Url,
-    url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-geo-distributed-metadata-management-system/',
-  },
-  {
-    date: '2023-05-04',
-    title: 'Proofing the Correctness of the CURP Consensus Protocol Using TLA+',
-    description:
-      'The CURP Replication Protocol (NSDI ’19) aims to eliminate the additional round trips between servers in replicated state machines. We extended CURP into a consensus protocol and used it in our open source project Xline. This webinar is about how we modeled the CURP consensus protocol in TLA+ and verified the correctness of it.',
-    author: 'By Ye Tian',
-    read: '20min',
-    img: Image2Url,
-    url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-proofing-the-correctness-of-the-curp-consensus-protocol-using-tla/',
-  },
-]
+const upcoming = []
 
 const previous = [
   {
-    date: '2023-01-19',
-    title: 'Geo distributed Metadata Management System',
+    date: '2023-01',
+    title: 'Xline Community Meeting',
     description:
-      'The webinar aims to briefly introduce DatenLord’s open source project Xline, a distributed metadata management system for multi-clusters. It reveals the motivation of Xline, the architecture of it and the important consensus protocol, CURP. The performance comparison shows the advantage of Xline over the current solution.',
-    author: 'By Jicheng Shi',
-    read: '19min',
+      'Xline is a distributed KV store for managing metadata based on the Curp protocol. In order to better introduce the progress of Xline and to promote the development of Xline community, we held the first Xline Community Meeting on January 27, 2024 (Saturday) at 10:00 am Beijing time.',
+    author: 'By Jiawei Zhao',
+    read: '39min',
     img: Image1Url,
-    url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-geo-distributed-metadata-management-system/',
-  },
-  {
-    date: '2023-05-04',
-    title: 'Proofing the Correctness of the CURP Consensus Protocol Using TLA+',
-    description:
-      'The CURP Replication Protocol (NSDI ’19) aims to eliminate the additional round trips between servers in replicated state machines. We extended CURP into a consensus protocol and used it in our open source project Xline. This webinar is about how we modeled the CURP consensus protocol in TLA+ and verified the correctness of it.',
-    author: 'By Ye Tian',
-    read: '20min',
-    img: Image2Url,
-    url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-proofing-the-correctness-of-the-curp-consensus-protocol-using-tla/',
+    url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
   },
 ]
 
@@ -414,7 +379,7 @@ const Card: React.FC<CardProps> = data => {
   return (
     <ListItem onClick={() => (window.location.href = `${url}`)}>
       <ContentContainer>
-        <Date>{moment(date, 'YYYY-MM-DD').format('dddd MMMM D, YYYY')}</Date>
+        <Date>{moment(date, 'YYYY-MM').format('MMMM, YYYY')}</Date>
         <Title>{title}</Title>
         <Description>{description}</Description>
         <MetaDataContainer>
@@ -449,22 +414,24 @@ const VideoListPage = () => {
           })}
         </SideBarContainer>
         <ListCtr>
-        <BlogList>
-          <ListTitle>Upcoming meetings</ListTitle>
-          <List>
-            {upcoming.map(item => {
-              return <Card key={item.title} data={item} />
-            })}
-          </List>
-        </BlogList>
-        <BlogList>
-          <ListTitle>Previous meetings</ListTitle>
-          <List>
-            {previous.map(item => {
-              return <Card key={item.title} data={item} />
-            })}
-          </List>
-        </BlogList>
+          {upcoming.length > 0 && (
+            <BlogList>
+              <ListTitle>Upcoming meetings</ListTitle>
+              <List>
+                {upcoming.map(item => {
+                  return <Card key={item.title} data={item} />
+                })}
+              </List>
+            </BlogList>
+          )}
+          <BlogList>
+            <ListTitle>Previous meetings</ListTitle>
+            <List>
+              {previous.map(item => {
+                return <Card key={item.title} data={item} />
+              })}
+            </List>
+          </BlogList>
         </ListCtr>
       </MainContainer>
     </>
