@@ -1,9 +1,9 @@
 ---
   cover: /xline-home/blog/Xline-Command-Deduplication-Mechanism-(Part-One)—Introduction-to-RIFL/cover.png
   author:
-    name: Hengyu Wang
-    url: https://github.com/GTwhy
-    img_url: https://avatars.githubusercontent.com/u/32484423?v=4
+    name: Wenhui Tang
+    url: https://github.com/iGxnon
+    img_url: https://avatars.githubusercontent.com/u/59405399?v=4
   read_time: 20
 ---
 
