@@ -20,14 +20,19 @@ For more information about the Architecture of Xline, read [Xline Architecture D
 
 1. Download binary from [release](https://github.com/datenlord/Xline/releases) page.
 2. Use the following command to start cluster:
-~~~bash
-$ ./xline --name node1 --cluster-peers 127.0.0.1:2380 127.0.0.1:2381 --self-ip-port 127.0.0.1:2379 --leader-ip-port 127.0.0.1:2379
-$ ./xline --name node2 --cluster-peers 127.0.0.1:2379 127.0.0.1:2381 --self-ip-port 127.0.0.1:2380 --leader-ip-port 127.0.0.1:2379
-$ ./xline --name node3 --cluster-peers 127.0.0.1:2379 127.0.0.1:2380 --self-ip-port 127.0.0.1:2381 --leader-ip-port 127.0.0.1:2379
-~~~
+
+```bash
+xline  --name node1 --members node1=172.20.0.3:2380,172.20.0.3:2381,node2=172.20.0.4:2380,172.20.0.4:2381,node3=172.20.0.5:2380,172.20.0.5:2381     --storage-engine rocksdb  --data-dir /usr/local/xline/data-dir  --client-listen-urls=http://172.20.0.3:2379  --peer-listen-urls=http://172.20.0.3:2380,http://172.20.0.3:2381  --client-advertise-urls=http://172.20.0.3:2379 --peer-advertise-urls=http://172.20.0.3:2380,http://172.20.0.3:2381
+
+xline  --name node2 --members node1=172.20.0.3:2380,172.20.0.3:2381,node2=172.20.0.4:2380,172.20.0.4:2381,node3=172.20.0.5:2380,172.20.0.5:2381     --storage-engine rocksdb  --data-dir /usr/local/xline/data-dir  --client-listen-urls=http://172.20.0.3:2379  --peer-listen-urls=http://172.20.0.3:2380,http://172.20.0.3:2381  --client-advertise-urls=http://172.20.0.3:2379 --peer-advertise-urls=http://172.20.0.3:2380,http://172.20.0.3:2381
+
+xline  --name node3 --members node1=172.20.0.3:2380,172.20.0.3:2381,node2=172.20.0.4:2380,172.20.0.4:2381,node3=172.20.0.5:2380,172.20.0.5:2381     --storage-engine rocksdb  --data-dir /usr/local/xline/data-dir  --client-listen-urls=http://172.20.0.3:2379  --peer-listen-urls=http://172.20.0.3:2380,http://172.20.0.3:2381  --client-advertise-urls=http://172.20.0.3:2379 --peer-advertise-urls=http://172.20.0.3:2380,http://172.20.0.3:2381
+```
+
 3. Download or build etcdctl from [etcd](https://github.com/etcd-io/etcd) project.
 4. Use etcdctl to operate the cluster:
-~~~bash
+
+```bash
 $ etcdctl --endpoints=http://127.0.0.1:2379 put foo bar
 $ etcdctl --endpoints=http://127.0.0.1:2379 get foo
-~~~
+```
