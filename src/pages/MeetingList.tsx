@@ -347,7 +347,8 @@ const ListTitle = styled.div`
 `
 const ListCtr = styled.div``
 
-const upcoming = []
+// @ts-ignore
+const upcoming: any[] = []
 
 const previous = [
   {

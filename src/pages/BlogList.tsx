@@ -177,11 +177,12 @@ const BlogListItemDescription = styled.p`
   font-size: ${props => props.theme.font.fontSize3};
   /* line-height: ${props => props.theme.font.lineHeight3}; */
   line-height: 1.5;
-  word-break: break-all;
+  /* word-break: break-all; */
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-wrap: nowrap;
   @media screen and (max-width: 1024px) {
     margin-bottom: 15px;
     font-size: 12px;
