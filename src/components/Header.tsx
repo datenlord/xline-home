@@ -71,14 +71,19 @@ const items: NavItem[] = [
     label: 'Community',
     children: [
       {
+        key: 'chat',
+        label: 'Chat',
+        url: 'https://discord.gg/XyFXGpSfvb',
+      },
+      {
         key: 'contribute',
         label: 'Contribute',
         url: '/contribute',
       },
       {
-        key: 'chat',
-        label: 'Chat',
-        url: 'https://discord.gg/XyFXGpSfvb',
+        key: '2024 GSoC',
+        label: '2024 GSoC',
+        url: '/GSoC',
       },
       {
         key: 'Community Meeting',

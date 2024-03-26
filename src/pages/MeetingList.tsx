@@ -226,7 +226,7 @@ const BlogListItemButton = styled(Link)`
   }
 `
 
-const blogMap = import.meta.glob('@/blog/*.md', { as: 'raw', eager: true })
+// const blogMap = import.meta.glob('@/blog/*.md', { as: 'raw', eager: true })
 // console.log(blogMap)
 
 const List = styled.ul``
@@ -263,20 +263,20 @@ const Image = styled.img`
     width: 100%;
   }
 `
-const Date = styled.div`
-  margin-bottom: 6px;
-  font-size: 15px;
-  line-height: 2;
-  font-weight: 600px;
-  color: #7680dd;
-  @media screen and (max-width: 1024px) {
-    margin-bottom: 4.5px;
-    font-size: 12px;
-  }
-  @media screen and (max-width: 768px) {
-    margin-bottom: 3px;
-  }
-`
+// const Date = styled.div`
+//   margin-bottom: 6px;
+//   font-size: 15px;
+//   line-height: 2;
+//   font-weight: 600px;
+//   color: #7680dd;
+//   @media screen and (max-width: 1024px) {
+//     margin-bottom: 4.5px;
+//     font-size: 12px;
+//   }
+//   @media screen and (max-width: 768px) {
+//     margin-bottom: 3px;
+//   }
+// `
 const Title = styled.div`
   margin-bottom: 27px;
   font-size: 27px;
@@ -293,7 +293,7 @@ const Title = styled.div`
   }
 `
 const Description = styled.div`
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   font-size: 13.5px;
   line-height: 1.77;
   font-weight: 400;
@@ -306,40 +306,55 @@ const Description = styled.div`
     margin-bottom: 3px;
   }
 `
-const MetaDataContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  line-height: 1%.5;
-  font-weight: 600;
+const Meta = styled.div`
+  margin-bottom: 6px;
+  max-width: 80%;
+  font-size: 13.5px;
+  line-height: 1.77;
+  font-weight: 400;
+  color: #7d7d7d;
   @media screen and (max-width: 1024px) {
-    font-size: 9px;
+    margin-bottom: 4.5px;
+    font-size: 12px;
   }
   @media screen and (max-width: 768px) {
-    font-size: 6px;
+    margin-bottom: 3px;
   }
 `
-const Dot = styled.img`
-  width: 22px;
-  height: 22px;
-  padding-inline: 8px;
-  @media screen and (max-width: 1024px) {
-    width: 16.5px;
-    height: 16.5px;
-    padding-inline: 6px;
-  }
-  @media screen and (max-width: 768px) {
-    width: 11px;
-    height: 11px;
-    padding-inline: 4px;
-  }
-`
-const Author = styled.div`
-  color: #797979;
-`
-const ReadTime = styled.div`
-  color: #7680dd;
-`
+// const MetaDataContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   font-size: 12px;
+//   line-height: 1%.5;
+//   font-weight: 600;
+//   @media screen and (max-width: 1024px) {
+//     font-size: 9px;
+//   }
+//   @media screen and (max-width: 768px) {
+//     font-size: 6px;
+//   }
+// `
+// const Dot = styled.img`
+//   width: 22px;
+//   height: 22px;
+//   padding-inline: 8px;
+//   @media screen and (max-width: 1024px) {
+//     width: 16.5px;
+//     height: 16.5px;
+//     padding-inline: 6px;
+//   }
+//   @media screen and (max-width: 768px) {
+//     width: 11px;
+//     height: 11px;
+//     padding-inline: 4px;
+//   }
+// `
+// const Author = styled.div`
+//   color: #797979;
+// `
+// const ReadTime = styled.div`
+//   color: #7680dd;
+// `
 const ListTitle = styled.div`
   color: #7680dd;
   font-size: 1.5vw;
@@ -348,7 +363,16 @@ const ListTitle = styled.div`
 const ListCtr = styled.div``
 
 // @ts-ignore
-const upcoming: any[] = []
+const upcoming: any[] = [
+  {
+    title: 'Xline Community Meeting',
+    description:
+      'Xline is a distributed KV store for managing metadata based on the Curp protocol. In order to better introduce the progress of Xline and to promote the development of Xline community, we held the first Xline Community Meeting on January 27, 2024 (Saturday) at 10:00 am Beijing time.',
+    author: 'By Jiawei Zhao',
+    read: '39min',
+    url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
+  },
+]
 
 const previous = [
   {
@@ -376,18 +400,37 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = data => {
-  const { date, title, description, author, read, img, url } = data.data
+  const { title, description, img, url } = data.data
   return (
     <ListItem onClick={() => (window.location.href = `${url}`)}>
       <ContentContainer>
-        <Date>{moment(date, 'YYYY-MM').format('MMMM, YYYY')}</Date>
         <Title>{title}</Title>
         <Description>{description}</Description>
-        <MetaDataContainer>
-          <Author>{author}</Author>
-          <Dot src={DotUrl} />
-          <ReadTime>{read}</ReadTime>
-        </MetaDataContainer>
+      </ContentContainer>
+      <Image src={img} />
+    </ListItem>
+  )
+}
+const UpcomingCard: React.FC<CardProps> = data => {
+  const { title, description, img, url } = data.data
+  return (
+    <ListItem onClick={() => (window.location.href = `${url}`)}>
+      <ContentContainer>
+        {/* <Date>{moment(date, 'YYYY-MM').format('MMMM, YYYY')}</Date> */}
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+        <Meta>
+          The meeting will be held via zoom 
+          <br />
+          Meeting number: <b>813 0547 8985</b>{' '}
+          <br />
+          Password: <b>520159</b>
+          <br />
+          Link:{' '}
+          <a href="https://zoom.us/j/81305478985?pwd=PsnbMGQy1ZqxYyd67cAkaGROfnIoQa.1">
+            https://zoom.us/j/81305478985?pwd=PsnbMGQy1ZqxYyd67cAkaGROfnIoQa.1
+          </a>
+        </Meta>
       </ContentContainer>
       <Image src={img} />
     </ListItem>
@@ -420,7 +463,7 @@ const VideoListPage = () => {
               <ListTitle>Upcoming meetings</ListTitle>
               <List>
                 {upcoming.map(item => {
-                  return <Card key={item.title} data={item} />
+                  return <UpcomingCard key={item.title} data={item} />
                 })}
               </List>
             </BlogList>

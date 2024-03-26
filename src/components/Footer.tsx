@@ -250,6 +250,22 @@ export const Footer: React.FC = () => {
                 >
                   chat
                 </LinkListItem>
+                <LinkListItem
+                  onClick={() => {
+                    navigate('/GSoC')
+                    window.scrollTo(0, 0)
+                  }}
+                >
+                  2024 GSoC
+                </LinkListItem>
+                <LinkListItem
+                  onClick={() => {
+                    navigate('/meeting')
+                    window.scrollTo(0, 0)
+                  }}
+                >
+                  Community Meeting
+                </LinkListItem>
               </LinkList>
             </LinkClass>
             <LinkClass>
@@ -284,7 +300,13 @@ export const Footer: React.FC = () => {
               }}
             />
             {/* <Placeholder /> */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }} >
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+              }}
+            >
               <CNCFLinkLogo>
                 <CNCFLogo src={CNCFLogoUrl} />
                 <CNCFLogoText src={CNCFLogoTextUrl} />
