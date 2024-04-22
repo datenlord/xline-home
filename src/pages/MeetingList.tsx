@@ -363,25 +363,20 @@ const ListTitle = styled.div`
 const ListCtr = styled.div``
 
 // @ts-ignore
-const upcoming: any[] = [
-  {
-    title: 'Xline Community Meeting',
-    description:
-      'Xline is a distributed KV store for managing metadata based on the Curp protocol. In order to better introduce the progress of Xline and to promote the development of Xline community, we held the first Xline Community Meeting on January 27, 2024 (Saturday) at 10:00 am Beijing time.',
-    author: 'By Jiawei Zhao',
-    read: '39min',
-    url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
-  },
-]
+const upcoming: any[] = []
 
 const previous = [
   {
-    date: '2023-01',
-    title: 'Xline Community Meeting',
+    title: 'Xline Community Meeting March, 2024',
     description:
-      'Xline is a distributed KV store for managing metadata based on the Curp protocol. In order to better introduce the progress of Xline and to promote the development of Xline community, we held the first Xline Community Meeting on January 27, 2024 (Saturday) at 10:00 am Beijing time.',
-    author: 'By Jiawei Zhao',
-    read: '39min',
+      'In the community meeting on January 27, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on performance improvements, along with codebase rewrites to resolve consistency issues.',
+    img: Image1Url,
+    url: 'https://www.youtube.com/watch?v=UdC_mteVeH8',
+  },
+  {
+    title: 'Xline Community Meeting January, 2024',
+    description:
+      'In the community meeting on January 27, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on explaining the implementation of Xline membership changes.',
     img: Image1Url,
     url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
   },
@@ -399,7 +394,7 @@ interface CardProps {
   }
 }
 
-const Card: React.FC<CardProps> = data => {
+const Card: React.FC<any> = data => {
   const { title, description, img, url } = data.data
   return (
     <ListItem onClick={() => (window.location.href = `${url}`)}>
@@ -411,7 +406,7 @@ const Card: React.FC<CardProps> = data => {
     </ListItem>
   )
 }
-const UpcomingCard: React.FC<CardProps> = data => {
+const UpcomingCard: React.FC<any> = data => {
   const { title, description, img, url } = data.data
   return (
     <ListItem onClick={() => (window.location.href = `${url}`)}>
@@ -420,10 +415,9 @@ const UpcomingCard: React.FC<CardProps> = data => {
         <Title>{title}</Title>
         <Description>{description}</Description>
         <Meta>
-          The meeting will be held via zoom 
+          The meeting will be held via zoom
           <br />
-          Meeting number: <b>813 0547 8985</b>{' '}
-          <br />
+          Meeting number: <b>813 0547 8985</b> <br />
           Password: <b>520159</b>
           <br />
           Link:{' '}
