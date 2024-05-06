@@ -362,14 +362,21 @@ const ListTitle = styled.div`
 `
 const ListCtr = styled.div``
 
-// @ts-ignore
-const upcoming: any[] = []
+const upcoming: any[] = [
+  {
+    title: 'Xline Community Meeting May, 2024',
+    description:
+      "In order to provide a more comprehensive overview of Xline's progress and to promote the Xline community, we will hold the next Xline community in May",
+    img: Image1Url,
+    url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
+  },
+]
 
 const previous = [
   {
     title: 'Xline Community Meeting March, 2024',
     description:
-      'In the community meeting on January 27, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on performance improvements, along with codebase rewrites to resolve consistency issues.',
+      'In the community meeting on March 29, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on performance improvements, along with codebase rewrites to resolve consistency issues.',
     img: Image1Url,
     url: 'https://www.youtube.com/watch?v=UdC_mteVeH8',
   },
