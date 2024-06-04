@@ -376,7 +376,7 @@ const previous = [
   {
     title: 'Xline Community Meeting March, 2024',
     description:
-      'In the community meeting on March 29, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on performance improvements, along with codebase rewrites to resolve consistency issues.',
+      "In order to provide a more comprehensive overview of Xline's progress and to promote the Xline community, we will be hosting an Xline community meeting at 8AM PT (USA Pacific) on May 31, 2024  (11AM EST；11PM Beijing Time)",
     img: Image1Url,
     url: 'https://www.youtube.com/watch?v=UdC_mteVeH8',
   },
@@ -424,12 +424,12 @@ const UpcomingCard: React.FC<any> = data => {
         <Meta>
           The meeting will be held via zoom
           <br />
-          Meeting number: <b>813 0547 8985</b> <br />
-          Password: <b>520159</b>
+          Meeting number: <b>832 1086 6737</b> <br />
+          Password: <b>411255</b>
           <br />
           Link:{' '}
-          <a href="https://zoom.us/j/81305478985?pwd=PsnbMGQy1ZqxYyd67cAkaGROfnIoQa.1">
-            https://zoom.us/j/81305478985?pwd=PsnbMGQy1ZqxYyd67cAkaGROfnIoQa.1
+          <a href="https://zoom.us/j/83210866737?pwd=smuaVvF6Jm7i322ZUHCHzAcRAFK164.1">
+            https://zoom.us/j/83210866737?pwd=smuaVvF6Jm7i322ZUHCHzAcRAFK164.1
           </a>
         </Meta>
       </ContentContainer>
