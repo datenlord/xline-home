@@ -1,9 +1,9 @@
 ---
   cover: /xline-home/blog/Xline-command-Deduplication-Mechanism-(II)-RIFL-Implementation/cover.png
   author:
-    name: Jiawei Zhao
-    url: https://github.com/Phoenix500526
-    img_url: https://avatars.githubusercontent.com/u/9337239?v=4
+    name: Wenhui Tang
+    url: https://github.com/iGxnon
+    img_url: https://avatars.githubusercontent.com/u/59405399?v=4
   read_time: 10
 ---
 

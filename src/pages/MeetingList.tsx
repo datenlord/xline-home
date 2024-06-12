@@ -364,9 +364,9 @@ const ListCtr = styled.div``
 
 const upcoming: any[] = [
   {
-    title: 'Xline Community Meeting May, 2024',
+    title: 'Xline Community Meeting July, 2024',
     description:
-      "In order to provide a more comprehensive overview of Xline's progress and to promote the Xline community, we will hold the next Xline community in May",
+      "In order to provide a more comprehensive overview of Xline's progress and to promote the Xline community, we will hold the next Xline community in July",
     img: Image1Url,
     url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
   },
@@ -374,9 +374,16 @@ const upcoming: any[] = [
 
 const previous = [
   {
+    title: 'Xline Community Meeting May, 2024',
+    description:
+      'In the community meeting on May 31, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on the safety of implementing joint consensus in CURP algorithm.',
+    img: Image1Url,
+    url: 'https://www.youtube.com/watch?v=2aQkiQCvshQ',
+  },
+  {
     title: 'Xline Community Meeting March, 2024',
     description:
-      "In order to provide a more comprehensive overview of Xline's progress and to promote the Xline community, we will be hosting an Xline community meeting at 8AM PT (USA Pacific) on May 31, 2024  (11AM EST；11PM Beijing Time)",
+      'In the community meeting on March 29, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on performance improvements, along with codebase rewrites to resolve consistency issues.',
     img: Image1Url,
     url: 'https://www.youtube.com/watch?v=UdC_mteVeH8',
   },
