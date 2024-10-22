@@ -236,25 +236,24 @@ const BlogListPage = () => {
         </CoverTitle>
       </CoverWrapper>
       <MainContainer>
-        <SideBarContainer>
-          <SideBarTitle>Blog</SideBarTitle>
-          {Object.keys(blogMap).map(blogFileName => {
-            const _blogFileName = blogFileName.split(/[/,.]/)
-            // console.log(_blogFileName[3])
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const [year, month, day, ...name] = _blogFileName[3].split('-')
-            const blogName = name.join(' ')
-            const routerName = _blogFileName[3]
-            // console.log(year, month, day)
-            // console.log(blogName)
-            // console.log(routerName)
-            return (
-              <SideBarListItem to={routerName} key={blogName}>
-                {blogName}
-              </SideBarListItem>
-            )
-          })}
-        </SideBarContainer>
+      <SideBarContainer>
+  <SideBarTitle>Blog</SideBarTitle>
+  {Object.keys(blogMap)
+    .reverse() // 反转数组，以倒序显示
+    .map(blogFileName => {
+      const _blogFileName = blogFileName.split(/[/,.]/);
+      const [year, month, day, ...name] = _blogFileName[3].split('-');
+      const blogName = name.join(' ');
+      const routerName = _blogFileName[3];
+
+      return (
+        <SideBarListItem to={routerName} key={blogName}>
+          {blogName}
+        </SideBarListItem>
+      );
+    })}
+</SideBarContainer>
+
         <BlogList>
           {Object.keys(blogMap)
             .reverse()

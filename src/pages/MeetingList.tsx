@@ -364,15 +364,21 @@ const ListCtr = styled.div``
 
 const upcoming: any[] = [
   {
-    title: 'Xline Community Meeting July, 2024',
+    title: 'Xline Community Meeting',
     description:
-      "In order to provide a more comprehensive overview of Xline's progress and to promote the Xline community, we will hold the next Xline community in July",
+      "we will hold xline community meeting from time to time. Please stay tuned for our next community meeting.",
     img: Image1Url,
-    url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
   },
 ]
 
 const previous = [
+  {
+    title: 'Xline Community Meeting July, 2024',
+    description:
+      "At the community meeting on July 30, 2024, the focus was primarily on the updates for Xline version 0.7. This included performance optimizations and command deduplication based on RIFL.",
+    img: Image1Url,
+    url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
+  },
   {
     title: 'Xline Community Meeting May, 2024',
     description:
@@ -393,7 +399,8 @@ const previous = [
       'In the community meeting on January 27, 2024, it introduced the current development status and progress of Xline, with a particular emphasis on explaining the implementation of Xline membership changes.',
     img: Image1Url,
     url: 'https://www.youtube.com/watch?v=jvU44y14Ey8',
-  },
+  }
+ 
 ]
 
 interface CardProps {
@@ -427,18 +434,7 @@ const UpcomingCard: React.FC<any> = data => {
       <ContentContainer>
         {/* <Date>{moment(date, 'YYYY-MM').format('MMMM, YYYY')}</Date> */}
         <Title>{title}</Title>
-        <Description>{description}</Description>
-        <Meta>
-          The meeting will be held via zoom
-          <br />
-          Meeting number: <b>832 1086 6737</b> <br />
-          Password: <b>411255</b>
-          <br />
-          Link:{' '}
-          <a href="https://zoom.us/j/83210866737?pwd=smuaVvF6Jm7i322ZUHCHzAcRAFK164.1">
-            https://zoom.us/j/83210866737?pwd=smuaVvF6Jm7i322ZUHCHzAcRAFK164.1
-          </a>
-        </Meta>
+        <Description>{description}</Description>  
       </ContentContainer>
       <Image src={img} />
     </ListItem>
@@ -456,14 +452,16 @@ const VideoListPage = () => {
       </CoverWrapper>
       <MainContainer>
         <SideBarContainer>
+        
           <SideBarTitle>Meeting</SideBarTitle>
-          {upcoming.concat(previous).map(({ title, url }) => {
-            return (
-              <SideBarListItem to={url} key={title}>
-                {title}
-              </SideBarListItem>
-            )
-          })}
+         
+          {previous.map(({ title, url }) => {
+  return (
+    <SideBarListItem to={url} key={title}>
+      {title}
+    </SideBarListItem>
+  )
+})}
         </SideBarContainer>
         <ListCtr>
           {upcoming.length > 0 && (
