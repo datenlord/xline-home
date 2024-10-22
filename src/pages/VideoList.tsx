@@ -379,6 +379,16 @@ const data = [
     img: Image4Url,
     url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-application-and-analysis-of-jepsen-tests-in-xline/',
   },
+  {
+    date: '2024-05-30',
+    title: 'Early Exploration & Practice Managing Stateful Applications Across Clusters',
+    description:
+      'In this presentation, we will take Xline as an example to share some early explorations and practices of DatenLord using Karmada to manage stateful applications, including the advantages and challenges of cross-cluster deployment and the solutions. ',
+    author: 'By Jiawei Zhao',
+    read: '24min',
+    img: Image4Url,
+    url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-early-exploration-practice-managing-stateful-applications-across-clusters/',
+  },
 ]
 
 interface CardProps {
@@ -424,7 +434,7 @@ const VideoListPage = () => {
       <MainContainer>
         <SideBarContainer>
           <SideBarTitle>Video</SideBarTitle>
-          {data.map(({ title, url }) => {
+          {data.slice().reverse().map(({ title, url }) => {
             return (
               <SideBarListItem to={url} key={title}>
                 {title}
@@ -432,13 +442,11 @@ const VideoListPage = () => {
             )
           })}
         </SideBarContainer>
-        {/* <BlogList> */}
         <List>
-          {data.map(item => {
+          {data.slice().reverse().map(item => {
             return <Card key={item.title} data={item} />
           })}
         </List>
-        {/* </BlogList> */}
       </MainContainer>
     </>
   )
