@@ -8,6 +8,7 @@ import Image1Url from '@/assets/video/image1.png'
 import Image2Url from '@/assets/video/image2.png'
 import Image3Url from '@/assets/video/image3.png'
 import Image4Url from '@/assets/video/image4.png'
+import Image5Url from '@/assets/video/image5.png'
 import DotUrl from '@/assets/video/dot.svg'
 
 const CoverWrapper = styled.div`
@@ -386,7 +387,7 @@ const data = [
       'In this presentation, we will take Xline as an example to share some early explorations and practices of DatenLord using Karmada to manage stateful applications, including the advantages and challenges of cross-cluster deployment and the solutions. ',
     author: 'By Jiawei Zhao',
     read: '24min',
-    img: Image4Url,
+    img: Image5Url,
     url: 'https://www.cncf.io/online-programs/cncf-on-demand-webinar-early-exploration-practice-managing-stateful-applications-across-clusters/',
   },
 ]
