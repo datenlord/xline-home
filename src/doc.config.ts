@@ -51,6 +51,12 @@ export const docsConfig = [
         url: "/docs/What's-New",
         id: 'v0.6.1',
       },
+      {
+        type: 'heading',
+        title: 'v0.7.0',
+        url: "/docs/What's-New",
+        id: 'v0.7.0',
+      },
     ],
   },
   {

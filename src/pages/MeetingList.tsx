@@ -366,7 +366,7 @@ const upcoming: any[] = [
   {
     title: 'Xline Community Meeting',
     description:
-      "we will hold xline community meeting from time to time. Please stay tuned for our next community meeting.",
+      "We will hold xline community meeting from time to time. Please stay tuned for our next community meeting.",
     img: Image1Url,
   },
 ]

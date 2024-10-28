@@ -173,5 +173,5 @@ test bench_interval_tree_insert_remove_10000  ... bench:   3,060,029 ns/iter (+/
 ```
 We can observe a huge performance gain with this implementation, about 1-2x faster than both the previous Rc<RefCell<Node>> approach and the golang implementation in etcd. 
 Using arrays to emulate pointers not only solves the ownership problem easily, but also makes it more cache friendly due to the contiguous memory layout of arrays, making it even more performant than using actual pointers.
-##   Summarizing
+## Summarizing
 At this point, we have successfully implemented a interval tree using safe Rust. Through the various attempts described above, we found that using reference-counting smart pointers to implement tree or graph data structures in Rust is ineffective due to their unsuitability for memory-intensive operations. In the future, if I need to use safe Rust to implement pointer-like data structures, I would prefer to use arrays rather than smart pointers.
